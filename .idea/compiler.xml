@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="dk.sdu.newton.apprentice" />
+        <module name="dk.sdu.newton.collision" />
+        <module name="dk.sdu.newton.common" />
+        <module name="dk.sdu.newton.core" />
+        <module name="dk.sdu.newton.einstein" />
+        <module name="dk.sdu.newton.libgdx" />
+        <module name="dk.sdu.newton.player" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="compiled-bundle-settings" target="1.8" />
+      <module name="dk.sdu.newton.apprentice" target="1.8" />
+      <module name="dk.sdu.newton.collision" target="1.8" />
+      <module name="dk.sdu.newton.common" target="1.8" />
+      <module name="dk.sdu.newton.core" target="1.8" />
+      <module name="dk.sdu.newton.einstein" target="1.8" />
+      <module name="dk.sdu.newton.libgdx" target="1.8" />
+      <module name="dk.sdu.newton.player" target="1.8" />
+      <module name="libgdxwrapper" target="1.8" />
+      <module name="newton-parent" target="1.8" />
+      <module name="provision" target="1.8" />
+      <module name="shared-plugin-settings" target="1.8" />
+      <module name="wrapper-bundle-settings" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

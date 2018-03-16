@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <!--
+   | put company details here
+  <organization>
+    <name>...</name>
+    <url>http://...</url>
+  </organization>
+  -->
+
+  <!--
+   | put license details here
+  <licenses>
+    <license>
+      <name>...</name>
+      <url>http://...</url>
+      <comments>
+      </comments>
+    </license>
+  </licenses>
+  -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>dk.sdu.newton</groupId>
+  <artifactId>newton-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>dk.sdu.newton.newton-parent (OSGi project)</name>
+
+  <!--
+   | describe your project here
+  -->
+
+  <description>Generated using Pax-Construct</description>
+
+  <properties>
+    <!--
+     | some example OSGi runtime properties
+    -->
+    <org.osgi.service.http.port>8080</org.osgi.service.http.port>
+    <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
+  </properties>
+
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>poms</module>
+    <module>provision</module>
+    <module>dk.sdu.newton.libgdx</module>
+    <module>dk.sdu.newton.core</module>
+    <module>dk.sdu.newton.common</module>
+    <module>dk.sdu.newton.player</module>
+    <module>dk.sdu.newton.collision</module>
+    <module>dk.sdu.newton.apprentice</module>
+    <module>dk.sdu.newton.einstein</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.ops4j</groupId>
+        <artifactId>maven-pax-plugin</artifactId>
+        <version>1.6.0</version>
+        <configuration>
+          <!--
+           | some example Pax-Runner settings
+          -->
+          <provision>
+            <param>--platform=felix</param>
+          </provision>
+        </configuration>
+        <executions>
+          <!--
+           | uncomment to auto-generate IDE files
+          <execution>
+            <id>ide-support</id>
+            <goals>
+              <goal>eclipse</goal>
+            </goals>
+          </execution>
+          -->
+        </executions>
+      </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.3.2</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+    </plugins>
+  </build>
+
+</project>
