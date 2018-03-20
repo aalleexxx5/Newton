@@ -11,6 +11,7 @@
         <module name="dk.sdu.newton.common" />
         <module name="dk.sdu.newton.core" />
         <module name="dk.sdu.newton.einstein" />
+        <module name="dk.sdu.newton.hardcodedMapGenerator" />
         <module name="dk.sdu.newton.libgdx" />
         <module name="dk.sdu.newton.player" />
       </profile>
