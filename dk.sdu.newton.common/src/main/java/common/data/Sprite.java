@@ -11,14 +11,13 @@ public class Sprite {
 		this.width = width;
 		this.height = height;
 	}
-
     public float getX(){
         return x;}
     public float getY() {
         return y;
-    }public float getHeightY() {
+    }public float getHeight() {
         return height;
-    }public float getHeightX() {
+    }public float getWidth() {
         return width;
     }
 
@@ -37,4 +36,5 @@ public class Sprite {
     public void setHeight(float height) {
         this.height = height;
     }
+	
 }
