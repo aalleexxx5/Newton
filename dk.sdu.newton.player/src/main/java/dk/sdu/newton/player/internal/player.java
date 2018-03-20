@@ -2,14 +2,16 @@ package dk.sdu.newton.player.internal;
 
 import common.data.GameState;
 import common.data.Hostility;
+import common.data.Sprite;
 import common.data.Unit;
 import common.services.Collidable;
 
 public class player extends Unit {
 
     @Override
-    public void draw() {
+    public Sprite draw() {
 
+        return null;
     }
 
     /**
@@ -46,9 +48,9 @@ public class player extends Unit {
     @Override
     public float[] getBounds() {
         float[] playerBounds;
-        playerBounds[0] =
+        //playerBounds[0] ;
 
-        return playerBounds;
+        return new float[0]; //playerBounds;
     }
 
     @Override
