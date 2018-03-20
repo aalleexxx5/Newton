@@ -15,8 +15,9 @@ public class Apprentice extends Unit {
     private float dy;
 
     @Override
-    public void draw() {
+    public Sprite draw() {
 
+        return null;
     }
 
     public Apprentice(){
