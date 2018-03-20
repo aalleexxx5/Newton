@@ -1,7 +1,9 @@
 package common.services;
 
+import common.data.Sprite;
+
 public interface Drawable {
 
 
-    public void draw();
+    public Sprite draw();
 }
