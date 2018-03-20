@@ -1,6 +1,7 @@
 package dk.sdu.newton.apprentice;
 
 import common.data.Entity;
+import common.data.GameState;
 import common.services.Collidable;
 import common.services.Updatable;
 
@@ -22,7 +23,7 @@ public class Bullet extends Entity implements Collidable,Updatable{
     }
 
     @Override
-    public void update() {
+    public void update(GameState state) {
 
     }
 }
