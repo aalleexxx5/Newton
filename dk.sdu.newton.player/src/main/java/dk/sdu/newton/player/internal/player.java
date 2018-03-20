@@ -1,6 +1,7 @@
 package dk.sdu.newton.player.internal;
 
 import common.data.GameState;
+import common.data.Hostility;
 import common.data.Unit;
 import common.services.Collidable;
 
@@ -18,7 +19,7 @@ public class player extends Unit {
      */
     @Override
     public Enum getHostility() {
-        return null;
+        return Hostility.NO_EFFECT;
     }
 
     /**
@@ -28,6 +29,12 @@ public class player extends Unit {
      */
     @Override
     public void collidesWith(Collidable source) {
+        if(source.getHostility() == Hostility.KILLS_PLAYER){
+
+        }
+        if(source.getHostility() == Hostility.PASSIVE){
+
+        }
 
     }
 
@@ -38,7 +45,10 @@ public class player extends Unit {
      */
     @Override
     public float[] getBounds() {
-        return new float[0];
+        float[] playerBounds;
+        playerBounds[0] =
+
+        return playerBounds;
     }
 
     @Override
