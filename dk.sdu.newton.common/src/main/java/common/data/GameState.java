@@ -1,15 +1,21 @@
 package common.data;
 
+import common.services.Updatable;
+
 import java.util.ArrayList;
 
 public class GameState {
 	//Data:
 	ArrayList<Entity> gameEntities;
+	ArrayList<Updatable> updatables;
+	ArrayList<Updatable> postUpdateables;
+	
 	// Map Todo
 	
 	public GameState() {
 		gameEntities = new ArrayList<Entity>(120);
 	}
+	
 	
 	private int width, height;
 	private float deltaTime;
@@ -44,6 +50,22 @@ public class GameState {
 	
 	public void addEntity(Entity entity){
 		gameEntities.add(entity);
+	}
+	
+	public void addUpdatable(Updatable updatable){
+		updatables.add(updatable);
+	}
+	
+	public void removeUpdatable(Updatable updatable){
+		updatables.remove(updatable);
+	}
+	
+	public void addPostUpdatable(Updatable postUpdatable){
+		postUpdateables.add(postUpdatable);
+	}
+	
+	public void removePostUpdatable(Updatable postUpdatable){
+		postUpdateables.remove(postUpdatable);
 	}
 	
 	/**

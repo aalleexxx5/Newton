@@ -6,6 +6,7 @@
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.common" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.core" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.einstein" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.hardcodedMapGenerator" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.libgdx" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.player" />
   </component>
