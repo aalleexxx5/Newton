@@ -24,8 +24,3 @@ public class Registrator {
 		return gameStates.get(state);
 	}
 }
-
-enum AvailableStates{
-	PLAY_STATE,
-	PAUSED_STATE;
-}
