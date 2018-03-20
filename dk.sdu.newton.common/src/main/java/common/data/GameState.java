@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 public class GameState {
 	//Data:
-	ArrayList<Entity> gameEntities;
-	ArrayList<Updatable> updatables;
-	ArrayList<Updatable> postUpdateables;
+	private ArrayList<Entity> gameEntities;
+	private ArrayList<Updatable> updatables;
+	private ArrayList<Updatable> postUpdateables;
+	private InputActionMap inputActionMap = new InputActionMap();
 	
 	// Map Todo
 	
@@ -16,10 +17,9 @@ public class GameState {
 		gameEntities = new ArrayList<Entity>(120);
 	}
 	
-	
 	private int width, height;
-	private float deltaTime;
 	
+	private float deltaTime;
 	public float getDeltaTime() {
 		return deltaTime;
 	}
@@ -66,6 +66,10 @@ public class GameState {
 	
 	public void removePostUpdatable(Updatable postUpdatable){
 		postUpdateables.remove(postUpdatable);
+	}
+	
+	public InputActionMap getInputActionMap() {
+		return inputActionMap;
 	}
 	
 	/**
