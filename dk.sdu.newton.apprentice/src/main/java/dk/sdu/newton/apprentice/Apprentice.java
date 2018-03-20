@@ -1,11 +1,9 @@
 package dk.sdu.newton.apprentice;
 
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import common.data.GameState;
+import common.data.Sprite;
 import common.data.Unit;
 import common.services.Collidable;
 
@@ -13,7 +11,6 @@ public class Apprentice extends Unit {
     int hp = 100;
     boolean shouldDestuct =false;
     private Sprite sprite;
-    private Texture texture;
     private float dx;
     private float dy;
 
@@ -23,11 +20,11 @@ public class Apprentice extends Unit {
     }
 
     public Apprentice(){
-    this.sprite = new Sprite();
+   // this.sprite = new Sprite();
 
     //widhth and height / random Todo
-    location[0]=100;
-    location[1]=100;
+  //  location[0]=100;
+  //  location[1]=100;
 
     }
     @Override
@@ -62,8 +59,8 @@ public class Apprentice extends Unit {
 
     @Override
     public void update(GameState state) {
-        location[0] += dx * state.getDeltaTime();
-        location[1] += dy * state.getDeltaTime();
+        sprite.setX(sprite.getX()+ dx * state.getDeltaTime());
+        sprite.setY(sprite.getY()+ dx * state.getDeltaTime());
 
 
     }
@@ -72,8 +69,4 @@ public class Apprentice extends Unit {
         return sprite;
     }
 
-    public void create() {
-        texture = new Texture(Gdx.files.internal("Assets/Apprentice.png"));
-        sprite = new Sprite(texture);
-    }
 }
