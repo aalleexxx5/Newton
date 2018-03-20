@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import common.data.GameState;
 import common.data.Unit;
+import common.services.Collidable;
 
 public class Apprentice extends Unit {
     int hp = 100;
@@ -35,10 +36,15 @@ public class Apprentice extends Unit {
     }
 
     @Override
-    public void collidesWith() {
-        //cant walk through apprentice
+    public void collidesWith(Collidable source) {
 
     }
+
+    @Override
+    public float[] getBounds() {
+        return new float[0];
+    }
+
 
     @Override
     public Boolean shouldDestruct() {
