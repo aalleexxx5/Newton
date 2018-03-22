@@ -2,13 +2,14 @@ package dk.sdu.newton.apprentice;
 
 import common.data.Entity;
 import common.data.GameState;
+import common.data.Sprite;
 import common.services.Collidable;
 import common.services.Updatable;
 
 public class Bullet extends Entity implements Collidable,Updatable{
 
     @Override
-    public void draw() {
+    public Sprite draw() {
 
     }
 

@@ -20,12 +20,12 @@ public class Apprentice extends Unit {
         return null;
     }
 
-    public Apprentice(){
-   // this.sprite = new Sprite();
+    public Apprentice(String filename,float x, float y, float width, float height){
+    sprite = new Sprite(filename,x,y,width,height);
 
     //widhth and height / random Todo
-  //  location[0]=100;
-  //  location[1]=100;
+    location[0]=100;
+    location[1]=100;
 
     }
     @Override
@@ -60,8 +60,8 @@ public class Apprentice extends Unit {
 
     @Override
     public void update(GameState state) {
-        sprite.setX(sprite.getX()+ dx * state.getDeltaTime());
-        sprite.setY(sprite.getY()+ dx * state.getDeltaTime());
+        location[0] += dx * state.getDeltaTime();
+        location[1] += dy * state.getDeltaTime();
 
 
     }
@@ -69,5 +69,6 @@ public class Apprentice extends Unit {
     public Sprite getSprite(){
         return sprite;
     }
+
 
 }
