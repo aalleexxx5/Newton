@@ -47,14 +47,18 @@ public class player extends Unit {
      */
     @Override
     public float[] getBounds() {
-        float[] playerBounds;
-        //playerBounds[0] ;
+        float[] playerBounds = new float[4];
+        playerBounds[0] = sprite.getX();
+        playerBounds[1] = sprite.getY();
+        playerBounds[2] = sprite.getWidth();
+        playerBounds[3] = sprite.getHeight();
 
-        return new float[0]; //playerBounds;
+        return playerBounds;
     }
 
     @Override
     public Boolean shouldDestruct() {
+
         return null;
     }
 
