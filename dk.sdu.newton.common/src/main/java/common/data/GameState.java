@@ -1,5 +1,6 @@
 package common.data;
 
+import common.data.mapParts.Map;
 import common.services.Updatable;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class GameState {
 	ArrayList<Updatable> postUpdateables;
 	
 	// Map Todo
+	Map map;
 	
 	public GameState() {
 		gameEntities = new ArrayList<Entity>(120);
@@ -43,10 +45,10 @@ public class GameState {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
-	public ArrayList<Entity> getGameEntities(){
-		return gameEntities;
-	}
+
+	 public ArrayList<Entity> getGameEntities(){
+		return map.getCurrentRoom().getEntities();
+	 }
 	
 	public void addEntity(Entity entity){
 		gameEntities.add(entity);
