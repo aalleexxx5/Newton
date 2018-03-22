@@ -10,24 +10,22 @@ import static common.data.Hostility.PASSIVE;
 
 public class Apprentice extends Unit {
     int hp = 100;
-    boolean shouldDestuct =false;
+    boolean shouldDestuct = false;
     private Sprite sprite;
     private float dx;
     private float dy;
 
     @Override
     public Sprite draw() {
-
         return sprite;
     }
 
-    public Apprentice(String filename,float x, float y, float width, float height){
-    sprite = new Sprite(filename,x,y,width,height);
+    public Apprentice(String filename, float x, float y, float width, float height) {
+    sprite = new Sprite(filename, x, y, width, height);
 
     }
     @Override
     public Enum getHostility() {
-
         return PASSIVE;
     }
 
