@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 public class GameState {
 	//Data:
-	ArrayList<Entity> gameEntities;
-	ArrayList<Updatable> updatables;
-	ArrayList<Updatable> postUpdateables;
+	private ArrayList<Entity> gameEntities;
+	private ArrayList<Updatable> updatables;
+	private ArrayList<Updatable> postUpdateables;
+	private InputActionMap inputActionMap = new InputActionMap();
 	
 	// Map Todo
 	
@@ -16,10 +17,9 @@ public class GameState {
 		gameEntities = new ArrayList<Entity>(120);
 	}
 	
-	
 	private int width, height;
-	private float deltaTime;
 	
+	private float deltaTime;
 	public float getDeltaTime() {
 		return deltaTime;
 	}
@@ -68,6 +68,10 @@ public class GameState {
 		postUpdateables.remove(postUpdatable);
 	}
 	
+	public InputActionMap getInputActionMap() {
+		return inputActionMap;
+	}
+	
 	/**
 	 * Get all entities implementing a specific interface
 	 * @param implementedInterface
@@ -83,5 +87,13 @@ public class GameState {
 			}
 		}
 		return list;
+	}
+	
+	public ArrayList<Updatable> getUpdatables() {
+		return updatables;
+	}
+	
+	public ArrayList<Updatable> getPostUpdateables() {
+		return postUpdateables;
 	}
 }

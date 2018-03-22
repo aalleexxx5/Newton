@@ -1,85 +1,69 @@
 package dk.sdu.newton.apprentice;
+
+import common.data.Entity;
 import common.data.GameState;
+import common.data.Projectile;
 import common.data.Sprite;
-import common.data.Unit;
 import common.services.Collidable;
+import common.services.Updatable;
 
-import static common.data.Hostility.KILLS_ENEMY;
 import static common.data.Hostility.KILLS_PLAYER;
-import static common.data.Hostility.PASSIVE;
 
-public class Apprentice extends Unit {
-    int hp = 100;
-    boolean shouldDestuct =false;
+public class Bullet extends Projectile {
+    private boolean shouldDestruct = false;
     private Sprite sprite;
     private float dx;
     private float dy;
 
+    public Bullet(String filename, float x, float y, float width, float height){
+        sprite = new Sprite(filename, x , y, width, height);
+    }
+
     @Override
     public Sprite draw() {
-
-        return sprite;
+        return null;
     }
 
-    public Apprentice(String filename,float x, float y, float width, float height){
-    sprite = new Sprite(filename,x,y,width,height);
-
-    }
     @Override
     public Enum getHostility() {
-
-        return PASSIVE;
+        return KILLS_PLAYER;
     }
 
     @Override
     public void collidesWith(Collidable source) {
         Enum i = source.getHostility();
         if (common.data.Hostility.PASSIVE.equals(i)) {
-            //cant walk through
+            setDestruct();
         } else if (common.data.Hostility.KILLS_PLAYER.equals(i)) {
-            //tothing happens
+            setDestruct();
         } else if (common.data.Hostility.KILLS_ENEMY.equals(i)) {
-            hp = hp - 50;
+            //contenue
         }
     }
 
     @Override
     public float[] getBounds() {
-        float[] bounds = new float[4];
+        float[] bounds = new float[3];
         bounds[0] = sprite.getX();
         bounds[1] = sprite.getY();
         bounds[2] = sprite.getWidth();
         bounds[3] = sprite.getHeight();
-        return bounds;
+        return new float[0];
     }
-
-
-    @Override
-    public Boolean shouldDestruct() {
-
-        return shouldDestuct;
-    }
-
-    @Override
-    public void setDestruct() {
-        if (hp <= 0 ) {
-            shouldDestuct=true;
-        }
-    }
-
 
     @Override
     public void update(GameState state) {
         sprite.setX(sprite.getX() + dx * state.getDeltaTime()) ;
         sprite.setY(sprite.getY() + dy * state.getDeltaTime()) ;
-
-
     }
 
-
-    public Sprite getSprite(){
-        return sprite;
+    @Override
+    public Boolean shouldDestruct() {
+        return shouldDestruct;
     }
 
-
+    @Override
+    public void setDestruct() {
+        shouldDestruct = true;
+    }
 }

@@ -7,7 +7,7 @@ import common.services.Drawable;
 import java.util.UUID;
 
 public abstract class Entity implements Drawable {
-    protected Sprite sprite;
+    float[] location;
     UUID id;
 
     public Entity() {
@@ -15,6 +15,10 @@ public abstract class Entity implements Drawable {
     }
 
     public Sprite draw() {
-        return sprite;
+        return null;
     }
+
+	public Sprite getSprite() {
+		return null;
+	}
 }
