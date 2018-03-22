@@ -15,4 +15,8 @@ public abstract class Entity implements Drawable {
     }
 
     public abstract Sprite draw();
+
+    public Sprite getSprite() {
+        return null;
+    }
 }
