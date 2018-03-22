@@ -11,7 +11,7 @@ import static common.data.Hostility.KILLS_PLAYER;
 
 public class Bullet extends Projectile {
     private boolean shouldDestruct = false;
-    private Sprite bullet;
+    private Sprite sprite;
     private float dx;
     private float dy;
 
