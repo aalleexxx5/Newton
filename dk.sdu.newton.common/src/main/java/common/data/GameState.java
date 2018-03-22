@@ -88,4 +88,12 @@ public class GameState {
 		}
 		return list;
 	}
+	
+	public ArrayList<Updatable> getUpdatables() {
+		return updatables;
+	}
+	
+	public ArrayList<Updatable> getPostUpdateables() {
+		return postUpdateables;
+	}
 }
