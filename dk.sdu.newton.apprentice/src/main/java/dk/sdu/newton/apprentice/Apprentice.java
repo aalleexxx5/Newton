@@ -76,5 +76,11 @@ public class Apprentice extends Unit {
 
     }
 
+<<<<<<< HEAD
+=======
+    public Sprite getSprite(){
+        return sprite;
+    }
+>>>>>>> origin/master
 
 }

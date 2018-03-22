@@ -7,16 +7,18 @@ import common.services.Drawable;
 import java.util.UUID;
 
 public abstract class Entity implements Drawable {
-    protected Sprite sprite;
+    float[] location;
     UUID id;
 
     public Entity() {
         id = UUID.randomUUID();
     }
 
-    public abstract Sprite draw();
-
-    public Sprite getSprite() {
+    public Sprite draw() {
         return null;
     }
+
+	public Sprite getSprite() {
+		return null;
+	}
 }
