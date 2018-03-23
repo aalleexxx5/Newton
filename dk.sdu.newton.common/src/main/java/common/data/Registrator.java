@@ -21,6 +21,11 @@ public class Registrator {
 	}
 	
 	public GameState getState(AvailableStates state){
+		if (gameStates.get(state) == null) {
+			GameState gameState = new GameState();
+			gameStates.put(state, gameState);
+			return gameState;
+		}
 		return gameStates.get(state);
 	}
 }

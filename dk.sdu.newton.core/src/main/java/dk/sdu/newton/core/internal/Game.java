@@ -40,15 +40,18 @@ public class Game implements ApplicationListener {
 	private void update() {
 		// Update
 		playState.setDeltaTime(Gdx.graphics.getDeltaTime());
+		/*
 		playState.getEntitiesByInterface(Updatable.class).forEach(it->it.update(playState));
 		playState.getUpdatables().forEach(it->it.update(playState));
 		playState.getPostUpdateables().forEach(it->it.update(playState));
+		*/
 	}
 	
 	private void draw() {
+		/*
 		ArrayList<common.data.Sprite> commonSprites = new ArrayList<>(32);
 		playState.getGameEntities().forEach(it-> commonSprites.add(it.draw()));
-		// TODO unfinished!
+		*/
 	}
 	
 	public void resize(int width, int height) {
