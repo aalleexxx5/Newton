@@ -14,9 +14,11 @@ public class Bullet extends Projectile {
     private Sprite sprite;
     private float dx;
     private float dy;
+    private float speed = 10;
 
     public Bullet(String filename, float x, float y, float width, float height){
         sprite = new Sprite(filename, x , y, width, height);
+
     }
 
     @Override
@@ -53,8 +55,8 @@ public class Bullet extends Projectile {
 
     @Override
     public void update(GameState state) {
-        sprite.setX(sprite.getX() + dx * state.getDeltaTime()) ;
-        sprite.setY(sprite.getY() + dy * state.getDeltaTime()) ;
+        sprite.setX(sprite.getX() + dx * state.getDeltaTime()*speed) ;
+        sprite.setY(sprite.getY() + dy * state.getDeltaTime()*speed) ;
     }
 
     @Override

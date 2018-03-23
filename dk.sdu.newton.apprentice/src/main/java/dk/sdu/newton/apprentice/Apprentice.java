@@ -14,13 +14,14 @@ public class Apprentice extends Unit {
     private Sprite sprite;
     private float dx;
     private float dy;
+    private String filename = "Apprentice.png";
 
     @Override
     public Sprite draw() {
         return sprite;
     }
 
-    public Apprentice(String filename, float x, float y, float width, float height) {
+    public Apprentice(float x, float y, float width, float height) {
     sprite = new Sprite(filename, x, y, width, height);
 
     }
@@ -68,14 +69,16 @@ public class Apprentice extends Unit {
 
     @Override
     public void update(GameState state) {
-        sprite.setX(sprite.getX() + dx * state.getDeltaTime()) ;
-        sprite.setY(sprite.getY() + dy * state.getDeltaTime()) ;
+        ApprenticeControl aControl = new ApprenticeControl(this);
+        sprite.setX(sprite.getX() + aControl.getdx() * state.getDeltaTime()) ;
+        sprite.setY(sprite.getY() + aControl.getdy() * state.getDeltaTime()) ;
 
 
     }
 
 
     public Sprite getSprite(){
+
         return sprite;
     }
 
