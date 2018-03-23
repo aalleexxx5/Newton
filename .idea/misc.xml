@@ -9,6 +9,7 @@
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.hardcodedMapGenerator" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.libgdx" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.player" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.playerStandardControlls" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

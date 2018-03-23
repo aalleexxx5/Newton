@@ -24,7 +24,12 @@ public class Registrator {
 	}
 	
 	public GameState getState(AvailableStates state){
-		return gameStates.get(state);
+		GameState gameState = gameStates.get(state);
+		if (gameState == null) {
+			gameState = new GameState();
+			gameStates.put(state, gameState);
+		}
+		return gameState;
 	}
 
 	public static void registerEnemy(Entity enemy,int difficulty ){
