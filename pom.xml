@@ -55,6 +55,7 @@
     <module>dk.sdu.newton.apprentice</module>
     <module>dk.sdu.newton.einstein</module>
     <module>dk.sdu.newton.hardcodedMapGenerator</module>
+    <module>dk.sdu.newton.playerStandardControlls</module>
   </modules>
 
   <build>
