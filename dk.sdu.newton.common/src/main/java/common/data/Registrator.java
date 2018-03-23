@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Registrator {
+
+	private static  HashMap<Entity,Integer> enemyMap = new HashMap<>();
+
 	private static Registrator ourInstance = new Registrator();
 	
 	public static Registrator getInstance() {
@@ -27,5 +30,14 @@ public class Registrator {
 			return gameState;
 		}
 		return gameStates.get(state);
+	}
+
+	public static void registerEnemy(Entity enemy,int difficulty ){
+		enemyMap.put(enemy,difficulty);
+
+
+	}
+	public static void unregisterEnemy(Entity enemy){
+		enemyMap.remove(enemy);
 	}
 }
