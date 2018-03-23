@@ -3,7 +3,7 @@ package dk.sdu.newton.player.internal;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-public class playerPlugin implements BundleActivator{
+public class PlayerPlugin implements BundleActivator{
     @Override
     public void start(BundleContext bundleContext) throws Exception {
 

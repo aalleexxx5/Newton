@@ -4,14 +4,19 @@ import common.data.GameState;
 import common.data.Hostility;
 import common.data.Sprite;
 import common.data.Unit;
+import common.data.entityParts.LifePart;
 import common.services.Collidable;
 
-public class player extends Unit {
+public class Player extends Unit {
+
+    private Sprite sprite;
+    private LifePart lp;
+    private boolean shouldDestuct = false;
+    private int hp = 100;
 
     @Override
     public Sprite draw() {
-
-        return null;
+        return sprite;
     }
 
     /**
@@ -32,7 +37,7 @@ public class player extends Unit {
     @Override
     public void collidesWith(Collidable source) {
         if(source.getHostility() == Hostility.KILLS_PLAYER){
-
+            hp = hp - 25;
         }
         if(source.getHostility() == Hostility.PASSIVE){
 
@@ -58,13 +63,14 @@ public class player extends Unit {
 
     @Override
     public Boolean shouldDestruct() {
-
-        return null;
+        return shouldDestuct;
     }
 
     @Override
     public void setDestruct() {
-
+        if(lp.getLives() <= 0){
+            shouldDestuct = true;
+        }
     }
 
     @Override
