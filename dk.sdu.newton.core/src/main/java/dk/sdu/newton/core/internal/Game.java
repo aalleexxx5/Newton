@@ -2,6 +2,7 @@ package dk.sdu.newton.core.internal;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -9,7 +10,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import common.data.AvailableStates;
 import common.data.GameState;
 import common.data.Registrator;
-import common.services.Updatable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public class Game implements ApplicationListener {
 	private ShapeRenderer sr;
 	private GameState playState;
 	private final HashMap<String, Sprite> sprites = new HashMap<>();
-	
+
 	public void create() {
 		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.translate(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
@@ -40,6 +40,15 @@ public class Game implements ApplicationListener {
 	private void update() {
 		// Update
 		playState.setDeltaTime(Gdx.graphics.getDeltaTime());
+        ArrayList<String> keyNames = playState.getInputActionMap().getKeyNames();
+        for (String keyName : keyNames) {
+            boolean value = Gdx.input.isKeyPressed(Input.Keys.valueOf(keyName));
+            if (value){
+                String keyPressed = keyName;
+                playState.getInputActionMap().onKeyPress(keyPressed);
+            }
+        }
+
 		/*
 		playState.getEntitiesByInterface(Updatable.class).forEach(it->it.update(playState));
 		playState.getUpdatables().forEach(it->it.update(playState));
