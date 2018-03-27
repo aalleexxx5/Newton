@@ -25,10 +25,10 @@ public class HardcodeMapGen {
 
         room1.getNorthDoor().setConnection(2);
 
-        room2.getSouthhDoor().setConnection(1);
+        room2.getSouthDoor().setConnection(1);
         room2.getNorthDoor().setConnection(3);
 
-        room3.getSouthhDoor().setConnection(2);
+        room3.getSouthDoor().setConnection(2);
 
         rooms.add(room1);
         rooms.add(room2);
