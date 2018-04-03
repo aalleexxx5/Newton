@@ -1,10 +1,7 @@
 package common.data;
 
-import common.data.mapParts.Room;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Registrator {
 
@@ -16,11 +13,11 @@ public class Registrator {
 		return ourInstance;
 	}
 	
-	private HashMap<AvailableStates,GameState> gameStates = new HashMap<>(5);
-
-	private static ArrayList<Room> roomsList = new ArrayList<>();
+	private HashMap<AvailableStates ,GameState> gameStates = new HashMap<>(5);
 	
-	private Registrator() { }
+	private Registrator() {
+	
+	}
 	
 	public void registerGameState(AvailableStates states, GameState register){
 		gameStates.put(states, register);
@@ -33,14 +30,6 @@ public class Registrator {
 			return gameState;
 		}
 		return gameStates.get(state);
-	}
-
-	public static void registerRoom(Room room){
-		roomsList.add(room);
-	}
-
-	public static void unregisterRoom(Room room){
-		roomsList.clear();
 	}
 
 	public static void registerEnemy(Entity enemy,int difficulty ){
