@@ -15,11 +15,11 @@ public class PlayerStandardControls implements BundleActivator {
     @Override
     public void start(BundleContext bundleContext) throws Exception {
         inputs = Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getInputActionMap();
-        inputs.registerKey("w", "up");
-        inputs.registerKey("a", "left");
-        inputs.registerKey("s", "down");
-        inputs.registerKey("d", "right");
-        inputs.registerKey("space", "shoot"); // might have to be uppercase?
+        inputs.registerKey("W", "up");
+        inputs.registerKey("A", "left");
+        inputs.registerKey("S", "down");
+        inputs.registerKey("D", "right");
+        inputs.registerKey("Space", "shoot"); // might have to be uppercase?
 
         //inputs.registerAction("display message", (st)-> System.out.println("Action called: "+st));
         inputs.registerKey("a", "display message");
