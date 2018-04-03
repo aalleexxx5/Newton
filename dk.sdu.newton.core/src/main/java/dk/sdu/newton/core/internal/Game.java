@@ -39,6 +39,7 @@ public class Game implements ApplicationListener {
 	
 	private void update() {
 		// Update
+		/*
 		playState.setDeltaTime(Gdx.graphics.getDeltaTime());
         ArrayList<String> keyNames = playState.getInputActionMap().getKeyNames();
         for (String keyName : keyNames) {

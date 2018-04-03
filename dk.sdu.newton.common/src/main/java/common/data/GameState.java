@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class GameState {
 	//Data:
 	private ArrayList<Entity> gameEntities = new ArrayList<>(120);
-	private ArrayList<Updatable> updatables = new ArrayList<>();
-	private ArrayList<Updatable> postUpdateables = new ArrayList<>();
+	private ArrayList<Updatable> updatables = new ArrayList<>(64);
+	private ArrayList<Updatable> postUpdateables = new ArrayList<>(16);
 	private InputActionMap inputActionMap = new InputActionMap();
 	
 	// Map Todo
