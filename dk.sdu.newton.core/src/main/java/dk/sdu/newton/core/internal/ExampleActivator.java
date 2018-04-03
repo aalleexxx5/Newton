@@ -25,8 +25,8 @@ public final class ExampleActivator
 	    LwjglApplicationConfiguration cfg =
 			    new LwjglApplicationConfiguration();
 	    cfg.title = "Newton";
-	    cfg.width = 1200;
-	    cfg.height = 1080;
+	    cfg.width = 800;
+	    cfg.height = 720;
 	    cfg.useGL30 = false;
 	    cfg.resizable = false;
 	

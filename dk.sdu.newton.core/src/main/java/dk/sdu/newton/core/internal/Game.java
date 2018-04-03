@@ -14,6 +14,7 @@ import common.data.AvailableStates;
 import common.data.Entity;
 import common.data.GameState;
 import common.data.Registrator;
+import common.services.EntityPart;
 import common.services.Updatable;
 
 import java.io.File;
@@ -51,6 +52,7 @@ public class Game implements ApplicationListener {
 		playState.setDeltaTime(Gdx.graphics.getDeltaTime());
         ArrayList<String> keyNames = playState.getInputActionMap().getKeyNames();
         for (String keyName : keyNames) {
+        	if (Input.Keys.valueOf(keyName) == -1) continue;
             boolean value = Gdx.input.isKeyPressed(Input.Keys.valueOf(keyName));
             if (value){
                 String keyPressed = keyName;
@@ -63,6 +65,11 @@ public class Game implements ApplicationListener {
 		}
 		for (Updatable updatable : playState.getUpdatables()) {
 			updatable.update(playState);
+		}
+		for (Entity entity : playState.getGameEntities()) {
+			for (EntityPart entityPart : entity.getEntityParts()) {
+				entityPart.update(entity,playState.getDeltaTime());
+			}
 		}
 		for (Updatable it : playState.getPostUpdateables()) {
 			it.update(playState);
