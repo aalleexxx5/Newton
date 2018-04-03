@@ -24,11 +24,6 @@ public class Bullet extends Projectile {
     public Sprite getSprite() {
         return sprite;
     }
-    
-    @Override
-    public Sprite getSprite() {
-        return null;
-    }
 
     @Override
     public Enum getHostility() {

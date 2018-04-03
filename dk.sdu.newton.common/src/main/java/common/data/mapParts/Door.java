@@ -27,8 +27,13 @@ private int roomNumber;
     public Sprite draw() {
         return sprite;
     }
-
-    @Override
+	
+	@Override
+	public Sprite getSprite() {
+		return null;
+	}
+	
+	@Override
     public Enum getHostility() {
         return null;
     }

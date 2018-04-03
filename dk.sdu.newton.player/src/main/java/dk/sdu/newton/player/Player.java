@@ -64,8 +64,9 @@ public class Player extends Unit {
 	
 	@Override
 	public void update(GameState state) {
-		float newX = location[0];
-		float newY = location[1];
+		location = new float[2];
+		float newX = location[0] = 200;
+		float newY = location[1] = 200;
 		if (oldX != newX) {
 			logger.info("Location changed! New x: " + newX);
 			oldX = newX;
