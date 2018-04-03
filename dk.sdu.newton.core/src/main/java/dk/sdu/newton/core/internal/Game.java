@@ -46,7 +46,7 @@ public class Game implements ApplicationListener {
 
 
         for (String keyName : keyNames) {
-            boolean isKeyPressed = Gdx.input.isKeyPressed(Input.Keys.valueOf(keyName.toUpperCase()));
+            boolean isKeyPressed = Gdx.input.isKeyPressed(Input.Keys.valueOf(keyName));
             if(isKeyPressed){
             playState.getInputActionMap().onKeyPress(keyName);
         }}
