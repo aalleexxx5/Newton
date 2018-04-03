@@ -22,18 +22,9 @@ private int roomNumber;
     public void setConnection(int roomNumber){
         this.roomNumber=roomNumber;
     }
-    public void exitRoom(){
-//j/////gbhgbh
-
-    }
-
-    public void enterRoom(){
-
-    }
 
     @Override
     public Sprite draw() {
-
         return sprite;
     }
 
@@ -43,9 +34,7 @@ private int roomNumber;
     }
 
     @Override
-    public void collidesWith(Collidable source) {
-
-    }
+    public void collidesWith(Collidable source) { }
 
     @Override
     public float[] getBounds() {

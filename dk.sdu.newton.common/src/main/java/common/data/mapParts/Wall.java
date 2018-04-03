@@ -29,9 +29,7 @@ public class Wall extends Entity implements Collidable{
     }
 
     @Override
-    public void collidesWith(Collidable source) {
-
-    }
+    public void collidesWith(Collidable source) { }
 
     @Override
     public float[] getBounds() {

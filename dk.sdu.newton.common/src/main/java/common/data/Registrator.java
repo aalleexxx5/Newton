@@ -13,13 +13,11 @@ public class Registrator {
 		return ourInstance;
 	}
 	
-	private HashMap<AvailableStates ,GameState> gameStates = new HashMap<>(5);
+	private HashMap<AvailableStates,GameState> gameStates = new HashMap<>(5);
 
 	private static ArrayList<Room> roomsList = new ArrayList<>();
 	
-	private Registrator() {
-	
-	}
+	private Registrator() { }
 	
 	public void registerGameState(AvailableStates states, GameState register){
 		gameStates.put(states, register);
