@@ -46,8 +46,12 @@ public class GameState {
 		this.height = height;
 	}
 
-	 public ArrayList<Entity> getGameEntities(){
+	public ArrayList<Entity> getGameEntities(){
 		return map.getCurrentRoom().getEntities();
+	 }
+
+	 public void setMap(Map map){
+		this.map = map;
 	 }
 	
 	public void addEntity(Entity entity){

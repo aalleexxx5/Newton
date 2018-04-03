@@ -48,8 +48,11 @@ public class Room {
      createWalls();
     }
 
+    public ArrayList<Entity> getEntities() {
+        return entities;
+    }
 
-  public Door getNorthDoor(){
+    public Door getNorthDoor(){
         if (entities.get(0) instanceof Door){
             return (Door) entities.get(0);
       }

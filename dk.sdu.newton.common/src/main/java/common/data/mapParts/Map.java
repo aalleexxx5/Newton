@@ -11,6 +11,13 @@ private ArrayList<Room> rooms = new ArrayList<>();
         return currentRoom;
     }
 
+    public void addRoomsToMap(Room room){
+        rooms.add(room);
+    }
+
+    public void setCurrentRoom(Room nextRoom){
+        this.currentRoom = nextRoom;
+    }
 
 
 }
