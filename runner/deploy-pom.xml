@@ -60,13 +60,6 @@
     </dependency>
     <dependency>
       <groupId>dk.sdu.newton</groupId>
-      <artifactId>dk.sdu.newton.player</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>dk.sdu.newton</groupId>
       <artifactId>dk.sdu.newton.collision</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
@@ -96,6 +89,13 @@
     <dependency>
       <groupId>dk.sdu.newton.parent</groupId>
       <artifactId>dk.sdu.newton.playerStandardControlls</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>dk.sdu.newton</groupId>
+      <artifactId>dk.sdu.newton.player</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>

@@ -17,4 +17,12 @@ public class LifePart implements EntityPart {
 	public int getLives() {
 		return lives;
 	}
+	
+	public void decrement(){
+		lives--;
+	}
+	
+	public void decrement(int amount){
+		lives -= amount;
+	}
 }

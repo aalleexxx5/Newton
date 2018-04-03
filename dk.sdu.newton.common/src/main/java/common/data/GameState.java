@@ -14,7 +14,6 @@ public class GameState {
 	// Map Todo
 	
 	public GameState() {
-	
 	}
 	
 	private int width, height;
