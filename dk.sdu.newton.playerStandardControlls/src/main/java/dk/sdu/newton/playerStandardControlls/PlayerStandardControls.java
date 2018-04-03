@@ -21,7 +21,7 @@ public class PlayerStandardControls implements BundleActivator {
         inputs.registerKey("d", "right");
         inputs.registerKey("space", "shoot"); // might have to be uppercase?
 
-        inputs.registerAction("display message", (st)-> System.out.println("Action called: "+st));
+        //inputs.registerAction("display message", (st)-> System.out.println("Action called: "+st));
         inputs.registerKey("a", "display message");
     }
 

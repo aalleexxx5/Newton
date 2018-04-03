@@ -5,6 +5,7 @@ import common.data.entityParts.LifePart;
 import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 public class Player extends Unit {
@@ -12,27 +13,26 @@ public class Player extends Unit {
 	private final LifePart lives;
 	private final MovingPart movement;
 	private final Logger logger = Logger.getLogger(getClass().getName());
-	
-	private float oldX,oldY;
+	private float oldX, oldY;
 	
 	public Player() {
 		lives = new LifePart(3);
 		addEntityPart(lives);
 		
-		movement = new MovingPart(0,0);
+		movement = new MovingPart(0, 0);
 		addEntityPart(movement);
 		
 		GameState gameState = Registrator.getInstance().getState(AvailableStates.PLAY_STATE);
-		gameState.getInputActionMap().registerAction("up", this::receiveAction);
-		gameState.getInputActionMap().registerAction("left", this::receiveAction);
-		gameState.getInputActionMap().registerAction("down", this::receiveAction);
-		gameState.getInputActionMap().registerAction("right", this::receiveAction);
-		gameState.getInputActionMap().registerAction("shoot", this::receiveAction);
+		gameState.getInputActionMap().registerAction("up", getReceiveActionCallback());
+		gameState.getInputActionMap().registerAction("left", getReceiveActionCallback());
+		gameState.getInputActionMap().registerAction("down", getReceiveActionCallback());
+		gameState.getInputActionMap().registerAction("right", getReceiveActionCallback());
+		gameState.getInputActionMap().registerAction("shoot", getReceiveActionCallback());
 	}
 	
 	@Override
 	public Sprite getSprite() {
-		return new Sprite("player.png", location[0], location[1], 32,32);
+		return new Sprite("player.png", location[0], location[1], 32, 32);
 	}
 	
 	@Override
@@ -66,14 +66,23 @@ public class Player extends Unit {
 	public void update(GameState state) {
 		float newX = location[0];
 		float newY = location[1];
-		if (oldX != newX){
-			logger.info("Location changed! New x: "+newX);
+		if (oldX != newX) {
+			logger.info("Location changed! New x: " + newX);
 			oldX = newX;
 		}
-		if (oldY != newY){
-			logger.info("Location changed! New y: "+newY);
+		if (oldY != newY) {
+			logger.info("Location changed! New y: " + newY);
 			oldY = newY;
 		}
+	}
+	
+	private Consumer<String> getReceiveActionCallback() {
+		return new Consumer<String>() {
+			@Override
+			public void accept(String s) {
+				receiveAction(s);
+			}
+		};
 	}
 	
 	private void receiveAction(String actionName) {
@@ -91,14 +100,17 @@ public class Player extends Unit {
 	}
 	
 	private void receiveMovement(String direction) {
-		switch (direction){
+		System.out.println("Movement recieved: "+direction);
+		switch (direction) {
 			case "up":
 			case "down":
-				movement.setDy((direction.equals("up") ? -1 : 1) * MOVEMENT_SPEED);
+				if (direction.equals("up")) movement.setDy(-1 * MOVEMENT_SPEED);
+				else movement.setDy(1 * MOVEMENT_SPEED);
 				break;
 			case "left":
 			case "right":
-				movement.setDy((direction.equals("right") ? -1 : 1) * MOVEMENT_SPEED);
+				if (direction.equals("right")) movement.setDy(-1 * MOVEMENT_SPEED);
+				else movement.setDy(1 * MOVEMENT_SPEED);
 				break;
 		}
 	}

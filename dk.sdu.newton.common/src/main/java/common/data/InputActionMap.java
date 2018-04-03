@@ -49,7 +49,9 @@ public class InputActionMap {
         ArrayList<String> actions = keysActionMap.get(key);
         for (String action : actions) {
             Consumer<String> callback = actionMap.get(action);
-            callback.accept(action);
+	        if (callback != null) {
+		        callback.accept(action);
+	        }
         }
     }
 
