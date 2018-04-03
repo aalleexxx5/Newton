@@ -11,6 +11,7 @@
         <module name="dk.sdu.newton.common" />
         <module name="dk.sdu.newton.core" />
         <module name="dk.sdu.newton.einstein" />
+        <module name="dk.sdu.newton.hardcodedMapGenerator" />
         <module name="dk.sdu.newton.libgdx" />
         <module name="dk.sdu.newton.player" />
         <module name="dk.sdu.newton.playerStandardControlls" />
@@ -32,7 +33,7 @@
       <module name="newton-parent" target="1.8" />
       <module name="provision" target="1.8" />
       <module name="shared-plugin-settings" target="1.8" />
-      <module name="wrapper-bundle-settings" target="1.5" />
+      <module name="wrapper-bundle-settings" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

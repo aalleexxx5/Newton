@@ -20,12 +20,12 @@ public class Bullet extends Projectile {
         sprite = new Sprite(filename, x , y, width, height);
 
     }
-
+    
     @Override
-    public Sprite draw() {
+    public Sprite getSprite() {
         return null;
     }
-
+    
     @Override
     public Enum getHostility() {
         return KILLS_PLAYER;

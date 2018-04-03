@@ -50,12 +50,12 @@
     <module>dk.sdu.newton.libgdx</module>
     <module>dk.sdu.newton.core</module>
     <module>dk.sdu.newton.common</module>
-    <module>dk.sdu.newton.player</module>
     <module>dk.sdu.newton.collision</module>
     <module>dk.sdu.newton.apprentice</module>
     <module>dk.sdu.newton.einstein</module>
     <module>dk.sdu.newton.hardcodedMapGenerator</module>
     <module>dk.sdu.newton.playerStandardControlls</module>
+    <module>dk.sdu.newton.player</module>
   </modules>
 
   <build>
