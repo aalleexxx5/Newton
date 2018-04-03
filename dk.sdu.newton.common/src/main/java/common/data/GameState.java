@@ -1,5 +1,6 @@
 package common.data;
 
+import common.data.mapParts.Map;
 import common.services.Updatable;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class GameState {
 	private InputActionMap inputActionMap = new InputActionMap();
 	
 	// Map Todo
+	Map map;
 	
 	public GameState() {
 	}
@@ -42,10 +44,14 @@ public class GameState {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 	public ArrayList<Entity> getGameEntities(){
-		return gameEntities;
-	}
+		return map.getCurrentRoom().getEntities();
+	 }
+
+	 public void setMap(Map map){
+		this.map = map;
+	 }
 	
 	public void addEntity(Entity entity){
 		gameEntities.add(entity);
