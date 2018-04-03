@@ -18,7 +18,6 @@ public abstract class Entity implements Drawable {
     public Entity() {
         id = UUID.randomUUID();
     }
-
     public Sprite draw() {
 	    if (sprite == null) {
 		    sprite = getSprite();
@@ -37,4 +36,5 @@ public abstract class Entity implements Drawable {
 	public ArrayList<EntityPart> getEntityParts() {
 		return entityParts;
 	}
+
 }
