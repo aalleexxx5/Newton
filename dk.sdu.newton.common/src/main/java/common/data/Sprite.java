@@ -37,4 +37,7 @@ public class Sprite {
         this.height = height;
     }
 	
+	public String getFilename() {
+		return filename;
+	}
 }
