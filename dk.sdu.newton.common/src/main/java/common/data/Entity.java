@@ -14,11 +14,7 @@ public abstract class Entity implements Drawable {
         id = UUID.randomUUID();
     }
 
-    public Sprite draw() {
-        return null;
-    }
+    public abstract Sprite draw();
 
-	public Sprite getSprite() {
-		return null;
-	}
+	public abstract Sprite getSprite();
 }

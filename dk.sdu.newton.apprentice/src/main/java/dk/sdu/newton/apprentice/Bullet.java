@@ -18,11 +18,15 @@ public class Bullet extends Projectile {
 
     public Bullet(String filename, float x, float y, float width, float height){
         sprite = new Sprite(filename, x , y, width, height);
-
     }
 
     @Override
     public Sprite draw() {
+        return null;
+    }
+
+    @Override
+    public Sprite getSprite() {
         return null;
     }
 
