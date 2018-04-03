@@ -2,9 +2,8 @@ package common.data;
 
 
 import common.services.Collidable;
-import common.services.Destructable;
 import common.services.Updatable;
 
-public abstract class Projectile extends Entity implements Collidable, Updatable, Destructable {
+public abstract class Projectile extends Entity implements Collidable, Updatable {
 
 }

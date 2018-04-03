@@ -34,13 +34,6 @@
     </dependency>
     <dependency>
       <groupId>dk.sdu.newton</groupId>
-      <artifactId>dk.sdu.newton.common</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>dk.sdu.newton</groupId>
       <artifactId>dk.sdu.newton.core</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
@@ -50,6 +43,20 @@
       <groupId>dk.sdu.newton</groupId>
       <artifactId>dk.sdu.newton.libgdx</artifactId>
       <version>1.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>dk.sdu.newton</groupId>
+      <artifactId>dk.sdu.newton.common</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>dk.sdu.newton</groupId>
+      <artifactId>dk.sdu.newton.player</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -75,27 +82,6 @@
     <dependency>
       <groupId>dk.sdu.newton</groupId>
       <artifactId>dk.sdu.newton.einstein</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>dk.sdu.newton.parent</groupId>
-      <artifactId>dk.sdu.newton.hardcodedMapGenerator</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>dk.sdu.newton.parent</groupId>
-      <artifactId>dk.sdu.newton.playerStandardControlls</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>dk.sdu.newton</groupId>
-      <artifactId>dk.sdu.newton.player</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>

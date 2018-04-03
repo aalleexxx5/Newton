@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Registrator {
-
-	private static  HashMap<Entity,Integer> enemyMap = new HashMap<>();
-
 	private static Registrator ourInstance = new Registrator();
 	
 	public static Registrator getInstance() {
@@ -27,11 +24,6 @@ public class Registrator {
 	}
 	
 	public GameState getState(AvailableStates state){
-		if (gameStates.get(state) == null) {
-			GameState gameState = new GameState();
-			gameStates.put(state, gameState);
-			return gameState;
-		}
 		return gameStates.get(state);
 	}
 
@@ -43,12 +35,5 @@ public class Registrator {
 		roomsList.clear();
 	}
 
-	public static void registerEnemy(Entity enemy,int difficulty ){
-		enemyMap.put(enemy,difficulty);
 
-
-	}
-	public static void unregisterEnemy(Entity enemy){
-		enemyMap.remove(enemy);
-	}
 }
