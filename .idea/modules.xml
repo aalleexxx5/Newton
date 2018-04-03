@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/dk.sdu.newton.hardcodedMapGenerator/dk.sdu.newton.hardcodedMapGenerator.iml" filepath="$PROJECT_DIR$/dk.sdu.newton.hardcodedMapGenerator/dk.sdu.newton.hardcodedMapGenerator.iml" />
       <module fileurl="file://$PROJECT_DIR$/dk.sdu.newton.libgdx/dk.sdu.newton.libgdx.iml" filepath="$PROJECT_DIR$/dk.sdu.newton.libgdx/dk.sdu.newton.libgdx.iml" />
       <module fileurl="file://$PROJECT_DIR$/dk.sdu.newton.player/dk.sdu.newton.player.iml" filepath="$PROJECT_DIR$/dk.sdu.newton.player/dk.sdu.newton.player.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dk.sdu.newton.playerStandardControlls/dk.sdu.newton.playerStandardControlls.iml" filepath="$PROJECT_DIR$/dk.sdu.newton.playerStandardControlls/dk.sdu.newton.playerStandardControlls.iml" />
       <module fileurl="file://$PROJECT_DIR$/poms/libGDXwrapper/libgdxwrapper.iml" filepath="$PROJECT_DIR$/poms/libGDXwrapper/libgdxwrapper.iml" />
       <module fileurl="file://$PROJECT_DIR$/newton-parent.iml" filepath="$PROJECT_DIR$/newton-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/provision/provision.iml" filepath="$PROJECT_DIR$/provision/provision.iml" />
