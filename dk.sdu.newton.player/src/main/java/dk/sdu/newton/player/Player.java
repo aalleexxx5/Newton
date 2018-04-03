@@ -17,6 +17,8 @@ public class Player extends Unit {
 	
 	public Player() {
 		location = new float[2];
+		location[0] = 200;
+		location[1] = 200;
 		lives = new LifePart(3);
 		addEntityPart(lives);
 		
@@ -65,8 +67,8 @@ public class Player extends Unit {
 	
 	@Override
 	public void update(GameState state) {
-		float newX = location[0] = 200;
-		float newY = location[1] = 200;
+		float newX = location[0];
+		float newY = location[1];
 		if (oldX != newX) {
 			logger.info("Location changed! New x: " + newX);
 			oldX = newX;
