@@ -16,7 +16,7 @@ public class PlayerPlugin implements BundleActivator {
 	
 	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
-		//TODO:
-		//Registrator.getInstance().getState(AvailableStates.PLAY_STATE).removeEntity(player);
+		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).removeEntity(player);
+		player = null;
 	}
 }
