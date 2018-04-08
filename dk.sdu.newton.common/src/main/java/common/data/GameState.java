@@ -95,4 +95,8 @@ public class GameState {
 	public ArrayList<Updatable> getPostUpdateables() {
 		return postUpdateables;
 	}
+	
+	public void removeEntity(Entity player) {
+		gameEntities.remove(player);
+	}
 }

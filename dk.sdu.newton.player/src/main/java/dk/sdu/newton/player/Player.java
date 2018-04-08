@@ -6,7 +6,6 @@ import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 
 import java.util.function.Consumer;
-import java.util.logging.Logger;
 
 public class Player extends Unit {
 	private static final float MOVEMENT_SPEED = 300.0f; // Don't know the unit. Might be Pixels pr second.
@@ -50,12 +49,16 @@ public class Player extends Unit {
 	public void collidesWith(Collidable source) {
 		if (source.getHostility() == Hostility.KILLS_PLAYER) {
 			lives.decrement();
+		}if (source.getHostility() == Hostility.PASSIVE){
+			movement.revertToLastFrame(this);
+			movement.setDx(0);
+			movement.setDy(0);
 		}
 	}
 	
 	@Override
 	public float[] getBounds() {
-		return new float[0];
+		return new float[] {location[0], location[1], 32f,32f};
 	}
 	
 	@Override
