@@ -36,5 +36,8 @@ public abstract class Entity implements Drawable {
 	public ArrayList<EntityPart> getEntityParts() {
 		return entityParts;
 	}
-
+	
+	public float[] getLocation() {
+		return location;
+	}
 }

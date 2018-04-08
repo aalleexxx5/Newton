@@ -9,16 +9,19 @@ import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 public class Player extends Unit {
-	private static final float MOVEMENT_SPEED = 50.0f; // Don't know the unit. Might be Pixels pr second.
+	private static final float MOVEMENT_SPEED = 300.0f; // Don't know the unit. Might be Pixels pr second.
 	private final LifePart lives;
 	private final MovingPart movement;
-	private final Logger logger = Logger.getLogger(getClass().getName());
 	private float oldX, oldY;
+	private boolean verticalMovementWasPressed = false;
+	private boolean horizontalMovementWasPressed = false;
+	
 	
 	public Player() {
 		location = new float[2];
 		location[0] = 200;
 		location[1] = 200;
+		
 		lives = new LifePart(3);
 		addEntityPart(lives);
 		
@@ -70,12 +73,24 @@ public class Player extends Unit {
 		float newX = location[0];
 		float newY = location[1];
 		if (oldX != newX) {
-			logger.info("Location changed! New x: " + newX);
 			oldX = newX;
 		}
 		if (oldY != newY) {
-			logger.info("Location changed! New y: " + newY);
 			oldY = newY;
+		}
+		resetMovement();
+	}
+	
+	private void resetMovement() {
+		if (verticalMovementWasPressed){
+			verticalMovementWasPressed = false;
+		}else{
+			movement.setDy(0);
+		}
+		if (horizontalMovementWasPressed){
+			horizontalMovementWasPressed = false;
+		}else{
+			movement.setDx(0);
 		}
 	}
 	
@@ -103,17 +118,18 @@ public class Player extends Unit {
 	}
 	
 	private void receiveMovement(String direction) {
-		System.out.println("Movement recieved: "+direction);
 		switch (direction) {
 			case "up":
 			case "down":
-				if (direction.equals("up")) movement.setDy(-1 * MOVEMENT_SPEED);
-				else movement.setDy(1 * MOVEMENT_SPEED);
+				verticalMovementWasPressed = true;
+				if (direction.equals("up")) movement.setDy(MOVEMENT_SPEED);
+				else movement.setDy(-1 * MOVEMENT_SPEED);
 				break;
 			case "left":
 			case "right":
-				if (direction.equals("right")) movement.setDy(-1 * MOVEMENT_SPEED);
-				else movement.setDy(1 * MOVEMENT_SPEED);
+				horizontalMovementWasPressed = true;
+				if (direction.equals("right")) movement.setDx(MOVEMENT_SPEED);
+				else movement.setDx(-1 * MOVEMENT_SPEED);
 				break;
 		}
 	}

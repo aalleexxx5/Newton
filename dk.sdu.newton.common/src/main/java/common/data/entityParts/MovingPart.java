@@ -13,9 +13,9 @@ public class MovingPart implements EntityPart {
 	}
 	
 	public void update(Entity container, float dt) {
-		Sprite sprite = container.getSprite();
-		sprite.setX(sprite.getX()+dx*dt);
-		sprite.setY(sprite.getY()+dy*dt);
+		float[] location = container.getLocation();
+		location[0]+=dx*dt;
+		location[1]+=dy*dt;
 	}
 	
 	public void setDx(float dx) {

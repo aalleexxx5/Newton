@@ -27,10 +27,10 @@ public class PlayerStandardControls implements BundleActivator {
 
     @Override
     public void stop(BundleContext bundleContext) throws Exception {
-        inputs.removeKey("w","up");
-        inputs.removeKey("a","left");
-        inputs.removeKey("s","down");
-        inputs.removeKey("d","right");
-        inputs.removeKey("space","shoot");
+        inputs.removeKey("W","up");
+        inputs.removeKey("A","left");
+        inputs.removeKey("S","down");
+        inputs.removeKey("D","right");
+        inputs.removeKey("Space","shoot");
     }
 }
