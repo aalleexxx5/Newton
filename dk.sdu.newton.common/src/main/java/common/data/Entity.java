@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public abstract class Entity implements Drawable {
-    protected float[] location;
+    protected float[] location = new float[2];
     UUID id;
     private Sprite sprite;
     
