@@ -14,18 +14,17 @@ public class Wall extends Entity implements Collidable{
 
 
     public Wall (String name, float x, float y, float width, float height){
-    sprite = new Sprite("Wall.png", x, y, width, height );
+    sprite = new Sprite("Wall.png", 0, 0, width, height );
+    location[0]=x;
+    location[1]=y;
     }
 
 
-    @Override
-    public Sprite draw() {
-        return sprite;
-    }
+
 	
 	@Override
 	public Sprite getSprite() {
-		return null;
+		return sprite;
 	}
 	
 	@Override
@@ -38,6 +37,6 @@ public class Wall extends Entity implements Collidable{
 
     @Override
     public float[] getBounds() {
-        return new float[0];
+        return new float[4];
     }
 }

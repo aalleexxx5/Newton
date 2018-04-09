@@ -13,7 +13,7 @@ private int roomNumber;
 
 
     public Door (String name, float x, float y, float width, float height){
-    sprite = new Sprite("door.png",x,y,width,height);
+    sprite = new Sprite("door.png",0,0,32,32);
     }
     public int getRoomNumber(){
         return roomNumber;
@@ -23,14 +23,11 @@ private int roomNumber;
         this.roomNumber=roomNumber;
     }
 
-    @Override
-    public Sprite draw() {
-        return sprite;
-    }
 	
 	@Override
 	public Sprite getSprite() {
-		return null;
+
+        return sprite;
 	}
 	
 	@Override
@@ -43,6 +40,6 @@ private int roomNumber;
 
     @Override
     public float[] getBounds() {
-        return new float[0];
+        return new float[4];
     }
 }

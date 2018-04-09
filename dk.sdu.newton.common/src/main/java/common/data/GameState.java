@@ -1,17 +1,22 @@
 package common.data;
 
+import common.data.mapParts.Map;
 import common.services.Updatable;
 
 import java.util.ArrayList;
 
 public class GameState {
 	//Data:
-	private ArrayList<Entity> gameEntities = new ArrayList<>(120);
+
 	private ArrayList<Updatable> updatables = new ArrayList<>();
 	private ArrayList<Updatable> postUpdateables = new ArrayList<>();
 	private InputActionMap inputActionMap = new InputActionMap();
-	
+	private Map map = new Map();
+
 	// Map Todo
+	public void setMap(Map map){
+		this.map = map;
+	}
 	
 	public GameState() {
 	}
@@ -44,11 +49,12 @@ public class GameState {
 	}
 	
 	public ArrayList<Entity> getGameEntities(){
-		return gameEntities;
+
+		return map.getCurrentRoom().getEntities();
 	}
 	
 	public void addEntity(Entity entity){
-		gameEntities.add(entity);
+		map.getCurrentRoom().addEntity(entity);
 	}
 	
 	public void addUpdatable(Updatable updatable){
@@ -80,7 +86,7 @@ public class GameState {
 	public <T> ArrayList<T> getEntitiesByInterface(Class<T> implementedInterface){
 		// TODO test me!
 		ArrayList<T> list = new ArrayList<T>();
-		for (Entity gameEntity : gameEntities) {
+		for (Entity gameEntity : map.getCurrentRoom().getEntities()) {
 			if (implementedInterface.isAssignableFrom(gameEntity.getClass())){
 				list.add(implementedInterface.cast(gameEntity));
 			}
@@ -97,6 +103,6 @@ public class GameState {
 	}
 	
 	public void removeEntity(Entity player) {
-		gameEntities.remove(player);
+		map.getCurrentRoom().getEntities().remove(player);
 	}
 }
