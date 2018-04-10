@@ -21,7 +21,6 @@ public class EinsteinBullet extends Projectile {
 
 	public EinsteinBullet(float x, float y, float width, float height){
 		sprite = new Sprite(filename, x , y, width, height);
-
 	}
 
 	@Override

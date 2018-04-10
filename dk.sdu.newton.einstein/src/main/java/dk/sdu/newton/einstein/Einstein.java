@@ -4,6 +4,7 @@ import common.data.GameState;
 import common.data.Projectile;
 import common.data.Sprite;
 import common.data.Unit;
+import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 
 import static common.data.Hostility.PASSIVE;
@@ -16,17 +17,15 @@ public class Einstein extends Unit {
 	private float dy;
 	private String filename = "Einstein.png";
 	private EinsteinWeapon einsteinWeapon;
+	private MovingPart movingPart;
 
 	//TODO find sprite
 
 	public Einstein(float x, float y, float width, float height) {
 		sprite = new Sprite(filename, x ,y, width, height);
 		einsteinWeapon = new EinsteinWeapon();
-	}
-
-	@Override
-	public Sprite draw() {
-		return sprite;
+		movingPart = new MovingPart(0, 0);
+		addEntityPart(movingPart);
 	}
 
 	@Override
@@ -44,6 +43,10 @@ public class Einstein extends Unit {
 		Enum i = source.getHostility();
 		if (common.data.Hostility.KILLS_ENEMY.equals(i)) {
 			hp = hp - 20;
+		}
+		else if (common.data.Hostility.PASSIVE.equals(i)) {
+			dx =- dx;
+			dy =- dy;
 		}
 	}
 
@@ -72,7 +75,7 @@ public class Einstein extends Unit {
 	@Override
 	public void update(GameState state) {
 		EinsteinControl einsteinControl = new EinsteinControl(this);
-		sprite.setX(sprite.getX() + einsteinControl.getDX() * state.getDeltaTime()) ;
-		sprite.setY(sprite.getY() + einsteinControl.getDY() * state.getDeltaTime()) ;
+		movingPart.setDx(einsteinControl.getDX());
+		movingPart.setDy(einsteinControl.getDY());
 	}
 }
