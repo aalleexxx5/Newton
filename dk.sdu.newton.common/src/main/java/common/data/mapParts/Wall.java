@@ -4,6 +4,8 @@ import common.data.Entity;
 import common.data.Sprite;
 import common.services.Collidable;
 
+import static common.data.Hostility.PASSIVE;
+
 
 public class Wall extends Entity implements Collidable{
 
@@ -29,7 +31,7 @@ public class Wall extends Entity implements Collidable{
 	
 	@Override
     public Enum getHostility() {
-        return null;
+        return PASSIVE;
     }
 
     @Override

@@ -4,6 +4,8 @@ import common.data.Entity;
 import common.data.Sprite;
 import common.services.Collidable;
 
+import static common.data.Hostility.MOVER;
+
 
 public class Door extends Entity implements Collidable{
 
@@ -32,7 +34,7 @@ private int roomNumber;
 	
 	@Override
     public Enum getHostility() {
-        return null;
+        return MOVER;
     }
 
     @Override
