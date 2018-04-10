@@ -1,17 +1,19 @@
 package common.data.entityParts;
 
 import common.data.Entity;
+import common.data.GameState;
 import common.services.EntityPart;
 
 public class LifePart implements EntityPart {
 	int lives;
 	
-	public LifePart(int lives) {
-		this.lives = lives;
+	@Override
+	public void update(Entity container, GameState state) {
+	
 	}
 	
-	public void update(Entity container, float dt) {
-	
+	public LifePart(int lives) {
+		this.lives = lives;
 	}
 	
 	public int getLives() {

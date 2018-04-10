@@ -1,6 +1,7 @@
 package common.data.entityParts;
 
 import common.data.Entity;
+import common.data.GameState;
 import common.data.Sprite;
 import common.services.EntityPart;
 
@@ -12,9 +13,14 @@ public class MovingPart implements EntityPart {
 		this.dy = dy;
 	}
 	
-	public void update(Entity container, float dt) {
+	@Override
+	public void update(Entity container, GameState state) {
+		lastdt = state.getDeltaTime();
+		updateLocation(container, state.getDeltaTime());
+	}
+	
+	public void updateLocation(Entity container, float dt) {
 		float[] location = container.getLocation();
-		lastdt = dt;
 		location[0]+=dx*dt;
 		location[1]+=dy*dt;
 	}
@@ -33,6 +39,6 @@ public class MovingPart implements EntityPart {
 	 * @param container the entity to move back in time.
 	 */
 	public void revertToLastFrame(Entity container) {
-		update(container, -lastdt);
+		updateLocation(container, -lastdt);
 	}
 }
