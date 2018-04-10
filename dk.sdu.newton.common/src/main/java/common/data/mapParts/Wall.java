@@ -39,6 +39,6 @@ public class Wall extends Entity implements Collidable{
 
     @Override
     public float[] getBounds() {
-        return new float[4];
+        return new float[] {location[0],location[1], sprite.getWidth(),sprite.getHeight()};
     }
 }

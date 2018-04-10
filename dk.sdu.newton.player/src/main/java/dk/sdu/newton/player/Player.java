@@ -18,8 +18,8 @@ public class Player extends Unit {
 	
 	public Player() {
 		location = new float[2];
-		location[0] = 200;
-		location[1] = 200;
+		location[0] = 400;
+		location[1] = 400;
 		
 		lives = new LifePart(3);
 		addEntityPart(lives);

@@ -6,7 +6,7 @@ public class Map {
 
 private ArrayList<Room> rooms = new ArrayList<>();
 
-    private Room currentRoom = new Room(true, true, true, true,1);
+    private Room currentRoom = new Room(true, false, false, false,1);
     public Room getCurrentRoom(){
         return currentRoom;
     }

@@ -42,7 +42,7 @@ public class Registrator {
     public static void unregisterEnemy(Entity enemy) {
         enemyMap.remove(enemy);
     }
-
+/*
     public <K, V> K getEnemyByDifficulty(Map<K,V> enemyMap, V difficulty) {
         for (Map.Entry<K,V> entry : enemyMap.entrySet()){
             if (difficulty.equals(entry.getValue())){
@@ -50,5 +50,19 @@ public class Registrator {
             }
         }
         return null;
+    }
+*/
+    public Entity getEnemy(int difficulty){
+        for (Map.Entry<Entity, Integer> e: enemyMap.entrySet()){
+            if (enemyMap.get(e).equals(difficulty)){
+                return e.getKey();
+            }
+        }
+        return null;
+    }
+
+
+    public HashMap getHashMap(){
+        return enemyMap;
     }
 }
