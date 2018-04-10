@@ -68,7 +68,7 @@ public class Game implements ApplicationListener {
 		}
 		for (Entity entity : playState.getGameEntities()) {
 			for (EntityPart entityPart : entity.getEntityParts()) {
-				entityPart.update(entity,playState.getDeltaTime());
+				entityPart.update(entity,playState);
 			}
 		}
 		for (Updatable it : playState.getPostUpdateables()) {
