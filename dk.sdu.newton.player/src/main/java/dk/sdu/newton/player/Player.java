@@ -49,10 +49,11 @@ public class Player extends Unit {
 	public void collidesWith(Collidable source) {
 		if (source.getHostility() == Hostility.KILLS_PLAYER) {
 			lives.decrement();
-			movement.revertToLastFrame(this);
-			movement.revertToLastFrame(this);
+			location[0] = 400;
+			location[1] = 400;
 			movement.setDx(0);
 			movement.setDy(0);
+			System.out.println("player lost a life!");
 		}if (source.getHostility() == Hostility.PASSIVE){
 			movement.revertToLastFrame(this);
 			movement.setDx(0);
@@ -67,7 +68,7 @@ public class Player extends Unit {
 	
 	@Override
 	public Boolean shouldDestruct() {
-		return lives.getLives() >= 0;
+		return lives.getLives() <= 0;
 	}
 	
 	@Override

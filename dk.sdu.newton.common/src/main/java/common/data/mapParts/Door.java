@@ -4,6 +4,7 @@ import common.data.Entity;
 import common.data.Sprite;
 import common.services.Collidable;
 
+import static common.data.Hostility.KILLS_PLAYER;
 import static common.data.Hostility.MOVER;
 import static common.data.Hostility.PASSIVE;
 
@@ -37,7 +38,7 @@ private int roomNumber;
 	
 	@Override
     public Enum getHostility() {
-        return PASSIVE;
+        return KILLS_PLAYER;
     }
 
     @Override
