@@ -3,6 +3,7 @@ package dk.sdu.newton.player;
 import common.data.Item;
 import common.data.Sprite;
 import common.services.Collidable;
+import common.services.Equipable;
 
 import static common.data.Hostility.NO_EFFECT;
 
@@ -38,7 +39,12 @@ public class AppleItem extends Item {
 	public Boolean shouldDestruct() {
 		return setDestruct;
 	}
-
+	
+	@Override
+	public Equipable getEquipable() {
+		return null;
+	}
+	
 	@Override
 	public void setDestruct() {
 		setDestruct = true;

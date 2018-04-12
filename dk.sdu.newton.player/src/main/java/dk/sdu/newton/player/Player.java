@@ -1,5 +1,6 @@
 package dk.sdu.newton.player;
 
+import com.sun.corba.se.spi.ior.IORTemplate;
 import common.data.*;
 import common.data.entityParts.InventoryPart;
 import common.data.entityParts.LifePart;
@@ -64,6 +65,8 @@ public class Player extends Unit {
 			movement.revertToLastFrame(this);
 			movement.setDx(0);
 			movement.setDy(0);
+		}if (source.getHostility() == Hostility.ITEM){
+		
 		}
 	}
 	

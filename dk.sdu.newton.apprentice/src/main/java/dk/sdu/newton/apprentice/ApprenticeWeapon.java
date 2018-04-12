@@ -10,10 +10,15 @@ public class ApprenticeWeapon extends Weapon {
     }
 	
 	@Override
-	public void shoot(GameState state) {
+	public void onShoot(GameState state) {
 		float x=apprentice.getBounds()[0];
 		float y=apprentice.getBounds()[1];
 		Bullet bullet = new Bullet("filename", x, y, 10, 10);
+	}
+	
+	@Override
+	public int getCooldownInMs() {
+		return 2000;
 	}
 	
 	@Override

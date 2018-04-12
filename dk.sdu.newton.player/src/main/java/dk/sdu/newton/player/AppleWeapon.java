@@ -8,12 +8,17 @@ public class AppleWeapon extends Weapon {
 	private Player player;
 
 	@Override
-	public void shoot(GameState state) {
+	public void onShoot(GameState state) {
 		float x = player.getBounds()[0];
 		float y = player.getBounds()[1];
 		AppleBullet appleBullet = new AppleBullet(x, y, 10, 10);
 	}
-
+	
+	@Override
+	public int getCooldownInMs() {
+		return 0;
+	}
+	
 	@Override
 	public void onEquip(GameState state) {
 
