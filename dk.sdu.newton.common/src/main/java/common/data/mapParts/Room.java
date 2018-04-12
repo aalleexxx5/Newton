@@ -43,7 +43,7 @@ public class Room {
 
      }
      else{
-         entities.add(new Door("eastDoor", 575, 50, 64, 64 ));
+         entities.add(new Door("eastDoor", 768, 328, 64, 64 ));
      }
      createWalls();
     }

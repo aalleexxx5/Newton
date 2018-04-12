@@ -1,9 +1,11 @@
 package dk.sdu.newton.player;
 
 import common.data.*;
+import common.data.entityParts.InventoryPart;
 import common.data.entityParts.LifePart;
 import common.data.entityParts.MovingPart;
 import common.services.Collidable;
+import common.services.Equipable;
 
 import java.util.function.Consumer;
 
@@ -14,6 +16,7 @@ public class Player extends Unit {
 	private float oldX, oldY;
 	private boolean verticalMovementWasPressed = false;
 	private boolean horizontalMovementWasPressed = false;
+	private final InventoryPart inventory;
 	
 	
 	public Player() {
@@ -26,6 +29,9 @@ public class Player extends Unit {
 		
 		movement = new MovingPart(0, 0);
 		addEntityPart(movement);
+
+		inventory = new InventoryPart();
+		addEntityPart(inventory);
 		
 		GameState gameState = Registrator.getInstance().getState(AvailableStates.PLAY_STATE);
 		gameState.getInputActionMap().registerAction("up", getReceiveActionCallback());
@@ -143,6 +149,10 @@ public class Player extends Unit {
 	}
 	
 	private void receiveShoot() {
-		// TODO:
+		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE));
+	}
+
+	void addEquipable(Equipable equipable) {
+		inventory.addItem(equipable, Registrator.getInstance().getState(AvailableStates.PLAY_STATE));
 	}
 }

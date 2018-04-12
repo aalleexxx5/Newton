@@ -1,7 +1,6 @@
 package common.data;
 import common.services.Collidable;
+import common.services.Destructable;
 
-public abstract class Item extends Entity implements Collidable {
-    public abstract void collidesWith();
-    
+public abstract class Item extends Entity implements Collidable, Destructable {
 }

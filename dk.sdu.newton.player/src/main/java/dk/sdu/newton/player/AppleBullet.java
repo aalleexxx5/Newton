@@ -1,25 +1,22 @@
-package dk.sdu.newton.einstein;
+package dk.sdu.newton.player;
 
-import common.data.GameState;
-import common.data.Projectile;
-import common.data.Sprite;
+import common.data.*;
 import common.services.Collidable;
 
-import static common.data.Hostility.KILLS_PLAYER;
+import static common.data.Hostility.KILLS_ENEMY;
 
-public class EinsteinBullet extends Projectile {
-
+public class AppleBullet extends Projectile {
 	private boolean shouldDestruct = false;
 	private Sprite sprite;
 	private float dx;
 	private float dy;
 	private float speed = 10;
-	private String filename = "EinsteinBullet.png";
+	private String filename = "AppleBullet.png";
 	long startTime = System.currentTimeMillis();
 
 	//TODO find sprite
 
-	public EinsteinBullet(float x, float y, float width, float height){
+	public AppleBullet(float x, float y, float width, float height){
 		sprite = new Sprite(filename, x , y, width, height);
 	}
 
@@ -35,17 +32,14 @@ public class EinsteinBullet extends Projectile {
 
 	@Override
 	public Enum getHostility() {
-		return KILLS_PLAYER;
+		return KILLS_ENEMY;
 	}
 
 	@Override
 	public void collidesWith(Collidable source) {
-		Enum i = source.getHostility();
-		if (common.data.Hostility.PASSIVE.equals(i)) {
-			setDestruct();
-		} else if (common.data.Hostility.KILLS_PLAYER.equals(i)) {
-			setDestruct();
-		}
+		AppleItem appleItem = new AppleItem();
+		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(appleItem);
+		setDestruct();
 	}
 
 	@Override
@@ -59,12 +53,6 @@ public class EinsteinBullet extends Projectile {
 	}
 
 	@Override
-	public void update(GameState state) {
-		sprite.setX(sprite.getX() + dx * state.getDeltaTime()*speed) ;
-		sprite.setY(sprite.getY() + dy * state.getDeltaTime()*speed) ;
-	}
-
-	@Override
 	public Boolean shouldDestruct() {
 		if (System.currentTimeMillis()+5000 > startTime) {
 			return true;
@@ -75,5 +63,11 @@ public class EinsteinBullet extends Projectile {
 	@Override
 	public void setDestruct() {
 		shouldDestruct = true;
+	}
+
+	@Override
+	public void update(GameState state) {
+		sprite.setX(sprite.getX() + dx * state.getDeltaTime() * speed);
+		sprite.setY(sprite.getY() + dy * state.getDeltaTime() * speed);
 	}
 }
