@@ -14,6 +14,7 @@ import common.data.AvailableStates;
 import common.data.Entity;
 import common.data.GameState;
 import common.data.Registrator;
+import common.services.Destructable;
 import common.services.EntityPart;
 import common.services.Updatable;
 
@@ -69,6 +70,11 @@ public class Game implements ApplicationListener {
 		for (Entity entity : playState.getGameEntities()) {
 			for (EntityPart entityPart : entity.getEntityParts()) {
 				entityPart.update(entity,playState);
+			}
+		}
+		for (Destructable destructable : playState.getEntitiesByInterface(Destructable.class)) {
+			if (destructable.shouldDestruct()){
+				playState.removeEntity((Entity) destructable);
 			}
 		}
 		for (Updatable it : playState.getPostUpdateables()) {
