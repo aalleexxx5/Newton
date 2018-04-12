@@ -16,7 +16,7 @@ public class EinsteinBullet extends Projectile {
 	private static final int HEIGHT = 16;
 	private static final int DURATION_MS = 5000;
 	private static final String FILENAME = "einsteinbullet.png";
-	private static final float SPEED = 500f;
+	private static final float SPEED = 250f;
 	
 	private final long startTime = System.currentTimeMillis();
 	private boolean shouldDestruct = false;
@@ -54,7 +54,9 @@ public class EinsteinBullet extends Projectile {
 
 	@Override
 	public void update(GameState state) {
-	
+		if (location[0]>state.getWidth() || location[0]<0||location[1]>state.getHeight()||location[1]<0) {
+			setDestruct();
+		}
 	}
 
 	@Override
@@ -62,10 +64,7 @@ public class EinsteinBullet extends Projectile {
 		if (System.currentTimeMillis() - DURATION_MS > startTime) {
 			return true;
 		}
-		if (shouldDestruct){
-			return true;
-		}
-		return false;
+		return shouldDestruct;
 	}
 
 	@Override

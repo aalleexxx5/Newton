@@ -4,14 +4,14 @@ public class ProjectileDirection {
 	private float dx, dy;
 	
 	
-	public static final ProjectileDirection NORTH = new ProjectileDirection(0,-1);
-	public static final ProjectileDirection SOUTH = new ProjectileDirection(0,1);
+	public static final ProjectileDirection NORTH = new ProjectileDirection(0,1);
+	public static final ProjectileDirection SOUTH = new ProjectileDirection(0,-1);
 	public static final ProjectileDirection EAST = new ProjectileDirection(1,0);
 	public static final ProjectileDirection WEST = new ProjectileDirection(-1,0);
-	public static final ProjectileDirection NORTH_EAST = new ProjectileDirection(1,-1);
-	public static final ProjectileDirection NORTH_WEST = new ProjectileDirection(-1,-1);
-	public static final ProjectileDirection SOUTH_EAST = new ProjectileDirection(1,1);
-	public static final ProjectileDirection SOUTH_WEST = new ProjectileDirection(-1,1);
+	public static final ProjectileDirection NORTH_EAST = new ProjectileDirection(1,1);
+	public static final ProjectileDirection NORTH_WEST = new ProjectileDirection(-1,1);
+	public static final ProjectileDirection SOUTH_EAST = new ProjectileDirection(1,-1);
+	public static final ProjectileDirection SOUTH_WEST = new ProjectileDirection(-1,-1);
 	/**
 	 * Convienience class for indicating a direction for a projectile.
 	 * @param vectorXComponent the x component of a direction vector. Must be between 0 and 1.
@@ -40,16 +40,24 @@ public class ProjectileDirection {
 	private void applyNormalizedDeltas(float xComp, float yComp){
 		dx = xComp;
 		dy = yComp;
-		if (dx>=dy){
-			if (!(dx == 1)) {
-				float multiplicationFactor = 1/dx;
-				dx = 1f;
+		
+		if (Math.abs(dx) == Math.abs(dy)){
+			dx = Math.copySign(1f,dx);
+			dy = Math.copySign(1f,dy);
+		}
+		
+		if (Math.abs(dx)>Math.abs(dy)){
+			if (!(Math.abs(dx) == 1)) {
+				float multiplicationFactor = 1/ Math.abs(dx);
+				dx = Math.copySign(1,dx);
 				dy *= multiplicationFactor;
 			}
 		}else{
-			float multiplicationFactor = 1/dy;
-			dy = 1f;
-			dx *= multiplicationFactor;
+			if (!(Math.abs(dy) == 1)) {
+				float multiplicationFactor = 1/ Math.abs(dy);
+				dy = Math.copySign(1,dy);
+				dx *= multiplicationFactor;
+			}
 		}
 	}
 }

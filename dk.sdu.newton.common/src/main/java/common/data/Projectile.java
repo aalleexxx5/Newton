@@ -7,7 +7,7 @@ import common.services.Destructable;
 import common.services.Updatable;
 
 public abstract class Projectile extends Entity implements Collidable, Updatable, Destructable {
-	public static final float NORMAL_SPEED = 500f;
+	public static final float NORMAL_SPEED = 350f;
 	
 	public Projectile(ProjectileDirection direction, float speed) {
 		MovingPart movement = new MovingPart(direction.getVectorXComponent()*speed,direction.getVectorYComponent()*speed);

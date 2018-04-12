@@ -6,6 +6,7 @@ import common.data.entityParts.InventoryPart;
 import common.data.entityParts.LifePart;
 import common.data.entityParts.MovingPart;
 import common.services.Collidable;
+import common.services.Destructable;
 import common.services.Equipable;
 
 import java.util.function.Consumer;
@@ -65,6 +66,9 @@ public class Player extends Unit {
 			movement.setDx(0);
 			movement.setDy(0);
 			System.out.println("player lost a life!");
+			if (source instanceof Destructable){
+				((Destructable) source).setDestruct();
+			}
 		}if (source.getHostility() == Hostility.PASSIVE){
 			movement.revertToLastFrame(this);
 			movement.setDx(0);

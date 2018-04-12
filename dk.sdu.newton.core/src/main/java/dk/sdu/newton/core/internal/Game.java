@@ -36,6 +36,8 @@ public class Game implements ApplicationListener {
 		cam.translate(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 		cam.update();
 		playState = Registrator.getInstance().getState(AvailableStates.PLAY_STATE);
+		playState.setWidth(Gdx.graphics.getWidth());
+		playState.setHeight(Gdx.graphics.getHeight());
 		batch = new SpriteBatch();
 	}
 	

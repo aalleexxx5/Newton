@@ -15,7 +15,7 @@ public class EinsteinWeapon extends Weapon{
 	
 	@Override
 	public int getCooldownInMs() {
-		return 20000;
+		return 200;
 	}
 	
 	@Override
