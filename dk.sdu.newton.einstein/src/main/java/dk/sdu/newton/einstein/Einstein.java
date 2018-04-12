@@ -22,6 +22,8 @@ public class Einstein extends Unit {
 	//TODO find sprite
 
 	public Einstein(float x, float y, float width, float height) {
+		location[0]=x;
+		location[1]=y;
 		sprite = new Sprite(filename, x ,y, width, height);
 		einsteinWeapon = new EinsteinWeapon();
 		movingPart = new MovingPart(0, 0);

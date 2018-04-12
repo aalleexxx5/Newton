@@ -14,6 +14,7 @@ import common.data.AvailableStates;
 import common.data.Entity;
 import common.data.GameState;
 import common.data.Registrator;
+import common.services.Destructable;
 import common.services.EntityPart;
 import common.services.Updatable;
 
@@ -68,7 +69,12 @@ public class Game implements ApplicationListener {
 		}
 		for (Entity entity : playState.getGameEntities()) {
 			for (EntityPart entityPart : entity.getEntityParts()) {
-				entityPart.update(entity,playState.getDeltaTime());
+				entityPart.update(entity,playState);
+			}
+		}
+		for (Destructable destructable : playState.getEntitiesByInterface(Destructable.class)) {
+			if (destructable.shouldDestruct()){
+				playState.removeEntity((Entity) destructable);
 			}
 		}
 		for (Updatable it : playState.getPostUpdateables()) {
@@ -99,7 +105,7 @@ public class Game implements ApplicationListener {
 				File spriteFile = new File("assets/"+filename);
 				texture = new Texture(new FileHandle(spriteFile));
 			}
-			batch.draw(texture, commonSprite.getX(), commonSprite.getY());
+			batch.draw(texture, commonSprite.getX(), commonSprite.getY(),commonSprite.getWidth(), commonSprite.getHeight());
 		}
 		batch.end();
 	}

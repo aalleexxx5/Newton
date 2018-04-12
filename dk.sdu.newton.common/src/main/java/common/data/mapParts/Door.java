@@ -4,6 +4,10 @@ import common.data.Entity;
 import common.data.Sprite;
 import common.services.Collidable;
 
+import static common.data.Hostility.KILLS_PLAYER;
+import static common.data.Hostility.MOVER;
+import static common.data.Hostility.PASSIVE;
+
 
 public class Door extends Entity implements Collidable{
 
@@ -14,6 +18,8 @@ private int roomNumber;
 
     public Door (String name, float x, float y, float width, float height){
     sprite = new Sprite("door.png",0,0,32,32);
+        location[0]=x;
+        location[1]=y;
     }
     public int getRoomNumber(){
         return roomNumber;
@@ -32,7 +38,7 @@ private int roomNumber;
 	
 	@Override
     public Enum getHostility() {
-        return null;
+        return KILLS_PLAYER;
     }
 
     @Override
@@ -40,6 +46,6 @@ private int roomNumber;
 
     @Override
     public float[] getBounds() {
-        return new float[4];
+        return new float[] {location[0],location[1], sprite.getWidth(),sprite.getHeight()};
     }
 }

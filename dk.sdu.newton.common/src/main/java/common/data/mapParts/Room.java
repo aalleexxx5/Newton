@@ -16,34 +16,34 @@ public class Room {
 
 
      if(!North){
-         entities.add(new Wall("NDoorWall",-50, 540, 32, 32));
+         entities.add(new Wall("NDoorWall",368, 688, 64, 64));
 
      }
      else{
-         entities.add(new Door("northDoor", -50, 540, 32, 32));
+         entities.add(new Door("northDoor", 368, 688, 64, 64));
      }
 
      if(!West){
-         entities.add(new Wall("WDoorWall",-600, 50, 32, 32));
+         entities.add(new Wall("WDoorWall",-32, 328, 64, 64));
 
      }
      else{
-         entities.add(new Door("westDoor", -600, 50, 32, 32));
+         entities.add(new Door("westDoor", -32, 328, 64, 64));
 
      }
      if(!South){
-         entities.add(new Wall("SDoorWall", -50, -515, 32, 32));
+         entities.add(new Wall("SDoorWall", 368, -32, 64, 64));
 
      }
      else{
-         entities.add(new Door("southDoor", -50, -515, 32, 32));
+         entities.add(new Door("southDoor", 368, -32, 64, 64));
      }
      if(!East){
-         entities.add(new Wall("EDoorWall", 575, 50, 32, 32));
+         entities.add(new Wall("EDoorWall", 768, 328, 64, 64));
 
      }
      else{
-         entities.add(new Door("eastDoor", 575, 50, 32, 32 ));
+         entities.add(new Door("eastDoor", 575, 50, 64, 64 ));
      }
      createWalls();
     }
@@ -96,13 +96,13 @@ public class Room {
   }
 
     private void createWalls() {
-        entities.add(new Wall("bigNWBox", -550, 540, 128, 32));
-        entities.add(new Wall("bigNEBox", 50, 540, 128, 32));
-        entities.add(new Wall("bigSWBox", -550, -490, 128, 32));
-        entities.add(new Wall("bigSEBox", 50, -490, 128, 32));
-        entities.add(new Wall("smallNWBox", -600, 540, 32, 128));
-        entities.add(new Wall("smallNEBox", 550, 540, 32, 128));
-        entities.add(new Wall("smallSWBox", -600, -50, 32, 128));
-        entities.add(new Wall("smallSWBox", -600, -50, 32, 128));
+        entities.add(new Wall("bigNWBox", 0, 688, 256, 32));
+        entities.add(new Wall("bigNEBox", 544, 688, 256, 32));
+        entities.add(new Wall("bigSWBox", 0, 0, 256, 32));
+        entities.add(new Wall("bigSEBox", 544, 0, 256, 32));
+        entities.add(new Wall("smallNWBox", 0, 464, 32, 256));
+        entities.add(new Wall("smallNEBox", 768, 464, 32, 256));
+        entities.add(new Wall("smallSWBox", 0, 0, 32, 256));
+        entities.add(new Wall("smallSWBox", 768, 0, 32, 256));
     }
 }
