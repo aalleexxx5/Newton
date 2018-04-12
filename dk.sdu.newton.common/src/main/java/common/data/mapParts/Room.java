@@ -96,13 +96,13 @@ public class Room {
   }
 
     private void createWalls() {
-        entities.add(new Wall("bigNWBox", 0, 688, 256, 32));
-        entities.add(new Wall("bigNEBox", 544, 688, 256, 32));
-        entities.add(new Wall("bigSWBox", 0, 0, 256, 32));
-        entities.add(new Wall("bigSEBox", 544, 0, 256, 32));
-        entities.add(new Wall("smallNWBox", 0, 464, 32, 256));
-        entities.add(new Wall("smallNEBox", 768, 464, 32, 256));
-        entities.add(new Wall("smallSWBox", 0, 0, 32, 256));
-        entities.add(new Wall("smallSWBox", 768, 0, 32, 256));
+        entities.add(new Wall("bigNWBox", -144, 688, 512, 32));
+        entities.add(new Wall("bigNEBox", 432, 688, 512, 32));
+        entities.add(new Wall("bigSWBox", -144, 0, 512, 32));
+        entities.add(new Wall("bigSEBox", 432, 0, 512, 32));
+        entities.add(new Wall("smallNWBox", 0, 392, 32, 512));
+        entities.add(new Wall("smallNEBox", 768, 392, 32, 512));
+        entities.add(new Wall("smallSWBox", 0, -144, 32, 512));
+        entities.add(new Wall("smallSWBox", 768, -144, 32, 512));
     }
 }
