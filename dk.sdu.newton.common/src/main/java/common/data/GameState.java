@@ -17,6 +17,7 @@ public class GameState {
 	public void setMap(Map map){
 		this.map = map;
 	}
+
 	
 	public GameState() {
 	}
@@ -50,11 +51,11 @@ public class GameState {
 	
 	public ArrayList<Entity> getGameEntities(){
 
-		return map.getCurrentRoom().getEntities();
+		return map.getCurrentRoomEntityList();
 	}
 	
 	public void addEntity(Entity entity){
-		map.getCurrentRoom().addEntity(entity);
+		map.addEntityToCurrentRoom(entity);
 	}
 	
 	public void addUpdatable(Updatable updatable){
@@ -86,7 +87,7 @@ public class GameState {
 	public <T> ArrayList<T> getEntitiesByInterface(Class<T> implementedInterface){
 		// TODO test me!
 		ArrayList<T> list = new ArrayList<T>();
-		for (Entity gameEntity : map.getCurrentRoom().getEntities()) {
+		for (Entity gameEntity : map.getCurrentRoomEntityList()) {
 			if (implementedInterface.isAssignableFrom(gameEntity.getClass())){
 				list.add(implementedInterface.cast(gameEntity));
 			}
