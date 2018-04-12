@@ -1,6 +1,8 @@
 package dk.sdu.newton.player;
 
+import common.data.Entity;
 import common.data.GameState;
+import common.data.ProjectileDirection;
 import common.data.Weapon;
 
 public class AppleWeapon extends Weapon {
@@ -11,7 +13,7 @@ public class AppleWeapon extends Weapon {
 	public void onShoot(GameState state) {
 		float x = player.getBounds()[0];
 		float y = player.getBounds()[1];
-		AppleBullet appleBullet = new AppleBullet(x, y, 10, 10);
+		AppleBullet appleBullet = new AppleBullet(x, y, ProjectileDirection.NORTH);
 	}
 	
 	@Override
@@ -20,12 +22,12 @@ public class AppleWeapon extends Weapon {
 	}
 	
 	@Override
-	public void onEquip(GameState state) {
-
+	public void onEquip(Entity container) {
+	
 	}
-
+	
 	@Override
-	public void onUnEquip(GameState state) {
-
+	public void onUnEquip(Entity container) {
+	
 	}
 }

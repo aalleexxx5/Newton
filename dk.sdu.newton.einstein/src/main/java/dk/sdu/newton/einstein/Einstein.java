@@ -1,83 +1,87 @@
 package dk.sdu.newton.einstein;
 
-import common.data.GameState;
-import common.data.Projectile;
-import common.data.Sprite;
-import common.data.Unit;
+import common.data.*;
+import common.data.entityParts.InventoryPart;
+import common.data.entityParts.LifePart;
 import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 
+import static common.data.Hostility.NO_EFFECT;
 import static common.data.Hostility.PASSIVE;
 
 public class Einstein extends Unit {
-	int hp = 1000;
-	boolean shouldDestuct = false;
-	private Sprite sprite;
-	private float dx;
-	private float dy;
-	private String filename = "Einstein.png";
-	private EinsteinWeapon einsteinWeapon;
+	private static final String FILENAME = "Einstein.png";
+	private static final int WIDTH = 32;
+	private static final int HEIGHT = 32;
+	
+	private final LifePart lives;
 	private MovingPart movingPart;
-
+	private InventoryPart inventory;
+	private EinsteinControl einsteinControl;
 	//TODO find sprite
 
-	public Einstein(float x, float y, float width, float height) {
+	public Einstein(float x, float y) {
 		location[0]=x;
 		location[1]=y;
-		sprite = new Sprite(filename, x ,y, width, height);
-		einsteinWeapon = new EinsteinWeapon();
+		einsteinControl = new EinsteinControl(this);
+		
+		lives = new LifePart(10);
+		addEntityPart(lives);
+		
 		movingPart = new MovingPart(0, 0);
 		addEntityPart(movingPart);
+		
+		inventory = new InventoryPart();
+		addEntityPart(inventory);
+		inventory.addItem(new EinsteinWeapon(),this);
 	}
 
 	@Override
 	public Sprite getSprite() {
-		return sprite;
+		return new Sprite(FILENAME,0,0,WIDTH, HEIGHT);
 	}
 
 	@Override
 	public Enum getHostility() {
-		return PASSIVE;
+		return NO_EFFECT;
 	}
 
 	@Override
 	public void collidesWith(Collidable source) {
 		Enum i = source.getHostility();
 		if (common.data.Hostility.KILLS_ENEMY.equals(i)) {
-			hp = hp - 20;
+			lives.decrement();
 		}
 		else if (common.data.Hostility.PASSIVE.equals(i)) {
-			dx =- dx;
-			dy =- dy;
+			movingPart.revertToLastFrame(this);
+			movingPart.halt();
 		}
 	}
 
 	@Override
 	public float[] getBounds() {
-		float[] bounds = new float[4];
-		bounds[0] = sprite.getX();
-		bounds[1] = sprite.getY();
-		bounds[2] = sprite.getWidth();
-		bounds[3] = sprite.getHeight();
-		return bounds;
+		return new float[] {location[0], location[1], WIDTH, HEIGHT};
 	}
 
 	@Override
 	public Boolean shouldDestruct() {
-		return shouldDestuct;
+		return lives.isDead();
 	}
 
 	@Override
 	public void setDestruct() {
-		if (hp <= 0 ) {
-			shouldDestuct = true;
-		}
+		lives.decrement();
 	}
 
 	@Override
 	public void update(GameState state) {
-		EinsteinControl einsteinControl = new EinsteinControl(this);
 		movingPart.setDx(einsteinControl.getDX());
 		movingPart.setDy(einsteinControl.getDY());
+		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE));
+	}
+	
+	@Override
+	public Unit addAtLocation(int x, int y) {
+		return new Einstein(x,y);
 	}
 }

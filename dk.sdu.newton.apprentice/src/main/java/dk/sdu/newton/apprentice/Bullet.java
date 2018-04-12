@@ -1,28 +1,29 @@
 package dk.sdu.newton.apprentice;
 
-import common.data.Entity;
-import common.data.GameState;
-import common.data.Projectile;
-import common.data.Sprite;
+import common.data.*;
 import common.services.Collidable;
 import common.services.Updatable;
 
+import static common.data.Hostility.KILLS_ENEMY;
 import static common.data.Hostility.KILLS_PLAYER;
+import static common.data.Hostility.PASSIVE;
 
 public class Bullet extends Projectile {
-    private boolean shouldDestruct = false;
-    private Sprite sprite;
-    private float dx;
-    private float dy;
-    private float speed = 10;
-
-    public Bullet(String filename, float x, float y, float width, float height){
-        sprite = new Sprite(filename, x , y, width, height);
+    private static final String FILENAME = "apprenticebullet.png";
+    private static final int WIDTH = 16;
+    private static final int HEIGHT = 16;
+    private static final float SPEED = 250f;
+	private boolean shouldDestruct = false;
+    
+    public Bullet(float x, float y, ProjectileDirection direction){
+	    super(direction, SPEED);
+	    location[0] = x;
+	    location[1] = y;
     }
     
     @Override
     public Sprite getSprite() {
-        return sprite;
+        return new Sprite(FILENAME, 0,0,WIDTH, HEIGHT);
     }
 
     @Override
@@ -32,30 +33,22 @@ public class Bullet extends Projectile {
 
     @Override
     public void collidesWith(Collidable source) {
-        Enum i = source.getHostility();
-        if (common.data.Hostility.PASSIVE.equals(i)) {
+        if (source.getHostility() == PASSIVE) {
             setDestruct();
-        } else if (common.data.Hostility.KILLS_PLAYER.equals(i)) {
+        } else if (source.getHostility() == KILLS_PLAYER) {
             setDestruct();
-        } else if (common.data.Hostility.KILLS_ENEMY.equals(i)) {
+        } else if (source.getHostility() == KILLS_ENEMY) {
             //contenue
         }
     }
 
     @Override
     public float[] getBounds() {
-        float[] bounds = new float[3];
-        bounds[0] = sprite.getX();
-        bounds[1] = sprite.getY();
-        bounds[2] = sprite.getWidth();
-        bounds[3] = sprite.getHeight();
-        return new float[0];
+        return new float[] {location[0], location[1], WIDTH, HEIGHT};
     }
 
     @Override
     public void update(GameState state) {
-        sprite.setX(sprite.getX() + dx * state.getDeltaTime()*speed) ;
-        sprite.setY(sprite.getY() + dy * state.getDeltaTime()*speed) ;
     }
 
     @Override

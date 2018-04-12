@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Registrator {
 
-    private static HashMap<Entity, Integer> enemyMap = new HashMap<>();
+    private static HashMap<Unit, Integer> enemyMap = new HashMap<>();
 
     private static Registrator ourInstance = new Registrator();
 
@@ -33,13 +33,13 @@ public class Registrator {
         return gameStates.get(state);
     }
 
-    public static void registerEnemy(Entity enemy, int difficulty) {
+    public static void registerEnemy(Unit enemy, int difficulty) {
         enemyMap.put(enemy, difficulty);
 
 
     }
 
-    public static void unregisterEnemy(Entity enemy) {
+    public static void unregisterEnemy(Unit enemy) {
         enemyMap.remove(enemy);
     }
 /*
@@ -53,7 +53,7 @@ public class Registrator {
     }
 */
     public Entity getEnemy(int difficulty){
-        for (Map.Entry<Entity, Integer> e: enemyMap.entrySet()){
+        for (Map.Entry<Unit, Integer> e: enemyMap.entrySet()){
             if (enemyMap.get(e).equals(difficulty)){
                 return e.getKey();
             }

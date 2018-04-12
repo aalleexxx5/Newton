@@ -2,35 +2,35 @@ package dk.sdu.newton.einstein;
 
 import common.data.GameState;
 import common.data.Projectile;
+import common.data.ProjectileDirection;
 import common.data.Sprite;
+import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 
+import static common.data.Hostility.KILLS_ENEMY;
 import static common.data.Hostility.KILLS_PLAYER;
+import static common.data.Hostility.PASSIVE;
 
 public class EinsteinBullet extends Projectile {
-
+	private static final int WIDTH = 16;
+	private static final int HEIGHT = 16;
+	private static final int DURATION_MS = 5000;
+	private static final String FILENAME = "einsteinbullet.png";
+	private static final float SPEED = 500f;
+	
+	private final long startTime = System.currentTimeMillis();
 	private boolean shouldDestruct = false;
-	private Sprite sprite;
-	private float dx;
-	private float dy;
-	private float speed = 10;
-	private String filename = "EinsteinBullet.png";
-	long startTime = System.currentTimeMillis();
 
-	//TODO find sprite
 
-	public EinsteinBullet(float x, float y, float width, float height){
-		sprite = new Sprite(filename, x , y, width, height);
-	}
-
-	@Override
-	public Sprite draw() {
-		return sprite;
+	public EinsteinBullet(float x, float y, ProjectileDirection direction){
+		super(direction, SPEED);
+		location[0] = x;
+		location[1] = y;
 	}
 
 	@Override
 	public Sprite getSprite() {
-		return sprite;
+		return new Sprite(FILENAME, 0,0,WIDTH, HEIGHT);
 	}
 
 	@Override
@@ -40,36 +40,32 @@ public class EinsteinBullet extends Projectile {
 
 	@Override
 	public void collidesWith(Collidable source) {
-		Enum i = source.getHostility();
-		if (common.data.Hostility.PASSIVE.equals(i)) {
+		if (source.getHostility() == PASSIVE) {
 			setDestruct();
-		} else if (common.data.Hostility.KILLS_PLAYER.equals(i)) {
+		} else if (source.getHostility() == KILLS_ENEMY) {
 			setDestruct();
 		}
 	}
 
 	@Override
 	public float[] getBounds() {
-		float[] bounds = new float[3];
-		bounds[0] = sprite.getX();
-		bounds[1] = sprite.getY();
-		bounds[2] = sprite.getWidth();
-		bounds[3] = sprite.getHeight();
-		return new float[0];
+		return new float[] {location[0], location[1], WIDTH, HEIGHT};
 	}
 
 	@Override
 	public void update(GameState state) {
-		sprite.setX(sprite.getX() + dx * state.getDeltaTime()*speed) ;
-		sprite.setY(sprite.getY() + dy * state.getDeltaTime()*speed) ;
+	
 	}
 
 	@Override
 	public Boolean shouldDestruct() {
-		if (System.currentTimeMillis()+5000 > startTime) {
+		if (System.currentTimeMillis() - DURATION_MS > startTime) {
 			return true;
 		}
-		return shouldDestruct;
+		if (shouldDestruct){
+			return true;
+		}
+		return false;
 	}
 
 	@Override

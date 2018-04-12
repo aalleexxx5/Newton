@@ -6,28 +6,30 @@ import common.services.Collidable;
 import static common.data.Hostility.KILLS_ENEMY;
 
 public class AppleBullet extends Projectile {
+	private static final float WIDTH = 16f;
+	private static final float HEIGHT = 16f;
+	private static final float SPEED = 300f;
+	private static final String FILENAME = "AppleBullet.png";
+	private static final int DURATION = 5000;
+	
 	private boolean shouldDestruct = false;
 	private Sprite sprite;
 	private float dx;
 	private float dy;
 	private float speed = 10;
-	private String filename = "AppleBullet.png";
 	long startTime = System.currentTimeMillis();
 
 	//TODO find sprite
 
-	public AppleBullet(float x, float y, float width, float height){
-		sprite = new Sprite(filename, x , y, width, height);
-	}
-
-	@Override
-	public Sprite draw() {
-		return sprite;
+	public AppleBullet(float x, float y, ProjectileDirection direction){
+		super(direction, SPEED);
+		location[0] = x;
+		location[1] = y;
 	}
 
 	@Override
 	public Sprite getSprite() {
-		return sprite;
+		return new Sprite(FILENAME, 0,0,WIDTH, HEIGHT);
 	}
 
 	@Override
@@ -44,17 +46,12 @@ public class AppleBullet extends Projectile {
 
 	@Override
 	public float[] getBounds() {
-		float[] bounds = new float[3];
-		bounds[0] = sprite.getX();
-		bounds[1] = sprite.getY();
-		bounds[2] = sprite.getWidth();
-		bounds[3] = sprite.getHeight();
-		return new float[0];
+		return new float[]{location[0], location[1], WIDTH, HEIGHT};
 	}
 
 	@Override
 	public Boolean shouldDestruct() {
-		if (System.currentTimeMillis()+5000 > startTime) {
+		if (System.currentTimeMillis() + DURATION > startTime) {
 			return true;
 		}
 		return shouldDestruct;

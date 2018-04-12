@@ -20,10 +20,9 @@ public class Player extends Unit {
 	private final InventoryPart inventory;
 	
 	
-	public Player() {
-		location = new float[2];
-		location[0] = 400;
-		location[1] = 400;
+	public Player(int x, int y) {
+		location[0] = x;
+		location[1] = y;
 		
 		lives = new LifePart(3);
 		addEntityPart(lives);
@@ -45,6 +44,11 @@ public class Player extends Unit {
 	@Override
 	public Sprite getSprite() {
 		return new Sprite("player.png", location[0], location[1], 32, 32);
+	}
+	
+	@Override
+	public Unit addAtLocation(int x, int y) {
+		return new Player(x,y);
 	}
 	
 	@Override
@@ -156,6 +160,6 @@ public class Player extends Unit {
 	}
 
 	void addEquipable(Equipable equipable) {
-		inventory.addItem(equipable, Registrator.getInstance().getState(AvailableStates.PLAY_STATE));
+		inventory.addItem(equipable, this);
 	}
 }

@@ -1,31 +1,30 @@
 package dk.sdu.newton.einstein;
 
-import common.data.GameState;
-import common.data.Weapon;
+import common.data.*;
 
 public class EinsteinWeapon extends Weapon{
 
-	private Einstein einstein;
+	private Entity container;
 	
 	@Override
 	public void onShoot(GameState state) {
-		float x = einstein.getBounds()[0];
-		float y = einstein.getBounds()[1];
-		EinsteinBullet einsteinBullet = new EinsteinBullet(x, y, 10, 10);
+		float x = container.getLocation()[0];
+		float y = container.getLocation()[1];
+		state.addEntity(new EinsteinBullet(x,y, ProjectileDirection.NORTH));
 	}
 	
 	@Override
 	public int getCooldownInMs() {
-		return 200;
+		return 20000;
 	}
 	
 	@Override
-	public void onEquip(GameState state) {
-	
+	public void onEquip(Entity container) {
+		this.container = container;
 	}
 	
 	@Override
-	public void onUnEquip(GameState state) {
+	public void onUnEquip(Entity container) {
 	
 	}
 }

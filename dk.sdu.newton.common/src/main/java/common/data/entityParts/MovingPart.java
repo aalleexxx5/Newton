@@ -24,6 +24,10 @@ public class MovingPart implements EntityPart {
 		location[0]+=dx*dt;
 		location[1]+=dy*dt;
 	}
+	public void halt(){
+		dx = 0;
+		dy = 0;
+	}
 	
 	public void setDx(float dx) {
 		this.dx = dx;

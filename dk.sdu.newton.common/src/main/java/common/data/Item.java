@@ -29,7 +29,7 @@ public abstract class Item extends Entity implements Collidable, Destructable {
 		
 		for (EntityPart entityPart : source.getEntityParts()) {
 			if (entityPart instanceof InventoryPart){
-				((InventoryPart) entityPart).addItem(equipable, Registrator.getInstance().getState(AvailableStates.PLAY_STATE));
+				((InventoryPart) entityPart).addItem(equipable, source);
 				return true;
 			}
 		}

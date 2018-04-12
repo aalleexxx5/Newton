@@ -1,19 +1,17 @@
 package dk.sdu.newton.apprentice;
 
+import common.data.Entity;
 import common.data.GameState;
+import common.data.ProjectileDirection;
 import common.data.Weapon;
 
 public class ApprenticeWeapon extends Weapon {
-    private Apprentice apprentice;
-    public ApprenticeWeapon(Apprentice apprentice){
-        this.apprentice=apprentice;
-    }
+    private Entity container;
 	
 	@Override
 	public void onShoot(GameState state) {
-		float x=apprentice.getBounds()[0];
-		float y=apprentice.getBounds()[1];
-		Bullet bullet = new Bullet("filename", x, y, 10, 10);
+		Bullet bullet = new Bullet(container.getLocation()[0], container.getLocation()[1],ProjectileDirection.NORTH);
+		state.addEntity(bullet);
 	}
 	
 	@Override
@@ -22,12 +20,12 @@ public class ApprenticeWeapon extends Weapon {
 	}
 	
 	@Override
-	public void onEquip(GameState state) {
-	
+	public void onEquip(Entity container) {
+		this.container = container;
 	}
 	
 	@Override
-	public void onUnEquip(GameState state) {
+	public void onUnEquip(Entity container) {
 	
 	}
 }

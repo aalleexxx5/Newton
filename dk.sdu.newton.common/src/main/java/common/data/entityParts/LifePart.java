@@ -20,6 +20,10 @@ public class LifePart implements EntityPart {
 		return lives;
 	}
 	
+	public boolean isDead(){
+		return lives <= 0;
+	}
+	
 	public void decrement(){
 		lives--;
 	}

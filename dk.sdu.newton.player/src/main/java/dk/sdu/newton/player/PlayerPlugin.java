@@ -10,7 +10,7 @@ public class PlayerPlugin implements BundleActivator {
 	
 	@Override
 	public void start(BundleContext bundleContext) throws Exception {
-		player = new Player();
+		player = new Player(400,400);
 		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(player);
 	}
 	

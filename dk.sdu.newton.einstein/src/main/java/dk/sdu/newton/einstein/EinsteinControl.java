@@ -6,7 +6,7 @@ public class EinsteinControl {
 
 	private Einstein einstein;
 	private float movement[] = new float[2];
-	private Random random;
+	private Random random = new Random(5260);
 
 	public EinsteinControl(Einstein einstein){
 		this.einstein = einstein;

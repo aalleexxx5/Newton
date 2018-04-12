@@ -8,14 +8,12 @@ import org.osgi.framework.BundleContext;
 
 public class EinsteinPlugin implements BundleActivator {
 
-	//TODO make reflections (register the class instead of the object)
-
-	Einstein einstein = new Einstein(400, 400, 32, 32);
+	private Einstein einstein = new Einstein(400, 200);
 
 	@Override
 	public void start(BundleContext bundleContext) throws Exception {
-		Registrator.registerEnemy(einstein,1000);
 		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(einstein);
+		Registrator.registerEnemy(einstein,1000);
 	}
 
 	@Override

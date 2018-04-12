@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class InventoryPart implements EntityPart {
 	private ArrayList<Equipable> eqiuppedItems = new ArrayList<>(20);
 	
-	public void addItem(Equipable equipable, GameState state){
-		equipable.onEquip(state);
+	public void addItem(Equipable equipable, Entity container){
+		equipable.onEquip(container);
 		eqiuppedItems.add(equipable);
 	}
 	
-	public void removeItem(Equipable equipable, GameState state){
-		equipable.onUnEquip(state);
+	public void removeItem(Equipable equipable, Entity container){
+		equipable.onUnEquip(container);
 		eqiuppedItems.remove(equipable);
 	}
 	
