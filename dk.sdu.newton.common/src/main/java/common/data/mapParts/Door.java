@@ -17,7 +17,7 @@ private int roomNumber;
 
 
     public Door (String name, float x, float y, float width, float height){
-    sprite = new Sprite("door.png",0,0,32,32);
+    sprite = new Sprite("door.png",0,0,64,64);
         location[0]=x;
         location[1]=y;
     }
