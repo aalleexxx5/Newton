@@ -99,7 +99,7 @@ public class Game implements ApplicationListener {
 				File spriteFile = new File("assets/"+filename);
 				texture = new Texture(new FileHandle(spriteFile));
 			}
-			batch.draw(texture, commonSprite.getX(), commonSprite.getY());
+			batch.draw(texture, commonSprite.getX(), commonSprite.getY(),commonSprite.getWidth(), commonSprite.getHeight());
 		}
 		batch.end();
 	}
