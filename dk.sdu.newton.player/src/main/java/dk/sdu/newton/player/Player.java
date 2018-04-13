@@ -5,10 +5,12 @@ import common.data.*;
 import common.data.entityParts.InventoryPart;
 import common.data.entityParts.LifePart;
 import common.data.entityParts.MovingPart;
+import common.data.mapParts.Map;
 import common.services.Collidable;
 import common.services.Destructable;
 import common.services.Equipable;
 
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class Player extends Unit {
@@ -76,6 +78,68 @@ public class Player extends Unit {
 			movement.setDy(0);
 		}if (source.getHostility() == Hostility.ITEM){
 		
+		}
+		if (source.getHostility() == Hostility.MOVER){
+			ArrayList<Entity> tempList = new ArrayList<>();
+			Entity tempEntity = null;
+            Map map = Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getMap();
+            if (source.equals(map.getCurrentRoom().getNorthDoor())){
+            	for (Entity entity : map.getCurrentRoom().getEntities()){
+            		if (entity instanceof Player){
+            			tempList.add(entity);
+						tempEntity = entity;
+
+					}
+				}
+				map.getCurrentRoom().getEntities().remove(tempEntity);
+				map.setCurrentRoom(map.getRooms().get(map.getCurrentRoom().getNorthDoor().getRoomNumber() - 1));
+            	getLocation()[0] = 384;
+            	getLocation()[1] = 34;
+				map.getCurrentRoom().addEntity(tempList.get(0));
+			}
+
+			if (source.equals(map.getCurrentRoom().getEastDoor())){
+				for (Entity entity : map.getCurrentRoom().getEntities()){
+					if (entity instanceof Player){
+						tempList.add(entity);
+						tempEntity = entity;
+					}
+				}
+				map.getCurrentRoom().getEntities().remove(tempEntity);
+				map.setCurrentRoom(map.getRooms().get(map.getCurrentRoom().getEastDoor().getRoomNumber() - 1));
+				getLocation()[0] = 34;
+				getLocation()[1] = 344;
+				map.getCurrentRoom().addEntity(tempList.get(0));
+			}
+
+			if (source.equals(map.getCurrentRoom().getSouthDoor())){
+				for (Entity entity : map.getCurrentRoom().getEntities()){
+					if (entity instanceof Player){
+						tempList.add(entity);
+						tempEntity = entity;
+					}
+				}
+				map.getCurrentRoom().getEntities().remove(tempEntity);
+				map.setCurrentRoom(map.getRooms().get(map.getCurrentRoom().getSouthDoor().getRoomNumber() - 1));
+				getLocation()[0] = 384;
+				getLocation()[1] = 654;
+				map.getCurrentRoom().addEntity(tempList.get(0));
+			}
+
+			if (source.equals(map.getCurrentRoom().getWestDoor())){
+				for (Entity entity : map.getCurrentRoom().getEntities()){
+					if (entity instanceof Player){
+						tempList.add(entity);
+						tempEntity = entity;
+					}
+				}
+				map.getCurrentRoom().getEntities().remove(tempEntity);
+				map.setCurrentRoom(map.getRooms().get(map.getCurrentRoom().getWestDoor().getRoomNumber() - 1));
+				getLocation()[0] = 766;
+				getLocation()[1] = 344;
+				map.getCurrentRoom().addEntity(tempList.get(0));
+			}
+
 		}
 	}
 	

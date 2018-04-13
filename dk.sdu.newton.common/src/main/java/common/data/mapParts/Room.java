@@ -10,7 +10,9 @@ public class Room {
     private Door door;
     private ArrayList<Entity> entities = new ArrayList<>();
 
+    public Room(){
 
+    }
 
     public Room(Boolean North, Boolean West, Boolean South, Boolean East, int number){
 
@@ -57,6 +59,9 @@ public class Room {
     public void addEntity(Entity entity){
         entities.add(entity);
     }
+    public void addAllEntity(ArrayList<Entity> entities){
+        entities.addAll(entities);
+    }
 
     public void removeEntity(Entity entity){
         entities.remove(entity);
@@ -70,7 +75,7 @@ public class Room {
             return null;
         }
   }
-  public Door getWesthDoor(){
+  public Door getWestDoor(){
         if (entities.get(1) instanceof Door){
             return (Door) entities.get(1);
       }

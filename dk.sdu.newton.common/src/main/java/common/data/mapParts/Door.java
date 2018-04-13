@@ -4,6 +4,8 @@ import common.data.Entity;
 import common.data.Sprite;
 import common.services.Collidable;
 
+import java.sql.Connection;
+
 import static common.data.Hostility.KILLS_PLAYER;
 import static common.data.Hostility.MOVER;
 import static common.data.Hostility.PASSIVE;
@@ -28,6 +30,7 @@ private int roomNumber;
     public void setConnection(int roomNumber){
         this.roomNumber=roomNumber;
     }
+
 
 	
 	@Override

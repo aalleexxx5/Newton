@@ -1,19 +1,24 @@
 package common.data.mapParts;
 
+import common.data.AvailableStates;
 import common.data.Entity;
 
 import java.util.ArrayList;
+import common.data.Registrator;
 
 public class Map {
 
 private ArrayList<Room> rooms = new ArrayList<>();
 private static ArrayList<Entity> entityToAddList = new ArrayList<>();
 private ArrayList<Entity> emptyList = new ArrayList<>();
+private ArrayList<Entity> tempList = new ArrayList<>();
+
 
     private Room currentRoom;
     public Room getCurrentRoom(){
-return currentRoom;
+        return currentRoom;
     }
+
     public ArrayList<Entity> getCurrentRoomEntityList(){
         if (currentRoom == null){
             return emptyList;
@@ -38,7 +43,6 @@ return currentRoom;
             for (Entity e : entityToAddList) {
                 currentRoom.addEntity(e);
             }
-            entityToAddList.clear();
         } else{
             this.currentRoom = room;
     }
@@ -55,5 +59,13 @@ return currentRoom;
 
     }
 
+    public void setCurrentRoomToEmptyRoom(){
+        tempList.addAll(entityToAddList);
+        tempList.addAll(Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getSpawnList());
 
+        currentRoom = new Room();
+        for (Entity entity : tempList){
+            currentRoom.addEntity(entity);
+        }
+    }
 }

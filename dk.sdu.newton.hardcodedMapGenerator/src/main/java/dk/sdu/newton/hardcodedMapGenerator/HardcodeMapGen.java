@@ -45,7 +45,7 @@ public class HardcodeMapGen {
         map.addRoomsToMap(room3);
 
 
-        map.setCurrentRoom(room2);
+        map.setCurrentRoom(room1);
     }
 
     public Map getMap(){
