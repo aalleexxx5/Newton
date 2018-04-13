@@ -8,7 +8,7 @@ import org.osgi.framework.BundleContext;
 
 public class EinsteinPlugin implements BundleActivator {
 
-	private Einstein einstein = new Einstein(400, 200);
+	private Einstein einstein = new Einstein(600, 200);
 
 	@Override
 	public void start(BundleContext bundleContext) throws Exception {

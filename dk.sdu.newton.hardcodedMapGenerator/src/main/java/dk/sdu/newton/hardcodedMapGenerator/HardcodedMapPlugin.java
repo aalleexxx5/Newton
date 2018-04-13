@@ -13,8 +13,9 @@ public class HardcodedMapPlugin implements BundleActivator {
     public void start(BundleContext bundleContext) throws Exception {
         System.out.println("adding map");
         HardcodeMapGen hMapGen = new HardcodeMapGen();
+        map.setCurrentRoomOnStart(hMapGen.getMap().getCurrentRoom());
         Registrator.getInstance().getState(AvailableStates.PLAY_STATE).setMap(hMapGen.getMap());
-        hMapGen.getMap().getCurrentRoom().addAllEntity(Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getSpawnList());
+
 
 
 

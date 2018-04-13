@@ -59,6 +59,16 @@ private ArrayList<Entity> tempList = new ArrayList<>();
 
     }
 
+    public void setCurrentRoomOnStart(Room room){
+        tempList.addAll(entityToAddList);
+        tempList.addAll(Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getSpawnList());
+        setCurrentRoom(room);
+        for (Entity entity : tempList){
+            currentRoom.addEntity(entity);
+        }
+        tempList.clear();
+    }
+
     public void setCurrentRoomToEmptyRoom(){
         tempList.addAll(entityToAddList);
         tempList.addAll(Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getSpawnList());
@@ -67,5 +77,6 @@ private ArrayList<Entity> tempList = new ArrayList<>();
         for (Entity entity : tempList){
             currentRoom.addEntity(entity);
         }
+        tempList.clear();
     }
 }
