@@ -7,10 +7,10 @@ public class EinsteinWeapon extends Weapon{
 	private Entity container;
 	
 	@Override
-	public void onShoot(GameState state) {
+	public void onShoot(GameState state, ProjectileDirection direction) {
 		float x = container.getLocation()[0];
 		float y = container.getLocation()[1];
-		state.addEntity(new EinsteinBullet(x,y, ProjectileDirection.NORTH));
+		state.addEntity(new EinsteinBullet(x,y, direction));
 	}
 	
 	@Override

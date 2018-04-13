@@ -5,13 +5,13 @@ import common.services.Equipable;
 
 public abstract class Weapon implements Equipable {
 	private long lastShot = 0;
-	public void shoot(GameState state){
+	public void shoot(GameState state, ProjectileDirection direction){
 		long now = System.currentTimeMillis();
 		if (lastShot+ getCooldownInMs()<= now){
 			lastShot = now;
-			onShoot(state);
+			onShoot(state, direction);
 		}
 	}
-	public abstract void onShoot(GameState state);
+	public abstract void onShoot(GameState state, ProjectileDirection direction);
 	public abstract int getCooldownInMs();
 }

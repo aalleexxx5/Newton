@@ -9,8 +9,8 @@ public class ApprenticeWeapon extends Weapon {
     private Entity container;
 	
 	@Override
-	public void onShoot(GameState state) {
-		Bullet bullet = new Bullet(container.getLocation()[0], container.getLocation()[1],ProjectileDirection.NORTH);
+	public void onShoot(GameState state, ProjectileDirection direction) {
+		Bullet bullet = new Bullet(container.getLocation()[0], container.getLocation()[1],direction);
 		state.addEntity(bullet);
 	}
 	

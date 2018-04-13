@@ -31,10 +31,10 @@ public class InventoryPart implements EntityPart {
 		}
 	}
 	
-	public void shoot(GameState state){
+	public void shoot(GameState state, ProjectileDirection direction){
 		for (Equipable eqiuppedItem : eqiuppedItems) {
 			if (eqiuppedItem instanceof Weapon){
-				((Weapon) eqiuppedItem).shoot(state);
+				((Weapon) eqiuppedItem).shoot(state, direction);
 			}
 		}
 	}

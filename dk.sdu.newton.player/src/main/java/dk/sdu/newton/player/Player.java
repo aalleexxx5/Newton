@@ -161,7 +161,7 @@ public class Player extends Unit {
 	}
 	
 	private void receiveShoot() {
-		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE));
+		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE), ProjectileDirection.NORTH);
 	}
 
 	void addEquipable(Equipable equipable) {
