@@ -11,12 +11,19 @@
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.libgdx" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.player" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.playerStandardControlls" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/dk.sdu.newton.weapons" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/Weapons" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Weapons/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">

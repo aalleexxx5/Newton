@@ -15,6 +15,7 @@
         <module name="dk.sdu.newton.libgdx" />
         <module name="dk.sdu.newton.player" />
         <module name="dk.sdu.newton.playerStandardControlls" />
+        <module name="dk.sdu.newton.weapons" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,10 +30,12 @@
       <module name="dk.sdu.newton.libgdx" target="1.8" />
       <module name="dk.sdu.newton.player" target="1.8" />
       <module name="dk.sdu.newton.playerStandardControlls" target="1.8" />
+      <module name="dk.sdu.newton.weapons" target="1.8" />
       <module name="libgdxwrapper" target="1.8" />
       <module name="newton-parent" target="1.8" />
       <module name="provision" target="1.8" />
       <module name="shared-plugin-settings" target="1.8" />
+      <module name="Weapons" target="1.8" />
       <module name="wrapper-bundle-settings" target="1.8" />
     </bytecodeTargetLevel>
   </component>
