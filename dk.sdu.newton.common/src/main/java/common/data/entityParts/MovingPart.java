@@ -13,6 +13,14 @@ public class MovingPart implements EntityPart {
 		this.dy = dy;
 	}
 	
+	public float getDx() {
+		return dx;
+	}
+	
+	public float getDy() {
+		return dy;
+	}
+	
 	@Override
 	public void update(Entity container, GameState state) {
 		lastdt = state.getDeltaTime();

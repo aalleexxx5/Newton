@@ -33,6 +33,7 @@ public class Player extends Unit {
 
 		inventory = new InventoryPart();
 		addEntityPart(inventory);
+		inventory.addItem(new AppleWeapon(), this);
 		
 		GameState gameState = Registrator.getInstance().getState(AvailableStates.PLAY_STATE);
 		gameState.getInputActionMap().registerAction("up", getReceiveActionCallback());

@@ -6,9 +6,10 @@ import common.services.Equipable;
 import common.services.Updatable;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class InventoryPart implements EntityPart {
-	private ArrayList<Equipable> eqiuppedItems = new ArrayList<>(20);
+	private CopyOnWriteArrayList<Equipable> eqiuppedItems = new CopyOnWriteArrayList<>();
 	
 	public void addItem(Equipable equipable, Entity container){
 		equipable.onEquip(container);

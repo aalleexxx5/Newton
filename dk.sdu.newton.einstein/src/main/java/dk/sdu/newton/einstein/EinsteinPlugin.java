@@ -18,6 +18,7 @@ public class EinsteinPlugin implements BundleActivator {
 
 	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
+		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).removeEntity(einstein);
 		Registrator.unregisterEnemy(einstein);
 	}
 }

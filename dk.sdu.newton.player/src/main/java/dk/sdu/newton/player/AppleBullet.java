@@ -1,7 +1,11 @@
 package dk.sdu.newton.player;
 
 import common.data.*;
+import common.data.entityParts.MovingPart;
 import common.services.Collidable;
+import common.services.EntityPart;
+
+import java.lang.reflect.Modifier;
 
 import static common.data.Hostility.KILLS_ENEMY;
 
@@ -9,17 +13,12 @@ public class AppleBullet extends Projectile {
 	private static final float WIDTH = 16f;
 	private static final float HEIGHT = 16f;
 	private static final float SPEED = 300f;
-	private static final String FILENAME = "AppleBullet.png";
-	private static final int DURATION = 5000;
-	
+	private static final String FILENAME = "apple.png";
+	private static final int DURATION = 1000;
+	private static final float DECELERATION_PR_SECOND = 0.75f;
 	private boolean shouldDestruct = false;
-	private Sprite sprite;
-	private float dx;
-	private float dy;
-	private float speed = 10;
 	long startTime = System.currentTimeMillis();
 
-	//TODO find sprite
 
 	public AppleBullet(float x, float y, ProjectileDirection direction){
 		super(direction, SPEED);
@@ -39,11 +38,17 @@ public class AppleBullet extends Projectile {
 
 	@Override
 	public void collidesWith(Collidable source) {
-		AppleItem appleItem = new AppleItem();
+		if (!(source instanceof Player)){
+			spawnItem();
+		}
+	}
+	
+	private void spawnItem() {
+		AppleItem appleItem = new AppleItem(location[0], location[1]);
 		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(appleItem);
 		setDestruct();
 	}
-
+	
 	@Override
 	public float[] getBounds() {
 		return new float[]{location[0], location[1], WIDTH, HEIGHT};
@@ -51,10 +56,12 @@ public class AppleBullet extends Projectile {
 
 	@Override
 	public Boolean shouldDestruct() {
-		if (System.currentTimeMillis() + DURATION > startTime) {
+		if (shouldDestruct) return true;
+		if (System.currentTimeMillis() - DURATION > startTime) {
+			spawnItem();
 			return true;
 		}
-		return shouldDestruct;
+		return false;
 	}
 
 	@Override
@@ -64,7 +71,14 @@ public class AppleBullet extends Projectile {
 
 	@Override
 	public void update(GameState state) {
-		sprite.setX(sprite.getX() + dx * state.getDeltaTime() * speed);
-		sprite.setY(sprite.getY() + dy * state.getDeltaTime() * speed);
+		for (EntityPart entityPart : getEntityParts()) {
+			if (entityPart instanceof MovingPart){
+				MovingPart mover = (MovingPart) entityPart;
+				float secondsSinceLastCall = state.getDeltaTime();
+				float decelerationFactor = 1f-secondsSinceLastCall*DECELERATION_PR_SECOND;
+				mover.setDx(mover.getDx()* decelerationFactor);
+				mover.setDy(mover.getDy()* decelerationFactor);
+			}
+		}
 	}
 }
