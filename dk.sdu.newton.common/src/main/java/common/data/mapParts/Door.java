@@ -38,7 +38,7 @@ private int roomNumber;
 	
 	@Override
     public Enum getHostility() {
-        return KILLS_PLAYER;
+        return MOVER;
     }
 
     @Override

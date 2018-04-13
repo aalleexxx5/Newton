@@ -7,10 +7,10 @@ import java.util.ArrayList;
 public class Map {
 
 private ArrayList<Room> rooms = new ArrayList<>();
-private static final ArrayList<Entity> entityToAddList = new ArrayList<>();
+private static ArrayList<Entity> entityToAddList = new ArrayList<>();
 private ArrayList<Entity> emptyList = new ArrayList<>();
 
-    private Room currentRoom = new Room(true, true, true, true, 1);
+    private Room currentRoom;
     public Room getCurrentRoom(){
 return currentRoom;
     }
@@ -27,16 +27,20 @@ return currentRoom;
         rooms.add(room);
     }
 
-    public void setCurrentRoom(Room nextRoom) {
+    public ArrayList<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setCurrentRoom(Room room) {
 
         if (currentRoom == null) {
-            this.currentRoom = nextRoom;
+            this.currentRoom = room;
             for (Entity e : entityToAddList) {
                 currentRoom.addEntity(e);
             }
             entityToAddList.clear();
         } else{
-            this.currentRoom = nextRoom;
+            this.currentRoom = room;
     }
     }
 
