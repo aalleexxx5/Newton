@@ -28,6 +28,11 @@ public class AppleWeapon extends Weapon {
 	}
 	
 	@Override
+	protected int initialCooldown(){
+		return 1000;
+	}
+	
+	@Override
 	public void onEquip(Entity container) {
 		this.container = container;
 	}

@@ -12,10 +12,10 @@ import static common.data.Hostility.KILLS_ENEMY;
 public class AppleBullet extends Projectile {
 	private static final float WIDTH = 16f;
 	private static final float HEIGHT = 16f;
-	private static final float SPEED = 300f;
+	private static final float SPEED = 500f;
 	private static final String FILENAME = "apple.png";
 	private static final int DURATION = 1000;
-	private static final float DECELERATION_PR_SECOND = 0.75f;
+	private static final float DECELERATION_PR_SECOND = 1.75f;
 	private boolean shouldDestruct = false;
 	long startTime = System.currentTimeMillis();
 

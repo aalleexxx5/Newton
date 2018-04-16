@@ -1,6 +1,5 @@
 package dk.sdu.newton.player;
 
-import com.sun.corba.se.spi.ior.IORTemplate;
 import common.data.*;
 import common.data.entityParts.InventoryPart;
 import common.data.entityParts.LifePart;
@@ -14,13 +13,14 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class Player extends Unit {
-	private static final float MOVEMENT_SPEED = 300.0f; // Don't know the unit. Might be Pixels pr second.
+	private static final float MOVEMENT_SPEED = 200.0f; // Don't know the unit. Might be Pixels pr second.
 	private final LifePart lives;
 	private final MovingPart movement;
 	private float oldX, oldY;
 	private boolean verticalMovementWasPressed = false;
 	private boolean horizontalMovementWasPressed = false;
 	private final InventoryPart inventory;
+	private ProjectileDirection direction = ProjectileDirection.NORTH;
 	
 	
 	public Player(int x, int y) {
@@ -77,7 +77,9 @@ public class Player extends Unit {
 			movement.setDx(0);
 			movement.setDy(0);
 		}if (source.getHostility() == Hostility.ITEM){
-		
+			if (source instanceof Item){
+				inventory.addItem(((Item) source).getEquipable(), this);
+			}
 		}
 		if (source.getHostility() == Hostility.MOVER){
 			ArrayList<Entity> tempList = new ArrayList<>();
@@ -161,6 +163,21 @@ public class Player extends Unit {
 	@Override
 	public void update(GameState state) {
 		resetMovement();
+		calculateSimpleDirection();
+	}
+	
+	private void calculateSimpleDirection() {
+		int dirX = 0;
+		int dirY = 0;
+		if (movement.getDx() != 0){
+			dirX = movement.getDx() > 0 ? 1 :-1;
+		}
+		if (movement.getDy() != 0){
+			dirY = movement.getDy() > 0 ? 1:-1;
+		}
+		if (dirX != 0 ||dirY !=0){
+			direction = new ProjectileDirection(dirX, dirY);
+		}
 	}
 	
 	private void resetMovement() {
@@ -217,7 +234,7 @@ public class Player extends Unit {
 	}
 	
 	private void receiveShoot() {
-		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE), ProjectileDirection.NORTH);
+		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE), direction);
 	}
 
 	void addEquipable(Equipable equipable) {
