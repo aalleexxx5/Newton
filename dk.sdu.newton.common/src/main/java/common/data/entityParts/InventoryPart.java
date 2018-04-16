@@ -9,16 +9,19 @@ import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class InventoryPart implements EntityPart {
-	private CopyOnWriteArrayList<Equipable> eqiuppedItems = new CopyOnWriteArrayList<>();
+	private ArrayList<Equipable> eqiuppedItems = new ArrayList<>(16);
+	private ArrayList<Equipable> removeItems = new ArrayList<>(8);
+	private ArrayList<Equipable> addItems = new ArrayList<>(8);// Changed from copyOnWrite for control over when items are added
 	
 	public void addItem(Equipable equipable, Entity container){
+		System.out.println("Added: "+ equipable.getClass().getSimpleName());
 		equipable.onEquip(container);
-		eqiuppedItems.add(equipable);
+		addItems.add(equipable);
 	}
 	
 	public void removeItem(Equipable equipable, Entity container){
 		equipable.onUnEquip(container);
-		eqiuppedItems.remove(equipable);
+		removeItems.add(equipable);
 	}
 	
 	@Override
@@ -27,8 +30,11 @@ public class InventoryPart implements EntityPart {
 			if (eqiuppedItem instanceof Updatable){
 				((Updatable) eqiuppedItem).update(state);
 			}
-			
 		}
+		eqiuppedItems.removeAll(removeItems);
+		removeItems.clear();
+		eqiuppedItems.addAll(addItems);
+		addItems.clear();
 	}
 	
 	public void shoot(GameState state, ProjectileDirection direction){

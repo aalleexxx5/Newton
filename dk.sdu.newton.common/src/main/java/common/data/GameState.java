@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 public class GameState {
 	//Data:
-
-	private ArrayList<Updatable> updatables = new ArrayList<>();
 	private ArrayList<Updatable> postUpdateables = new ArrayList<>();
 	private ArrayList<Entity> spawnList = new ArrayList<>();
 	private ArrayList<Entity> tempRemoveList = new ArrayList<>();
@@ -86,14 +84,6 @@ public class GameState {
 		map.addEntityToCurrentRoom(entity);
 	}
 	
-	public void addUpdatable(Updatable updatable){
-		updatables.add(updatable);
-	}
-	
-	public void removeUpdatable(Updatable updatable){
-		updatables.remove(updatable);
-	}
-	
 	public void addPostUpdatable(Updatable postUpdatable){
 		postUpdateables.add(postUpdatable);
 	}
@@ -121,10 +111,6 @@ public class GameState {
 			}
 		}
 		return list;
-	}
-	
-	public ArrayList<Updatable> getUpdatables() {
-		return updatables;
 	}
 	
 	public ArrayList<Updatable> getPostUpdateables() {

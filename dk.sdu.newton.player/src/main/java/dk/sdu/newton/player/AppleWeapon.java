@@ -12,7 +12,6 @@ public class AppleWeapon extends Weapon {
 	public void onShoot(GameState state, ProjectileDirection direction) {
 		float x = container.getLocation()[0];
 		float y = container.getLocation()[1];
-		System.out.println("Shooting apple");
 		AppleBullet appleBullet = new AppleBullet(x, y, direction);
 		state.addEntity(appleBullet);
 		

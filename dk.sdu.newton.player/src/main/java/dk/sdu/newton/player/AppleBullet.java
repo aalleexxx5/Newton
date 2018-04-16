@@ -44,6 +44,7 @@ public class AppleBullet extends Projectile {
 	}
 	
 	private void spawnItem() {
+		if (shouldDestruct) return;
 		AppleItem appleItem = new AppleItem(location[0], location[1]);
 		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(appleItem);
 		setDestruct();

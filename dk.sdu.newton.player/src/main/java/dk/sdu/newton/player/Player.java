@@ -160,14 +160,6 @@ public class Player extends Unit {
 	
 	@Override
 	public void update(GameState state) {
-		float newX = location[0];
-		float newY = location[1];
-		if (oldX != newX) {
-			oldX = newX;
-		}
-		if (oldY != newY) {
-			oldY = newY;
-		}
 		resetMovement();
 	}
 	
