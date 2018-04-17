@@ -12,7 +12,7 @@ public class AppleWeapon extends Weapon {
 	public void onShoot(GameState state, ProjectileDirection direction) {
 		float x = container.getLocation()[0];
 		float y = container.getLocation()[1];
-		AppleBullet appleBullet = new AppleBullet(x, y, direction, container.getBulletHostility());
+		AppleBullet appleBullet = new AppleBullet(x, y, direction, container);
 		state.addEntity(appleBullet);
 		
 		for (EntityPart entityPart : container.getEntityParts()) {
@@ -38,7 +38,8 @@ public class AppleWeapon extends Weapon {
 	}
 	
 	@Override
-	public void onUnEquip(Unit container) {
-	
+	public Item getDroppedItem() {
+		return null;
 	}
+	
 }

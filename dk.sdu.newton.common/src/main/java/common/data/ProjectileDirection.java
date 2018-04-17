@@ -29,6 +29,10 @@ public class ProjectileDirection {
 		}
 	}
 	
+	public static ProjectileDirection random(){
+		return new ProjectileDirection((float)Math.random()*2-1,(float)Math.random()*2-1);
+	}
+	
 	public static ProjectileDirection clockwiseRotation(ProjectileDirection direction){
 		float clockWiseX = direction.dy;
 		float clockWiseY = -direction.dx;

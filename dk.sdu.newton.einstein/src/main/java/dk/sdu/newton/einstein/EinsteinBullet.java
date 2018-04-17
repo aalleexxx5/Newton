@@ -19,8 +19,8 @@ public class EinsteinBullet extends Projectile {
 	private boolean shouldDestruct = false;
 
 
-	public EinsteinBullet(float x, float y, ProjectileDirection direction, Hostility hostility){
-		super(direction, SPEED, hostility);
+	public EinsteinBullet(float x, float y, ProjectileDirection direction, Unit origin){
+		super(direction, SPEED, origin);
 		location[0] = x;
 		location[1] = y;
 	}
@@ -37,6 +37,7 @@ public class EinsteinBullet extends Projectile {
 
 	@Override
 	public void collidesWith(Collidable source) {
+		if (source == origin) return;
 		if (source.getHostility() == PASSIVE) {
 			setDestruct();
 		} else if (source.getHostility() == KILLS_ENEMY) {

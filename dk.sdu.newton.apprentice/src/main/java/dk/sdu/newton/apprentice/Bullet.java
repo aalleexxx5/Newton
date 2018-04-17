@@ -4,9 +4,7 @@ import common.data.*;
 import common.services.Collidable;
 import common.services.Updatable;
 
-import static common.data.Hostility.KILLS_ENEMY;
-import static common.data.Hostility.KILLS_PLAYER;
-import static common.data.Hostility.PASSIVE;
+import static common.data.Hostility.*;
 
 public class Bullet extends Projectile {
     private static final String FILENAME = "apprenticebullet.png";
@@ -14,9 +12,11 @@ public class Bullet extends Projectile {
     private static final int HEIGHT = 16;
     private static final float SPEED = 250f;
 	private boolean shouldDestruct = false;
+	private final Unit origin;
     
-    public Bullet(float x, float y, ProjectileDirection direction, Hostility bulletHostility){
-	    super(direction, SPEED, bulletHostility);
+    public Bullet(float x, float y, ProjectileDirection direction, Unit origin){
+	    super(direction, SPEED, origin);
+	    this.origin = origin;
 	    location[0] = x;
 	    location[1] = y;
     }
@@ -27,18 +27,10 @@ public class Bullet extends Projectile {
     }
 
     @Override
-    public Enum getHostility() {
-        return KILLS_PLAYER;
-    }
-
-    @Override
     public void collidesWith(Collidable source) {
-        if (source.getHostility() == PASSIVE) {
-            setDestruct();
-        } else if (source.getHostility() == KILLS_PLAYER) {
-            setDestruct();
-        } else if (source.getHostility() == KILLS_ENEMY) {
-            //contenue
+        if (source == origin) return;
+    	if (source.getHostility() != getHostility()){
+        	setDestruct();
         }
     }
 

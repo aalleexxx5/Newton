@@ -20,8 +20,8 @@ public class AppleBullet extends Projectile {
 	long startTime = System.currentTimeMillis();
 
 
-	public AppleBullet(float x, float y, ProjectileDirection direction, Hostility hostility){
-		super(direction, SPEED, hostility);
+	public AppleBullet(float x, float y, ProjectileDirection direction, Unit origin){
+		super(direction, SPEED, origin);
 		location[0] = x;
 		location[1] = y;
 	}
@@ -29,11 +29,6 @@ public class AppleBullet extends Projectile {
 	@Override
 	public Sprite getSprite() {
 		return new Sprite(FILENAME, 0,0,WIDTH, HEIGHT);
-	}
-
-	@Override
-	public Enum getHostility() {
-		return KILLS_ENEMY;
 	}
 
 	@Override

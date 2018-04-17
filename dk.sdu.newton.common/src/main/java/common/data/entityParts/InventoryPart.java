@@ -40,6 +40,12 @@ public class InventoryPart implements EntityPart {
 		removeItems.add(equipable);
 	}
 	
+	public void removeAll(Unit container){
+		for (Equipable eqiuppedItem : eqiuppedItems) {
+			removeItem(eqiuppedItem, container);
+		}
+	}
+	
 	@Override
 	public void update(Entity container, GameState state) {
 		for (Equipable eqiuppedItem : eqiuppedItems) {
