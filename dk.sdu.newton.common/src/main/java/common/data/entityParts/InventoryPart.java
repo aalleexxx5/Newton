@@ -18,7 +18,7 @@ public class InventoryPart implements EntityPart {
 	 * @param equipable the equipable to add. If null, nothing will be added.
 	 * @param container the container to inject in the added equipable.
 	 */
-	public void addItem(Equipable equipable, Entity container){
+	public void addItem(Equipable equipable, Unit container){
 		if (equipable == null) {
 			return;
 		}
@@ -32,7 +32,7 @@ public class InventoryPart implements EntityPart {
 	 * @param equipable the equipable to remove. May be null.
 	 * @param container the Entity containing the item. Used in the onUnEquip function.
 	 */
-	public void removeItem(Equipable equipable, Entity container){
+	public void removeItem(Equipable equipable, Unit container){
 		if (equipable == null) {
 			return;
 		}

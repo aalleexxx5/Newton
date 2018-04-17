@@ -16,7 +16,6 @@ public class Player extends Unit {
 	private static final float MOVEMENT_SPEED = 200.0f; // Don't know the unit. Might be Pixels pr second.
 	private final LifePart lives;
 	private final MovingPart movement;
-	private float oldX, oldY;
 	private boolean verticalMovementWasPressed = false;
 	private boolean horizontalMovementWasPressed = false;
 	private final InventoryPart inventory;
