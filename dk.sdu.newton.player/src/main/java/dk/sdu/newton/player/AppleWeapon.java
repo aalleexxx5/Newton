@@ -6,13 +6,13 @@ import common.services.EntityPart;
 
 public class AppleWeapon extends Weapon {
 
-	private Entity container;
+	private Unit container;
 
 	@Override
 	public void onShoot(GameState state, ProjectileDirection direction) {
 		float x = container.getLocation()[0];
 		float y = container.getLocation()[1];
-		AppleBullet appleBullet = new AppleBullet(x, y, direction);
+		AppleBullet appleBullet = new AppleBullet(x, y, direction, container.getBulletHostility());
 		state.addEntity(appleBullet);
 		
 		for (EntityPart entityPart : container.getEntityParts()) {
@@ -33,12 +33,12 @@ public class AppleWeapon extends Weapon {
 	}
 	
 	@Override
-	public void onEquip(Entity container) {
+	public void onEquip(Unit container) {
 		this.container = container;
 	}
 	
 	@Override
-	public void onUnEquip(Entity container) {
+	public void onUnEquip(Unit container) {
 	
 	}
 }

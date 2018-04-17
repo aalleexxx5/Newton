@@ -20,8 +20,8 @@ public class AppleBullet extends Projectile {
 	long startTime = System.currentTimeMillis();
 
 
-	public AppleBullet(float x, float y, ProjectileDirection direction){
-		super(direction, SPEED);
+	public AppleBullet(float x, float y, ProjectileDirection direction, Hostility hostility){
+		super(direction, SPEED, hostility);
 		location[0] = x;
 		location[1] = y;
 	}

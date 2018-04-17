@@ -4,13 +4,13 @@ import common.data.*;
 
 public class EinsteinWeapon extends Weapon{
 
-	private Entity container;
+	private Unit container;
 	
 	@Override
 	public void onShoot(GameState state, ProjectileDirection direction) {
 		float x = container.getLocation()[0];
 		float y = container.getLocation()[1];
-		state.addEntity(new EinsteinBullet(x,y, direction));
+		state.addEntity(new EinsteinBullet(x,y, direction, container.getBulletHostility()));
 	}
 	
 	@Override
@@ -19,12 +19,12 @@ public class EinsteinWeapon extends Weapon{
 	}
 	
 	@Override
-	public void onEquip(Entity container) {
+	public void onEquip(Unit container) {
 		this.container = container;
 	}
 	
 	@Override
-	public void onUnEquip(Entity container) {
+	public void onUnEquip(Unit container) {
 	
 	}
 }

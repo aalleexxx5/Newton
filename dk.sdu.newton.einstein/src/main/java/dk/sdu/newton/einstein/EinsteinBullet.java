@@ -1,9 +1,6 @@
 package dk.sdu.newton.einstein;
 
-import common.data.GameState;
-import common.data.Projectile;
-import common.data.ProjectileDirection;
-import common.data.Sprite;
+import common.data.*;
 import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 
@@ -22,8 +19,8 @@ public class EinsteinBullet extends Projectile {
 	private boolean shouldDestruct = false;
 
 
-	public EinsteinBullet(float x, float y, ProjectileDirection direction){
-		super(direction, SPEED);
+	public EinsteinBullet(float x, float y, ProjectileDirection direction, Hostility hostility){
+		super(direction, SPEED, hostility);
 		location[0] = x;
 		location[1] = y;
 	}

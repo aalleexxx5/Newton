@@ -56,6 +56,11 @@ public class Player extends Unit {
 	}
 	
 	@Override
+	public Hostility getBulletHostility() {
+		return Hostility.KILLS_ENEMY;
+	}
+	
+	@Override
 	public Enum getHostility() {
 		return null;
 	}

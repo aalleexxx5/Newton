@@ -15,8 +15,8 @@ public class Bullet extends Projectile {
     private static final float SPEED = 250f;
 	private boolean shouldDestruct = false;
     
-    public Bullet(float x, float y, ProjectileDirection direction){
-	    super(direction, SPEED);
+    public Bullet(float x, float y, ProjectileDirection direction, Hostility bulletHostility){
+	    super(direction, SPEED, bulletHostility);
 	    location[0] = x;
 	    location[1] = y;
     }

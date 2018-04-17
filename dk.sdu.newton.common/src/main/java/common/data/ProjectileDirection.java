@@ -29,6 +29,18 @@ public class ProjectileDirection {
 		}
 	}
 	
+	public static ProjectileDirection clockwiseRotation(ProjectileDirection direction){
+		float clockWiseX = direction.dy;
+		float clockWiseY = -direction.dx;
+		return new ProjectileDirection(clockWiseX, clockWiseY);
+	}
+	
+	public static ProjectileDirection counterClockwiseRotation(ProjectileDirection direction){
+		float counterX = -direction.dy;
+		float counterY = direction.dx;
+		return new ProjectileDirection(counterX, counterY);
+	}
+	
 	public float getVectorXComponent(){
 		return dx;
 	}
