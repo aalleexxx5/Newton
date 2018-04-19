@@ -16,24 +16,29 @@ public class AppleBullet extends Projectile {
 	private static final String FILENAME = "apple.png";
 	private static final int DURATION = 1000;
 	private static final float DECELERATION_PR_SECOND = 1.75f;
-	private boolean shouldDestruct = false;
 	long startTime = System.currentTimeMillis();
-
-
-	public AppleBullet(float x, float y, ProjectileDirection direction, Unit origin){
+	private boolean shouldDestruct = false;
+	private MovingPart mover = null;
+	
+	public AppleBullet(float x, float y, ProjectileDirection direction, Unit origin) {
 		super(direction, SPEED, origin);
 		location[0] = x;
 		location[1] = y;
+		for (EntityPart entityPart : getEntityParts()) {
+			if (entityPart instanceof MovingPart) {
+				mover = (MovingPart) entityPart;
+			}
+		}
 	}
-
+	
 	@Override
 	public Sprite getSprite() {
-		return new Sprite(FILENAME, 0,0,WIDTH, HEIGHT);
+		return new Sprite(FILENAME, 0, 0, WIDTH, HEIGHT);
 	}
-
+	
 	@Override
 	public void collidesWith(Collidable source) {
-		if (!(source instanceof Player)){
+		if (!(source instanceof Player)) {
 			spawnItem();
 		}
 	}
@@ -49,7 +54,7 @@ public class AppleBullet extends Projectile {
 	public float[] getBounds() {
 		return new float[]{location[0], location[1], WIDTH, HEIGHT};
 	}
-
+	
 	@Override
 	public Boolean shouldDestruct() {
 		if (shouldDestruct) return true;
@@ -59,22 +64,17 @@ public class AppleBullet extends Projectile {
 		}
 		return false;
 	}
-
+	
 	@Override
 	public void setDestruct() {
 		shouldDestruct = true;
 	}
-
+	
 	@Override
 	public void update(GameState state) {
-		for (EntityPart entityPart : getEntityParts()) {
-			if (entityPart instanceof MovingPart){
-				MovingPart mover = (MovingPart) entityPart;
-				float secondsSinceLastCall = state.getDeltaTime();
-				float decelerationFactor = 1f-secondsSinceLastCall*DECELERATION_PR_SECOND;
-				mover.setDx(mover.getDx()* decelerationFactor);
-				mover.setDy(mover.getDy()* decelerationFactor);
-			}
-		}
+		float secondsSinceLastCall = state.getDeltaTime();
+		float decelerationFactor = 1f - secondsSinceLastCall * DECELERATION_PR_SECOND;
+		mover.setDx(mover.getDx() * decelerationFactor);
+		mover.setDy(mover.getDy() * decelerationFactor);
 	}
 }
