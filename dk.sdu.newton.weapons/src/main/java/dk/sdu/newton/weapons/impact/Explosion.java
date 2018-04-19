@@ -1,12 +1,11 @@
 package dk.sdu.newton.weapons.impact;
 
-import common.data.Entity;
-import common.data.GameState;
-import common.data.Hostility;
-import common.data.Sprite;
+import common.data.*;
 import common.services.Collidable;
 import common.services.Destructable;
 import common.services.Updatable;
+
+import java.util.HashSet;
 
 public class Explosion extends Entity implements Collidable, Destructable, Updatable{
 	private final Hostility hostility;
@@ -16,8 +15,9 @@ public class Explosion extends Entity implements Collidable, Destructable, Updat
 	private final float HEIGHT = 100;
 	private float currentWidth = 0;
 	private float currentHeight = 0;
-	private static final String FILENAME = "player.png";
+	private static final String FILENAME = "explosion.png";
 	private final float[] originLocation;
+	private final HashSet<Collidable> damaged = new HashSet<>();
 	
 	public Explosion(Hostility hostility, float[] location) {
 		this.hostility = hostility;
@@ -35,13 +35,17 @@ public class Explosion extends Entity implements Collidable, Destructable, Updat
 	}
 	
 	@Override
-	public Enum getHostility() {
-		return hostility;
+	public Hostility getHostility() {
+		return Hostility.NO_EFFECT;
 	}
 	
 	@Override
 	public void collidesWith(Collidable source) {
-	
+		if (damaged.contains(source)) return;
+		if (source instanceof Unit){
+			((Unit) source).setDestruct();
+		}
+		damaged.add(source);
 	}
 	
 	@Override

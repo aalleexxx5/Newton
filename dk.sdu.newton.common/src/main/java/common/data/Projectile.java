@@ -19,7 +19,7 @@ public abstract class Projectile extends Entity implements Collidable, Updatable
 	}
 	
 	@Override
-	public Enum getHostility() {
+	public Hostility getHostility() {
 		return hostility;
 	}
 }

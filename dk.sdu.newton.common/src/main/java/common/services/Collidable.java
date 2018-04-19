@@ -1,11 +1,13 @@
 package common.services;
 
+import common.data.Hostility;
+
 public interface Collidable {
 	/**
 	 * Used by other collidables to determine the hostility of this Collidable.
 	 * @return the hostility of the collidable.
 	 */
-    public Enum getHostility();
+    public Hostility getHostility();
 	
 	/**
 	 * Called when a collision has been detected.

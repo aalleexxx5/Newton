@@ -43,7 +43,7 @@ public class Einstein extends Unit {
 	}
 
 	@Override
-	public Enum getHostility() {
+	public Hostility getHostility() {
 		return NO_EFFECT;
 	}
 

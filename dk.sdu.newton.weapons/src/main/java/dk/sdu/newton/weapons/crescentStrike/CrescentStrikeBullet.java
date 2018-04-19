@@ -23,7 +23,7 @@ public class CrescentStrikeBullet extends Projectile {
     }
 
     @Override
-    public Enum getHostility() {
+    public Hostility getHostility() {
         return parent.getBulletHostility();
     }
 

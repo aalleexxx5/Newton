@@ -1,6 +1,7 @@
 package common.data.mapParts;
 
 import common.data.Entity;
+import common.data.Hostility;
 import common.data.Sprite;
 import common.services.Collidable;
 
@@ -30,7 +31,7 @@ public class Wall extends Entity implements Collidable{
 	}
 	
 	@Override
-    public Enum getHostility() {
+    public Hostility getHostility() {
         return PASSIVE;
     }
 
