@@ -30,10 +30,7 @@ public class EinsteinBullet extends Projectile {
 		return new Sprite(FILENAME, 0,0,WIDTH, HEIGHT);
 	}
 
-	@Override
-	public Enum getHostility() {
-		return KILLS_PLAYER;
-	}
+
 
 	@Override
 	public void collidesWith(Collidable source) {

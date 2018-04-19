@@ -76,9 +76,16 @@ public class Einstein extends Unit {
 
 	@Override
 	public void update(GameState state) {
+		einsteinControl.makeEviorment(state);
+		einsteinControl.playerSensors();
+		einsteinControl.bulletSensors();
+		einsteinControl.wallSensors();
 		movingPart.setDx(einsteinControl.getDX());
-		movingPart.setDy(einsteinControl.getDY());
-		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE),ProjectileDirection.WEST);
+        movingPart.setDy(einsteinControl.getDY());
+        //System.out.println(einsteinControl.getDX());
+        //System.out.println(einsteinControl.getDX());
+        //System.out.println(einsteinControl.getDY());
+        inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE),ProjectileDirection.WEST);
 	}
 	
 	@Override
