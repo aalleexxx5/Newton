@@ -14,6 +14,8 @@ public class Registrator {
         return ourInstance;
     }
 
+    private static ArrayList<Entity> enemyList = new ArrayList<>();
+
     private HashMap<AvailableStates, GameState> gameStates = new HashMap<>(5);
 
     private Registrator() {
@@ -43,14 +45,16 @@ public class Registrator {
         enemyMap.remove(enemy);
     }
 
-    public Entity getEnemy(int difficulty){
+    public ArrayList<Entity> getEnemy(int difficulty){
+        enemyList.clear();
         for (Entity e: enemyMap.keySet()){
             if (enemyMap.get(e).equals(difficulty)){
-                return e;
+                enemyList.add(e);
             }
         }
-        return null;
+        return enemyList;
     }
+
 
 
     public HashMap getHashMap(){

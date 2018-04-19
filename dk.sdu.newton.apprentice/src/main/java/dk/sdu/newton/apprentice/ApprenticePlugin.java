@@ -13,9 +13,11 @@ public class ApprenticePlugin implements BundleActivator {
 	public void start(BundleContext bundleContext) throws Exception {
 		
 		//toDo difficulties might need changes
-		apprentice = new Apprentice(200,200);
 		System.out.println("Adding apprentice!");
-		Registrator.registerEnemy(apprentice, 200);
+		Registrator.registerEnemy(new Apprentice(200,200), 200);
+		Registrator.registerEnemy(new Apprentice(300,500), 200);
+		Registrator.registerEnemy(new Apprentice(500,500), 200);
+		Registrator.registerEnemy(new Apprentice(100,100), 200);
 	}
 	
 	@Override
