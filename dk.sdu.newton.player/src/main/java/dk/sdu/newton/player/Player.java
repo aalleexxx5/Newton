@@ -1,24 +1,25 @@
 package dk.sdu.newton.player;
 
-import com.sun.corba.se.spi.ior.IORTemplate;
 import common.data.*;
 import common.data.entityParts.InventoryPart;
 import common.data.entityParts.LifePart;
 import common.data.entityParts.MovingPart;
+import common.data.mapParts.Map;
 import common.services.Collidable;
 import common.services.Destructable;
 import common.services.Equipable;
 
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class Player extends Unit {
-	private static final float MOVEMENT_SPEED = 300.0f; // Don't know the unit. Might be Pixels pr second.
+	private static final float MOVEMENT_SPEED = 200.0f; // Don't know the unit. Might be Pixels pr second.
 	private final LifePart lives;
 	private final MovingPart movement;
-	private float oldX, oldY;
 	private boolean verticalMovementWasPressed = false;
 	private boolean horizontalMovementWasPressed = false;
 	private final InventoryPart inventory;
+	private ProjectileDirection direction = ProjectileDirection.NORTH;
 	
 	
 	public Player(int x, int y) {
@@ -33,6 +34,7 @@ public class Player extends Unit {
 
 		inventory = new InventoryPart();
 		addEntityPart(inventory);
+		inventory.addItem(new AppleWeapon(), this);
 		
 		GameState gameState = Registrator.getInstance().getState(AvailableStates.PLAY_STATE);
 		gameState.getInputActionMap().registerAction("up", getReceiveActionCallback());
@@ -50,6 +52,11 @@ public class Player extends Unit {
 	@Override
 	public Unit addAtLocation(int x, int y) {
 		return new Player(x,y);
+	}
+	
+	@Override
+	public Hostility getBulletHostility() {
+		return Hostility.KILLS_ENEMY;
 	}
 	
 	@Override
@@ -74,7 +81,71 @@ public class Player extends Unit {
 			movement.setDx(0);
 			movement.setDy(0);
 		}if (source.getHostility() == Hostility.ITEM){
-		
+			if (source instanceof Item){
+				inventory.addItem(((Item) source).getEquipable(), this);
+			}
+		}
+		if (source.getHostility() == Hostility.MOVER){
+			ArrayList<Entity> tempList = new ArrayList<>();
+			Entity tempEntity = null;
+            Map map = Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getMap();
+            if (source.equals(map.getCurrentRoom().getNorthDoor())){
+            	for (Entity entity : map.getCurrentRoom().getEntities()){
+            		if (entity instanceof Player){
+            			tempList.add(entity);
+						tempEntity = entity;
+
+					}
+				}
+				map.getCurrentRoom().getEntities().remove(tempEntity);
+				map.setCurrentRoom(map.getRooms().get(map.getCurrentRoom().getNorthDoor().getRoomNumber() - 1));
+            	getLocation()[0] = 384;
+            	getLocation()[1] = 34;
+				map.getCurrentRoom().addEntity(tempList.get(0));
+			}
+
+			if (source.equals(map.getCurrentRoom().getEastDoor())){
+				for (Entity entity : map.getCurrentRoom().getEntities()){
+					if (entity instanceof Player){
+						tempList.add(entity);
+						tempEntity = entity;
+					}
+				}
+				map.getCurrentRoom().getEntities().remove(tempEntity);
+				map.setCurrentRoom(map.getRooms().get(map.getCurrentRoom().getEastDoor().getRoomNumber() - 1));
+				getLocation()[0] = 34;
+				getLocation()[1] = 344;
+				map.getCurrentRoom().addEntity(tempList.get(0));
+			}
+
+			if (source.equals(map.getCurrentRoom().getSouthDoor())){
+				for (Entity entity : map.getCurrentRoom().getEntities()){
+					if (entity instanceof Player){
+						tempList.add(entity);
+						tempEntity = entity;
+					}
+				}
+				map.getCurrentRoom().getEntities().remove(tempEntity);
+				map.setCurrentRoom(map.getRooms().get(map.getCurrentRoom().getSouthDoor().getRoomNumber() - 1));
+				getLocation()[0] = 384;
+				getLocation()[1] = 654;
+				map.getCurrentRoom().addEntity(tempList.get(0));
+			}
+
+			if (source.equals(map.getCurrentRoom().getWestDoor())){
+				for (Entity entity : map.getCurrentRoom().getEntities()){
+					if (entity instanceof Player){
+						tempList.add(entity);
+						tempEntity = entity;
+					}
+				}
+				map.getCurrentRoom().getEntities().remove(tempEntity);
+				map.setCurrentRoom(map.getRooms().get(map.getCurrentRoom().getWestDoor().getRoomNumber() - 1));
+				getLocation()[0] = 766;
+				getLocation()[1] = 344;
+				map.getCurrentRoom().addEntity(tempList.get(0));
+			}
+
 		}
 	}
 	
@@ -95,15 +166,22 @@ public class Player extends Unit {
 	
 	@Override
 	public void update(GameState state) {
-		float newX = location[0];
-		float newY = location[1];
-		if (oldX != newX) {
-			oldX = newX;
-		}
-		if (oldY != newY) {
-			oldY = newY;
-		}
 		resetMovement();
+		calculateSimpleDirection();
+	}
+	
+	private void calculateSimpleDirection() {
+		int dirX = 0;
+		int dirY = 0;
+		if (movement.getDx() != 0){
+			dirX = movement.getDx() > 0 ? 1 :-1;
+		}
+		if (movement.getDy() != 0){
+			dirY = movement.getDy() > 0 ? 1:-1;
+		}
+		if (dirX != 0 ||dirY !=0){
+			direction = new ProjectileDirection(dirX, dirY);
+		}
 	}
 	
 	private void resetMovement() {
@@ -160,7 +238,7 @@ public class Player extends Unit {
 	}
 	
 	private void receiveShoot() {
-		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE));
+		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE), direction);
 	}
 
 	void addEquipable(Equipable equipable) {

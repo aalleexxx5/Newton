@@ -29,6 +29,22 @@ public class ProjectileDirection {
 		}
 	}
 	
+	public static ProjectileDirection random(){
+		return new ProjectileDirection((float)Math.random()*2-1,(float)Math.random()*2-1);
+	}
+	
+	public static ProjectileDirection clockwiseRotation(ProjectileDirection direction){
+		float clockWiseX = direction.dy;
+		float clockWiseY = -direction.dx;
+		return new ProjectileDirection(clockWiseX, clockWiseY);
+	}
+	
+	public static ProjectileDirection counterClockwiseRotation(ProjectileDirection direction){
+		float counterX = -direction.dy;
+		float counterY = direction.dx;
+		return new ProjectileDirection(counterX, counterY);
+	}
+	
 	public float getVectorXComponent(){
 		return dx;
 	}

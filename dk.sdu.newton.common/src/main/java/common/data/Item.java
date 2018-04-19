@@ -10,7 +10,9 @@ public abstract class Item extends Entity implements Collidable, Destructable {
 	
 	@Override
 	public void collidesWith(Collidable source) {
-		destruct = (addEquipableToEntity((Entity) source));
+		if (source instanceof Unit){
+			destruct = (addEquipableToUnit((Unit) source));
+		}
 	}
 	
 	@Override
@@ -23,7 +25,7 @@ public abstract class Item extends Entity implements Collidable, Destructable {
 		return destruct;
 	}
 	
-	private boolean addEquipableToEntity(Entity source){
+	private boolean addEquipableToUnit(Unit source){
 		Equipable equipable = getEquipable();
 		if (equipable == null) return false;
 		

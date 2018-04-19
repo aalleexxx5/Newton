@@ -1,9 +1,7 @@
 package dk.sdu.newton.apprentice;
 
-import common.data.Entity;
-import common.data.GameState;
-import common.data.Sprite;
-import common.data.Unit;
+import common.data.*;
+import common.data.entityParts.InventoryPart;
 import common.data.entityParts.LifePart;
 import common.data.entityParts.MovingPart;
 import common.services.Collidable;
@@ -17,6 +15,7 @@ public class Apprentice extends Unit {
 	
 	private final MovingPart movement;
 	private final LifePart health;
+	private final InventoryPart inventory;
 	
 	private ApprenticeControl apprenticeControl;
 	
@@ -30,6 +29,10 @@ public class Apprentice extends Unit {
 		
 		health = new LifePart(2);
 		addEntityPart(health);
+		
+		inventory = new InventoryPart();
+		addEntityPart(inventory);
+		inventory.addItem(new ApprenticeWeapon(), this);
 	}
 	
 	@Override
@@ -57,7 +60,10 @@ public class Apprentice extends Unit {
 	
 	@Override
 	public Boolean shouldDestruct() {
-		return health.getLives()<=0;
+		if (health.getLives()<=0) {
+			inventory.removeAll(this);
+			return true;
+		} else return false;
 	}
 	
 	@Override
@@ -70,9 +76,8 @@ public class Apprentice extends Unit {
 	public void update(GameState state) {
 		movement.setDx(apprenticeControl.getdx());
 		movement.setDy(apprenticeControl.getdy());
-		
+		inventory.shoot(state, ProjectileDirection.random());
 	}
-	
 	
 	public Sprite getSprite() {
 		return new Sprite(filename, 0,0,WIDTH, HEIGHT);
@@ -81,5 +86,10 @@ public class Apprentice extends Unit {
 	@Override
 	public Unit addAtLocation(int x, int y) {
 		return new Apprentice(x, y);
+	}
+	
+	@Override
+	public Hostility getBulletHostility() {
+		return KILLS_PLAYER;
 	}
 }

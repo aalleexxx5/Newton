@@ -1,23 +1,29 @@
 package common.data;
 
+import common.data.mapParts.Door;
 import common.data.mapParts.Map;
+import common.data.mapParts.Wall;
 import common.services.Updatable;
 
 import java.util.ArrayList;
 
 public class GameState {
 	//Data:
-
-	private ArrayList<Updatable> updatables = new ArrayList<>();
 	private ArrayList<Updatable> postUpdateables = new ArrayList<>();
+	private ArrayList<Entity> spawnList = new ArrayList<>();
+	private ArrayList<Entity> tempRemoveList = new ArrayList<>();
 	private InputActionMap inputActionMap = new InputActionMap();
 	private Map map = new Map();
+
 
 	// Map Todo
 	public void setMap(Map map){
 		this.map = map;
 	}
 
+	public Map getMap(){
+		return map;
+	}
 	
 	public GameState() {
 	}
@@ -48,7 +54,27 @@ public class GameState {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
+	public void addToSpawnList(){
+		for (Entity entity : map.getCurrentRoom().getEntities()) {
+			if (entity instanceof Wall) {
+				tempRemoveList.add(entity);
+			}
+			if (entity instanceof Door) {
+				tempRemoveList.add(entity);			}
+		}
+		map.getCurrentRoom().getEntities().removeAll(tempRemoveList);
+		spawnList.addAll(map.getCurrentRoom().getEntities());
+	}
+
+	public ArrayList<Entity> getSpawnList() {
+		return spawnList;
+	}
+
+	public void removeSpawnListEntities(){
+		spawnList.clear();
+	}
+
 	public ArrayList<Entity> getGameEntities(){
 
 		return map.getCurrentRoomEntityList();
@@ -56,14 +82,6 @@ public class GameState {
 	
 	public void addEntity(Entity entity){
 		map.addEntityToCurrentRoom(entity);
-	}
-	
-	public void addUpdatable(Updatable updatable){
-		updatables.add(updatable);
-	}
-	
-	public void removeUpdatable(Updatable updatable){
-		updatables.remove(updatable);
 	}
 	
 	public void addPostUpdatable(Updatable postUpdatable){
@@ -93,10 +111,6 @@ public class GameState {
 			}
 		}
 		return list;
-	}
-	
-	public ArrayList<Updatable> getUpdatables() {
-		return updatables;
 	}
 	
 	public ArrayList<Updatable> getPostUpdateables() {

@@ -1,31 +1,29 @@
 package dk.sdu.newton.apprentice;
 
-import common.data.Entity;
-import common.data.GameState;
-import common.data.ProjectileDirection;
-import common.data.Weapon;
+import common.data.*;
 
 public class ApprenticeWeapon extends Weapon {
-    private Entity container;
+    private Unit container;
 	
 	@Override
-	public void onShoot(GameState state) {
-		Bullet bullet = new Bullet(container.getLocation()[0], container.getLocation()[1],ProjectileDirection.NORTH);
+	public void onShoot(GameState state, ProjectileDirection direction) {
+		Bullet bullet = new Bullet(container.getLocation()[0], container.getLocation()[1],ProjectileDirection.random(), container);
 		state.addEntity(bullet);
 	}
 	
 	@Override
 	public int getCooldownInMs() {
-		return 2000;
+		return 1000+(int)(Math.random()*2500-250);
 	}
 	
 	@Override
-	public void onEquip(Entity container) {
+	public void onEquip(Unit container) {
 		this.container = container;
 	}
 	
-	@Override
-	public void onUnEquip(Entity container) {
 	
+	@Override
+	public Item getDroppedItem() {
+		return new ApprenticeWeaponItem(container.getLocation()[0], container.getLocation()[1]);
 	}
 }

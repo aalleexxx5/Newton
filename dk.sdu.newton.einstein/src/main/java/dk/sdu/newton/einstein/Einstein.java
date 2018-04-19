@@ -6,6 +6,7 @@ import common.data.entityParts.LifePart;
 import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 
+import static common.data.Hostility.KILLS_PLAYER;
 import static common.data.Hostility.NO_EFFECT;
 import static common.data.Hostility.PASSIVE;
 
@@ -77,11 +78,16 @@ public class Einstein extends Unit {
 	public void update(GameState state) {
 		movingPart.setDx(einsteinControl.getDX());
 		movingPart.setDy(einsteinControl.getDY());
-		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE));
+		inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE),ProjectileDirection.WEST);
 	}
 	
 	@Override
 	public Unit addAtLocation(int x, int y) {
 		return new Einstein(x,y);
+	}
+	
+	@Override
+	public Hostility getBulletHostility() {
+		return KILLS_PLAYER;
 	}
 }

@@ -22,6 +22,7 @@ public class ApprenticePlugin implements BundleActivator {
 	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
 		Registrator.unregisterEnemy(apprentice);
+		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).removeEntity(apprentice);
 		apprentice =null;
 	}
 }
