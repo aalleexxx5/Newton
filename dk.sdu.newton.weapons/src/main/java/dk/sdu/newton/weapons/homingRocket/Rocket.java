@@ -2,6 +2,7 @@ package dk.sdu.newton.weapons.homingRocket;
 
 import common.data.*;
 import common.services.Collidable;
+import dk.sdu.newton.weapons.impact.Explosion;
 
 public class Rocket extends Projectile{
 	private static String FILENAME = "rocket.png";
@@ -50,6 +51,7 @@ public class Rocket extends Projectile{
 	
 	private void explode(){
 		System.out.println("POOF!");
+		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(new Explosion(origin.getBulletHostility(), getLocation()));
 	}
 	
 	@Override

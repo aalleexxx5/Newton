@@ -1,4 +1,4 @@
-package dk.sdu.newton.weapons.imppact;
+package dk.sdu.newton.weapons.impact;
 
 import common.data.Entity;
 import common.data.GameState;
@@ -17,10 +17,11 @@ public class Explosion extends Entity implements Collidable, Destructable, Updat
 	private float currentWidth = 0;
 	private float currentHeight = 0;
 	private static final String FILENAME = "player.png";
+	private final float[] originLocation;
 	
 	public Explosion(Hostility hostility, float[] location) {
 		this.hostility = hostility;
-		this.location = location;
+		this.originLocation = location;
 	}
 	
 	@Override
@@ -68,5 +69,7 @@ public class Explosion extends Entity implements Collidable, Destructable, Updat
 			currentWidth = WIDTH-WIDTH*(currentDuration-maxDuration/2)/(maxDuration/2);
 			currentHeight = HEIGHT-HEIGHT*(currentDuration-maxDuration/2)/(maxDuration/2);
 		}
+		location[0] = originLocation[0]-currentWidth/2;
+		location[1] = originLocation[1]-currentHeight/2;
 	}
 }
