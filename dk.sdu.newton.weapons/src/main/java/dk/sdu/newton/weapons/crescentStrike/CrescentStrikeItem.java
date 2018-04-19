@@ -2,35 +2,34 @@ package dk.sdu.newton.weapons.crescentStrike;
 
 import common.data.Item;
 import common.data.Sprite;
+import common.data.Weapon;
 import common.services.Collidable;
 import common.services.Equipable;
 
 public class CrescentStrikeItem extends Item {
-    private boolean setDestruct = false;
-    private Sprite sprite;
+	private static final String FILENAME = "crescent.png";
+	private static final float WIDTH = 16;
+	private static final float HEIGHT = 16;
+	private boolean setDestruct = false;
 
     @Override
     public Equipable getEquipable() {
-        return null;
+        return new CrescentStrikeWeapon();
     }
 
     @Override
     public Sprite getSprite() {
-        return null;
+        return new Sprite(FILENAME, 0,0,WIDTH, HEIGHT);
     }
 
     @Override
     public float[] getBounds() {
-        return new float[0];
+        return new float[]{location[0], location[1], WIDTH, HEIGHT};
     }
 
     @Override
     public void setDestruct() {
         setDestruct = true;
-    }
-
-    public void collidesWith(Collidable source) {
-
     }
 
 }

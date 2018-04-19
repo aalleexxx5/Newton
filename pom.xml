@@ -56,7 +56,6 @@
     <module>dk.sdu.newton.hardcodedMapGenerator</module>
     <module>dk.sdu.newton.playerStandardControlls</module>
     <module>dk.sdu.newton.player</module>
-    <module>Weapons</module>
     <module>dk.sdu.newton.weapons</module>
   </modules>
 

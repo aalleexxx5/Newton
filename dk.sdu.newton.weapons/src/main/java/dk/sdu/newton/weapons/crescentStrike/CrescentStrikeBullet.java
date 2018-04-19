@@ -1,44 +1,51 @@
 package dk.sdu.newton.weapons.crescentStrike;
 
-import common.data.GameState;
-import common.data.Projectile;
-import common.data.ProjectileDirection;
-import common.data.Sprite;
+import common.data.*;
 import common.services.Collidable;
 
 public class CrescentStrikeBullet extends Projectile {
-    public CrescentStrikeBullet(ProjectileDirection direction, float speed) {
-        super(direction, speed);
+	private static final float SPEED = 400f;
+	private static final String FILENAME = "crescent.png";
+	private static final float WIDTH = 16;
+	private static final float HEIGHT = 16;
+	private final Unit parent;
+	private boolean destruct = false;
+	
+	public CrescentStrikeBullet(ProjectileDirection direction, Unit unit) {
+    	super(direction, SPEED, unit);
+    	location = unit.getLocation();
+    	parent = unit;
     }
 
     @Override
     public Sprite getSprite() {
-        return null;
+        return new Sprite(FILENAME, 0,0,WIDTH, HEIGHT);
     }
 
     @Override
     public Enum getHostility() {
-        return null;
+        return parent.getBulletHostility();
     }
 
     @Override
     public void collidesWith(Collidable source) {
-
+		if (source == parent) return;
+		setDestruct();
     }
 
     @Override
     public float[] getBounds() {
-        return new float[0];
+        return new float[] {location[0], location[1], WIDTH, HEIGHT};
     }
 
     @Override
     public Boolean shouldDestruct() {
-        return null;
+        return destruct;
     }
 
     @Override
     public void setDestruct() {
-
+		destruct = true;
     }
 
     @Override

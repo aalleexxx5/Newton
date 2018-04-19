@@ -102,7 +102,7 @@
     </dependency>
     <dependency>
       <groupId>dk.sdu.newton.parent</groupId>
-      <artifactId>Weapons</artifactId>
+      <artifactId>dk.sdu.newton.weapons</artifactId>
       <version>1.0-SNAPSHOTSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>

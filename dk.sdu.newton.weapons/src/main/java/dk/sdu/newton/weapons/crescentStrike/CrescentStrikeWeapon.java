@@ -1,27 +1,27 @@
 package dk.sdu.newton.weapons.crescentStrike;
 
-import common.data.Entity;
-import common.data.GameState;
-import common.data.Weapon;
+import common.data.*;
 
 public class CrescentStrikeWeapon extends Weapon{
-    @Override
-    public void onShoot(GameState state) {
-
-    }
-
-    @Override
+	Unit container;
+	
+	@Override
+	public Item getDroppedItem() {
+		return new CrescentStrikeItem();
+	}
+	
+	@Override
+	public void onShoot(GameState state, ProjectileDirection direction) {
+	
+	}
+	
+	@Override
     public int getCooldownInMs() {
-        return 0;
+        return 3000;
     }
-
-    @Override
-    public void onEquip(Entity container) {
-
-    }
-
-    @Override
-    public void onUnEquip(Entity container) {
-
-    }
+	
+	@Override
+	public void onEquip(Unit container) {
+		this.container = container;
+	}
 }
