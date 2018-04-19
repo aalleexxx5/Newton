@@ -80,10 +80,6 @@ public class Player extends Unit {
 			movement.revertToLastFrame(this);
 			movement.setDx(0);
 			movement.setDy(0);
-		}if (source.getHostility() == Hostility.ITEM){
-			if (source instanceof Item){
-				inventory.addItem(((Item) source).getEquipable(), this);
-			}
 		}
 		if (source.getHostility() == Hostility.MOVER){
 			ArrayList<Entity> tempList = new ArrayList<>();
