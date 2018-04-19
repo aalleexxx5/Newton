@@ -58,6 +58,10 @@ private ArrayList<Entity> tempList = new ArrayList<>();
         }
 
     }
+    public void cleanList(){
+        entityToAddList.clear();
+        currentRoom.getEntities().clear();
+    }
 
     public void setCurrentRoomOnStart(Room room){
         tempList.addAll(entityToAddList);
@@ -67,16 +71,9 @@ private ArrayList<Entity> tempList = new ArrayList<>();
             currentRoom.addEntity(entity);
         }
         tempList.clear();
+        Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getSpawnList().clear();
+
     }
 
-    public void setCurrentRoomToEmptyRoom(){
-        tempList.addAll(entityToAddList);
-        tempList.addAll(Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getSpawnList());
 
-        currentRoom = new Room();
-        for (Entity entity : tempList){
-            currentRoom.addEntity(entity);
-        }
-        tempList.clear();
-    }
 }

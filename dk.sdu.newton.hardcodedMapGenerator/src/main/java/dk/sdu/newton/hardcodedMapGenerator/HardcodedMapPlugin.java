@@ -19,13 +19,12 @@ public class HardcodedMapPlugin implements BundleActivator {
 
 
 
+
     }
 
     @Override
     public void stop(BundleContext bundleContext) throws Exception {
         Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addToSpawnList();
-        map = new Map();
-        map.setCurrentRoomToEmptyRoom();
-        Registrator.getInstance().getState(AvailableStates.PLAY_STATE).setMap(map);
+
     }
 }

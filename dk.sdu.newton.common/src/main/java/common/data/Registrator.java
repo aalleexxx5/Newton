@@ -42,20 +42,11 @@ public class Registrator {
     public static void unregisterEnemy(Unit enemy) {
         enemyMap.remove(enemy);
     }
-/*
-    public <K, V> K getEnemyByDifficulty(Map<K,V> enemyMap, V difficulty) {
-        for (Map.Entry<K,V> entry : enemyMap.entrySet()){
-            if (difficulty.equals(entry.getValue())){
-                return entry.getKey();
-            }
-        }
-        return null;
-    }
-*/
+
     public Entity getEnemy(int difficulty){
-        for (Map.Entry<Unit, Integer> e: enemyMap.entrySet()){
+        for (Entity e: enemyMap.keySet()){
             if (enemyMap.get(e).equals(difficulty)){
-                return e.getKey();
+                return e;
             }
         }
         return null;

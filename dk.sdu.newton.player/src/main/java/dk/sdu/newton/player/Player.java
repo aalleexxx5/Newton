@@ -12,6 +12,9 @@ import common.services.Equipable;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
+import static common.data.Hostility.KILLS_PLAYER;
+import static common.data.Hostility.PASSIVE;
+
 public class Player extends Unit {
 	private static final float MOVEMENT_SPEED = 200.0f; // Don't know the unit. Might be Pixels pr second.
 	private final LifePart lives;
@@ -61,7 +64,7 @@ public class Player extends Unit {
 	
 	@Override
 	public Enum getHostility() {
-		return null;
+		return KILLS_PLAYER;
 	}
 	
 	@Override
@@ -76,7 +79,7 @@ public class Player extends Unit {
 			if (source instanceof Destructable){
 				((Destructable) source).setDestruct();
 			}
-		}if (source.getHostility() == Hostility.PASSIVE){
+		}if (source.getHostility() == PASSIVE){
 			movement.revertToLastFrame(this);
 			movement.setDx(0);
 			movement.setDy(0);

@@ -14,7 +14,6 @@ public class ApprenticePlugin implements BundleActivator {
 		
 		//toDo difficulties might need changes
 		apprentice = new Apprentice(200,200);
-		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(apprentice);
 		System.out.println("Adding apprentice!");
 		Registrator.registerEnemy(apprentice, 200);
 	}

@@ -37,7 +37,7 @@ public class Apprentice extends Unit {
 	
 	@Override
 	public Enum getHostility() {
-		return NO_EFFECT;
+		return PASSIVE;
 	}
 	
 	@Override

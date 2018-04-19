@@ -12,7 +12,7 @@ public class EinsteinPlugin implements BundleActivator {
 
 	@Override
 	public void start(BundleContext bundleContext) throws Exception {
-		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(einstein);
+		System.out.print("Holla");
 		Registrator.registerEnemy(einstein,1000);
 	}
 
