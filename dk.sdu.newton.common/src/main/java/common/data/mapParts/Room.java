@@ -59,9 +59,7 @@ public class Room {
     public void addEntity(Entity entity){
         entities.add(entity);
     }
-    public void addAllEntity(ArrayList<Entity> entities){
-        entities.addAll(entities);
-    }
+
 
     public void removeEntity(Entity entity){
         entities.remove(entity);

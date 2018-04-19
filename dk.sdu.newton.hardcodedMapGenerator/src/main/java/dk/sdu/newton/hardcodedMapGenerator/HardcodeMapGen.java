@@ -1,7 +1,9 @@
 package dk.sdu.newton.hardcodedMapGenerator;
 
 import common.data.AvailableStates;
+import common.data.Entity;
 import common.data.Registrator;
+import common.data.Sprite;
 import common.data.mapParts.Door;
 import common.data.mapParts.Map;
 import common.data.mapParts.Room;
@@ -38,12 +40,22 @@ public class HardcodeMapGen {
         rooms.add(room1);
         rooms.add(room2);
         rooms.add(room3);
-        //room1.addEntity(Registrator.getInstance().getEnemy(1000));
+
+        //Add apprentices
+        for (Entity e:Registrator.getInstance().getEnemy(200)
+             ) {
+            room2.addEntity(e);
+        }
+        //Add boss
+        for (Entity e:Registrator.getInstance().getEnemy(1000)
+                ) {
+            room3.addEntity(e);
+        }
+
 
         map.addRoomsToMap(room1);
         map.addRoomsToMap(room2);
         map.addRoomsToMap(room3);
-
 
         map.setCurrentRoom(room1);
     }

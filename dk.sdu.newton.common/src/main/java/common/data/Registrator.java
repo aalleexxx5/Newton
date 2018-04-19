@@ -14,6 +14,8 @@ public class Registrator {
         return ourInstance;
     }
 
+    private static ArrayList<Entity> enemyList = new ArrayList<>();
+
     private HashMap<AvailableStates, GameState> gameStates = new HashMap<>(5);
 
     private Registrator() {
@@ -42,24 +44,17 @@ public class Registrator {
     public static void unregisterEnemy(Unit enemy) {
         enemyMap.remove(enemy);
     }
-/*
-    public <K, V> K getEnemyByDifficulty(Map<K,V> enemyMap, V difficulty) {
-        for (Map.Entry<K,V> entry : enemyMap.entrySet()){
-            if (difficulty.equals(entry.getValue())){
-                return entry.getKey();
-            }
-        }
-        return null;
-    }
-*/
-    public Entity getEnemy(int difficulty){
-        for (Map.Entry<Unit, Integer> e: enemyMap.entrySet()){
+
+    public ArrayList<Entity> getEnemy(int difficulty){
+        enemyList.clear();
+        for (Entity e: enemyMap.keySet()){
             if (enemyMap.get(e).equals(difficulty)){
-                return e.getKey();
+                enemyList.add(e);
             }
         }
-        return null;
+        return enemyList;
     }
+
 
 
     public HashMap getHashMap(){
