@@ -3,7 +3,7 @@ package common.data;
 
 import common.services.Equipable;
 
-public abstract class Weapon implements Equipable {
+public abstract class Weapon implements Equipable, Cloneable{
 	private long lastShot = System.currentTimeMillis()-(getCooldownInMs()-initialCooldown());
 	private boolean hasDropped = false;
 	public void shoot(GameState state, ProjectileDirection direction){
@@ -29,4 +29,9 @@ public abstract class Weapon implements Equipable {
 	}
 	public abstract void onShoot(GameState state, ProjectileDirection direction);
 	public abstract int getCooldownInMs();
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }
