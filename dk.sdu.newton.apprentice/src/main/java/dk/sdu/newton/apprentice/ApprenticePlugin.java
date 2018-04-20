@@ -14,7 +14,8 @@ public class ApprenticePlugin implements BundleActivator {
 		
 		//toDo difficulties might need changes
 		System.out.println("Adding apprentice!");
-		Registrator.registerEnemy(new Apprentice(200,200), 100);
+		Registrator.registerEnemy(new Apprentice(200,200), 200);
+
 	}
 	
 	@Override
