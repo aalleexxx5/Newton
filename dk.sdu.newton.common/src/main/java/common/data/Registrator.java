@@ -45,14 +45,13 @@ public class Registrator {
         enemyMap.remove(enemy);
     }
 
-    public ArrayList<Entity> getEnemy(int difficulty){
-        enemyList.clear();
-        for (Entity e: enemyMap.keySet()){
+    public Unit getEnemy(int difficulty){
+        for (Unit e: enemyMap.keySet()){
             if (enemyMap.get(e).equals(difficulty)){
-                enemyList.add(e);
+                return e;
             }
         }
-        return enemyList;
+        return null;
     }
 
 
