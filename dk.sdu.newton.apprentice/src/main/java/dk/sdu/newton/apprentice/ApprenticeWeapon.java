@@ -13,7 +13,7 @@ public class ApprenticeWeapon extends Weapon {
 	
 	@Override
 	public int getCooldownInMs() {
-		return 1000+(int)(Math.random()*2500-250);
+		return 1000000000+(int)(Math.random()*2500-250);
 	}
 	
 	@Override

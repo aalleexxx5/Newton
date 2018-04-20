@@ -2,11 +2,9 @@ package dk.sdu.newton.einstein;
 
 import common.data.*;
 import common.data.entityParts.MovingPart;
-import common.data.mapParts.Map;
 import common.services.Collidable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 import static common.data.Hostility.KILLS_ENEMY;
@@ -18,20 +16,23 @@ public class EinsteinControl {
 	private Random random = new Random(5260);
 	private ArrayList<Entity> entities = new ArrayList<>();
 	private ArrayList<Unit> units = new ArrayList<>();
+	private ArrayList<Unit> players = new ArrayList<>();
 	private ArrayList<Projectile> projectiles = new ArrayList<>();
 	private ArrayList<Collidable> collideables = new ArrayList<>();
 	private ArrayList<float[]> boundaries = new ArrayList<>();
 	private ArrayList<float[]> einsteinsHitbox;
 	private float sensorRange=100;
 	private float wallSensorRange=50;
+	private float aimSensorRange=500;
 	private float dx,dy,speed,dodgespeed, newdx, newdy;
     private ArrayList<Entity> roomEntities = new ArrayList<>();
+
 
     public EinsteinControl(Einstein einstein){
 		this.einstein = einstein;
 		dx=0;
 		dy=0;
-		speed = 50;
+		speed = 75;
 		dodgespeed=100;
 	}
 
@@ -49,9 +50,6 @@ public class EinsteinControl {
             if (entities.get(i) instanceof Projectile && ((Projectile) entities.get(i)).getHostility()==KILLS_ENEMY) {
                 projectiles.add((Projectile) entities.get(i));
             }
-            //if (entities.get(i) instanceof Collidable) {
-            //    collideables.add((Collidable) entities.get(i));
-            //}
 
 
 		}
@@ -174,7 +172,7 @@ for (int x=0;x<units.size();x++) {
                 || einsteinsHitbox.get(4)[1] + sensorRange < projectiles.get(x).getBounds()[1]
                 || einsteinsHitbox.get(4)[1] - sensorRange > projectiles.get(x).getBounds()[1]
         )) {
-            inRange=true;
+
             for (int i = 0;i<projectiles.get(x).getEntityParts().size();i++)
             if(projectiles.get(x).getEntityParts().get(i) instanceof MovingPart){
                 tempdx= ((MovingPart) projectiles.get(x).getEntityParts().get(i)).getDx();
@@ -190,6 +188,35 @@ for (int x=0;x<units.size();x++) {
           //  System.out.println(inRange);
 
         }}
+
+        public ProjectileDirection aimSensor(){
+			float dirX = 0;
+			float dirY = 0;
+			float distance=0;
+
+			float shortning,xDiff,yDiff;
+			for (int x=0;x<units.size();x++) {
+			if (!(einsteinsHitbox.get(4)[0] + aimSensorRange < units.get(x).getBounds()[0]
+					|| einsteinsHitbox.get(4)[0] - aimSensorRange > units.get(x).getBounds()[0]
+					|| einsteinsHitbox.get(4)[1] + aimSensorRange < units.get(x).getBounds()[1]
+					|| einsteinsHitbox.get(4)[1] - aimSensorRange > units.get(x).getBounds()[1]
+			)) {
+				System.out.println(units.get(x));
+				dirX = units.get(x).getBounds()[0] - einsteinsHitbox.get(4)[0];
+				dirY = units.get(x).getBounds()[1] - einsteinsHitbox.get(4)[1];
+				distance = (float) Math.sqrt(Math.pow(dirX,2)+Math.pow(dirY,2));
+
+				dirX = dirX*(1/distance);
+				dirY = dirY*(1/distance);
+				System.out.println(dirX+" : "+dirY);
+
+			}
+
+			}
+
+				return new ProjectileDirection(dirX,dirY);
+
+		}
 
 
 
