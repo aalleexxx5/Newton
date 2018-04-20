@@ -201,14 +201,14 @@ for (int x=0;x<units.size();x++) {
 					|| einsteinsHitbox.get(4)[1] + aimSensorRange < units.get(x).getBounds()[1]
 					|| einsteinsHitbox.get(4)[1] - aimSensorRange > units.get(x).getBounds()[1]
 			)) {
-				System.out.println(units.get(x));
+				//System.out.println(units.get(x));
 				dirX = units.get(x).getBounds()[0] - einsteinsHitbox.get(4)[0];
 				dirY = units.get(x).getBounds()[1] - einsteinsHitbox.get(4)[1];
 				distance = (float) Math.sqrt(Math.pow(dirX,2)+Math.pow(dirY,2));
 
 				dirX = dirX*(1/distance);
 				dirY = dirY*(1/distance);
-				System.out.println(dirX+" : "+dirY);
+				//System.out.println(dirX+" : "+dirY);
 
 			}
 
