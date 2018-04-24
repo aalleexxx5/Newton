@@ -41,16 +41,11 @@ public class HardcodeMapGen {
         rooms.add(room2);
         rooms.add(room3);
 
-        //Add apprentices
-        for (Entity e:Registrator.getInstance().getEnemy(200)
-             ) {
-            room2.addEntity(e);
-        }
-        //Add boss
-        for (Entity e:Registrator.getInstance().getEnemy(1000)
-                ) {
-            room3.addEntity(e);
-        }
+        room2.addEntity(Registrator.getInstance().getEnemy(200).addAtLocation(400,400));
+        room2.addEntity(Registrator.getInstance().getEnemy(200).addAtLocation(200,400));
+        room2.addEntity(Registrator.getInstance().getEnemy(200).addAtLocation(100,400));
+        room3.addEntity(Registrator.getInstance().getEnemy(1000).addAtLocation(360,400));
+
 
 
         map.addRoomsToMap(room1);

@@ -98,6 +98,7 @@ public class Room {
         }
   }
 
+
     private void createWalls() {
         entities.add(new Wall("bigNWBox", -144, 688, 512, 32));
         entities.add(new Wall("bigNEBox", 432, 688, 512, 32));

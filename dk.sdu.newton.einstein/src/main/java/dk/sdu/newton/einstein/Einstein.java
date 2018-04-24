@@ -85,7 +85,9 @@ public class Einstein extends Unit {
         //System.out.println(einsteinControl.getDX());
         //System.out.println(einsteinControl.getDX());
         //System.out.println(einsteinControl.getDY());
-        inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE),ProjectileDirection.WEST);
+		ProjectileDirection direction = einsteinControl.aimSensor();
+        inventory.shoot(Registrator.getInstance().getState(AvailableStates.PLAY_STATE),direction);
+
 	}
 	
 	@Override

@@ -37,7 +37,7 @@ public class Apprentice extends Unit {
 	
 	@Override
 	public Hostility getHostility() {
-		return PASSIVE;
+		return NO_EFFECT;
 	}
 	
 	@Override
