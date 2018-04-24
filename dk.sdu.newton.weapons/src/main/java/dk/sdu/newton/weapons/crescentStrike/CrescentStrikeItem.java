@@ -7,7 +7,7 @@ import common.services.Collidable;
 import common.services.Equipable;
 
 public class CrescentStrikeItem extends Item {
-	private static final String FILENAME = "player.png";
+	private static final String FILENAME = "crescentmoon.png";
 	private static final float WIDTH = 16;
 	private static final float HEIGHT = 16;
 	private boolean setDestruct = false;
