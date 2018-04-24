@@ -12,16 +12,18 @@ public class Rocket extends Projectile{
 	private static final float WIDTH = 16;
 	private static final float HEIGHT = 16;
 	private static final float SPEED = NORMAL_SPEED*0.2f;
-	private static final int DURATION_MS = 3000;
+	private static final int DURATION_MS = 3500;
+	private static final int SMOKE_SPAWN_COOLDOWN_MS = 100;
 	private final long startTime = System.currentTimeMillis();
 	private boolean destruct = false;
 	private Unit target = null;
 	private MovingPart movement;
 	private ProjectileDirection direction;
-	public static final int SMOOTHING_TIME = DURATION_MS / 2;
-	public static final int TARGETING_TIME = DURATION_MS / 10;
+	public static final int SMOOTHING_TIME = DURATION_MS-500;
+	public static final int TARGETING_TIME = DURATION_MS / 5;
 	private static final float TARGET_SPEED_INCREASE = 2f;
 	private boolean isTargetAcuired = false;
+	private long lastSpawn = System.currentTimeMillis()/SMOKE_SPAWN_COOLDOWN_MS;
 	
 	public Rocket(ProjectileDirection direction, Unit origin) {
 		super(direction, SPEED, origin);
@@ -98,6 +100,11 @@ public class Rocket extends Projectile{
 		
 		long currentDuration = System.currentTimeMillis() - startTime;
 		if (isTargetAcuired){
+			long currentSpawn = System.currentTimeMillis() / SMOKE_SPAWN_COOLDOWN_MS;
+			if (currentSpawn > lastSpawn){
+				lastSpawn = currentSpawn;
+				Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(new RocketParticle(location, 400));
+			}
 			float targetX = target.getLocation()[0] - location[0];
 			float targetY = target.getLocation()[1] - location[1];
 			

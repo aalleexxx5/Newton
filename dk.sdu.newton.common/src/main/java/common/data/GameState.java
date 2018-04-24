@@ -76,8 +76,7 @@ public class GameState {
 	}
 
 	public ArrayList<Entity> getGameEntities(){
-
-		return map.getCurrentRoomEntityList();
+		return getEntitiesByInterface(Entity.class); // A very inefficient line of code!
 	}
 	
 	public void addEntity(Entity entity){

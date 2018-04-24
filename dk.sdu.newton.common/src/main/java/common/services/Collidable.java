@@ -20,5 +20,17 @@ public interface Collidable {
 	 * @return an array containing the x,y,width,height of the Collidable.
 	 */
 	public float[] getBounds();
-
+	
+	
+	/**
+	 * Used to determine if two collidables is colliding.
+	 * @param a A collidable.
+	 * @param b A different collidable.
+	 * @return true, if the two collidables are overlapping.
+	 */
+	static boolean doesCollide(float[] aBounds, float[] bBounds) {
+		return !(aBounds[0] > bBounds[0] + bBounds[2]) &&  // a.x < b.x+b.width
+				!(bBounds[0] > aBounds[0] + aBounds[2]) && // b.x < a.x+a.width
+				!(aBounds[1] > bBounds[1] + bBounds[3]) && // a.y < b.y+b.height
+				!(bBounds[1] > aBounds[1] + aBounds[3]); } // b.y < a.y+a.height
 }

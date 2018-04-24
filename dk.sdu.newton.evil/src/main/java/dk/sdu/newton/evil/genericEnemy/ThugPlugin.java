@@ -11,9 +11,8 @@ public class ThugPlugin implements BundleActivator {
 	@Override
 	public void start(BundleContext bundleContext) throws Exception {
 		thug = new Thug(200, 200);
-		Registrator.registerEnemy(thug, 200);
-		Registrator.getInstance().getState(AvailableStates.PLAY_STATE).addEntity(thug);
-		
+		System.out.println("register thug!");
+		Registrator.registerEnemy(thug, 150);
 	}
 	
 	@Override
