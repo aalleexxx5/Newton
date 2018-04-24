@@ -7,17 +7,18 @@ public class CrescentStrikeWeapon extends Weapon{
 	
 	@Override
 	public Item getDroppedItem() {
-		return new CrescentStrikeItem();
+		return new CrescentStrikeItem(container.getLocation());
 	}
 	
 	@Override
 	public void onShoot(GameState state, ProjectileDirection direction) {
-	
+		CrescentStrikeBullet csBullet = new CrescentStrikeBullet(direction, container);
+		state.addEntity(csBullet);
 	}
 	
 	@Override
     public int getCooldownInMs() {
-        return 3000;
+        return 500;
     }
 	
 	@Override
