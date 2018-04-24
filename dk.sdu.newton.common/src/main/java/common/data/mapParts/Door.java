@@ -1,6 +1,7 @@
 package common.data.mapParts;
 
 import common.data.Entity;
+import common.data.Hostility;
 import common.data.Sprite;
 import common.services.Collidable;
 
@@ -40,7 +41,7 @@ private int roomNumber;
 	}
 	
 	@Override
-    public Enum getHostility() {
+    public Hostility getHostility() {
         return MOVER;
     }
 

@@ -16,7 +16,7 @@ public abstract class Item extends Entity implements Collidable, Destructable {
 	}
 	
 	@Override
-	public Enum getHostility() {
+	public Hostility getHostility() {
 		return Hostility.ITEM;
 	}
 	

@@ -36,7 +36,7 @@ public class Apprentice extends Unit {
 	}
 	
 	@Override
-	public Enum getHostility() {
+	public Hostility getHostility() {
 		return NO_EFFECT;
 	}
 	
@@ -74,9 +74,6 @@ public class Apprentice extends Unit {
 	
 	@Override
 	public void update(GameState state) {
-		apprenticeControl.makeEviorment(state);
-		apprenticeControl.sensors();
-		apprenticeControl.wallSensors();
 		movement.setDx(apprenticeControl.getdx());
 		movement.setDy(apprenticeControl.getdy());
 		inventory.shoot(state, ProjectileDirection.random());

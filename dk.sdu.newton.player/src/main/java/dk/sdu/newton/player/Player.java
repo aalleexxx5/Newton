@@ -63,13 +63,13 @@ public class Player extends Unit {
 	}
 	
 	@Override
-	public Enum getHostility() {
+	public Hostility getHostility() {
 		return KILLS_PLAYER;
 	}
 	
 	@Override
 	public void collidesWith(Collidable source) {
-		if (source.getHostility() == Hostility.KILLS_PLAYER) {
+		if (source.getHostility() == KILLS_PLAYER) {
 			lives.decrement();
 			location[0] = 400;
 			location[1] = 400;
@@ -83,10 +83,6 @@ public class Player extends Unit {
 			movement.revertToLastFrame(this);
 			movement.setDx(0);
 			movement.setDy(0);
-		}if (source.getHostility() == Hostility.ITEM){
-			if (source instanceof Item){
-				inventory.addItem(((Item) source).getEquipable(), this);
-			}
 		}
 		if (source.getHostility() == Hostility.MOVER){
 			ArrayList<Entity> tempList = new ArrayList<>();

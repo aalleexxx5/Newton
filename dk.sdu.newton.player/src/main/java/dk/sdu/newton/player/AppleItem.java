@@ -1,5 +1,6 @@
 package dk.sdu.newton.player;
 
+import common.data.Hostility;
 import common.data.Item;
 import common.data.Sprite;
 import common.data.Weapon;
@@ -26,7 +27,7 @@ public class AppleItem extends Item {
 	}
 
 	@Override
-	public Enum getHostility() {
+	public Hostility getHostility() {
 		return NO_EFFECT;
 	}
 
