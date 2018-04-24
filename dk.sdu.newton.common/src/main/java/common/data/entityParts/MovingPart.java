@@ -2,7 +2,6 @@ package common.data.entityParts;
 
 import common.data.Entity;
 import common.data.GameState;
-import common.data.Sprite;
 import common.services.EntityPart;
 
 public class MovingPart implements EntityPart {
