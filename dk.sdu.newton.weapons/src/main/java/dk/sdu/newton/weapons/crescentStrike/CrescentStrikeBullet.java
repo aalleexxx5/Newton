@@ -10,17 +10,16 @@ public class CrescentStrikeBullet extends Projectile {
     private static final String FILENAME = "player.png";
     private static final float WIDTH = 16;
     private static final float HEIGHT = 16;
-    private static final int DURATION = 750;
+    private static final int DURATION = 950;
     private final Unit parent;
     private boolean destruct = false;
     private MovingPart mover = null;
     private long startTime = System.currentTimeMillis();
-    // private ProjectileDirection clockwise = new ProjectileDirection(mover.getDx(), mover.getDy());
-    private float rotationRate = 0.5f;
+    private float rotationRate = (float) Math.PI;
 
 
     public CrescentStrikeBullet(ProjectileDirection direction, Unit unit) {
-        super(direction, SPEED, unit);
+        super(ProjectileDirection.clockwiseRotation(direction), SPEED, unit);
         location = unit.getLocation().clone();
         parent = unit;
         for (EntityPart entityPart : getEntityParts()) {
@@ -72,8 +71,8 @@ public class CrescentStrikeBullet extends Projectile {
         dx = dx * (rotationRate * state.getDeltaTime());
         dy = dy * (rotationRate * state.getDeltaTime());
 
-        mover.setDx(x * dx * SPEED);
-        mover.setDy(y * dy * SPEED);
+        mover.setDx(x + dx);
+        mover.setDy(y + dy);
 
 
         /*
