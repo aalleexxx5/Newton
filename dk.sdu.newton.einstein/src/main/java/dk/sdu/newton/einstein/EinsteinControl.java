@@ -47,7 +47,7 @@ public class EinsteinControl {
 			if (entities.get(i) instanceof Unit) {
 				units.add((Unit) entities.get(i));
 			}
-            if (entities.get(i) instanceof Projectile && ((Projectile) entities.get(i)).getHostility()==KILLS_ENEMY) {
+            if (entities.get(i) instanceof Projectile && ((Projectile) entities.get(i)).getHostility() == KILLS_ENEMY) {
                 projectiles.add((Projectile) entities.get(i));
             }
 
@@ -181,8 +181,6 @@ for (int x=0;x<units.size();x++) {
             dx=-tempdy+dodgespeed;
             dy=tempdx+dodgespeed;
 
-        }else{
-
         }
             //System.out.println(projectiles.size());
           //  System.out.println(inRange);
@@ -194,7 +192,7 @@ for (int x=0;x<units.size();x++) {
 			float dirY = 0;
 			float distance=0;
 
-			float shortning,xDiff,yDiff;
+
 			for (int x=0;x<units.size();x++) {
 			if (!(einsteinsHitbox.get(4)[0] + aimSensorRange < units.get(x).getBounds()[0]
 					|| einsteinsHitbox.get(4)[0] - aimSensorRange > units.get(x).getBounds()[0]

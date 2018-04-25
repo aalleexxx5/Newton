@@ -42,7 +42,7 @@ public class Apprentice extends Unit {
 	
 	@Override
 	public void collidesWith(Collidable source) {
-		Enum i = source.getHostility();
+		Hostility i = source.getHostility();
 		if (common.data.Hostility.PASSIVE.equals(i)) {
 			movement.revertToLastFrame(this);
 			movement.setDx(0);
@@ -74,6 +74,9 @@ public class Apprentice extends Unit {
 	
 	@Override
 	public void update(GameState state) {
+		apprenticeControl.makeEviorment(state);
+		apprenticeControl.wallSensors();
+		apprenticeControl.sensors();
 		movement.setDx(apprenticeControl.getdx());
 		movement.setDy(apprenticeControl.getdy());
 		inventory.shoot(state, ProjectileDirection.random());
