@@ -5,9 +5,11 @@ import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 import common.services.EntityPart;
 
+import java.util.HashSet;
+
 public class CrescentStrikeBullet extends Projectile {
     private static final float SPEED = 400f;
-    private static final String FILENAME = "player.png";
+    private static final String FILENAME = "crescentmoon.png";
     private static final float WIDTH = 16;
     private static final float HEIGHT = 16;
     private static final int DURATION = 950;
@@ -16,6 +18,7 @@ public class CrescentStrikeBullet extends Projectile {
     private MovingPart mover = null;
     private long startTime = System.currentTimeMillis();
     private float rotationRate = (float) Math.PI;
+    private final HashSet<Collidable> damaged = new HashSet<>();
 
 
     public CrescentStrikeBullet(ProjectileDirection direction, Unit unit) {
@@ -42,7 +45,11 @@ public class CrescentStrikeBullet extends Projectile {
     @Override
     public void collidesWith(Collidable source) {
         if (source == parent) return;
-        setDestruct();
+        if (source == origin) return;
+        if (source instanceof Projectile) return;
+        if (source instanceof Item) return;
+        if (damaged.contains(source)) return;
+        damaged.add(source);
     }
 
     @Override
@@ -74,28 +81,6 @@ public class CrescentStrikeBullet extends Projectile {
         mover.setDx(x + dx);
         mover.setDy(y + dy);
 
-
-        /*
-        float curve1 = 1.75f;
-        float curve2 = 1.00f;
-
-	    if (currentTime - startTime <= DURATION/4) {
-            mover.setDy(x + curve1);
-            mover.setDy(y + curve1);
-
-        } else if (currentTime - startTime <= DURATION/2) {
-	        mover.setDx(x + curve2);
-	        mover.setDy(y + curve2);
-
-        } else if (currentTime - startTime >= DURATION/2) {
-            mover.setDx(x - curve2);
-            mover.setDy(y - curve2);
-
-        } else if (currentTime - startTime <= DURATION/4 * 3) {
-            mover.setDx(x - curve1);
-            mover.setDy(y - curve1);
-        }
-*/
         if (currentTime - startTime >= DURATION) {
             setDestruct();
         }
