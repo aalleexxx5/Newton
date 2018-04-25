@@ -18,15 +18,18 @@ public class EmergencyTp implements Equipable, Updatable {
 	private static final String EXIT_FILENAME = "bluestar.png";
 	private static final float DEST_PADDING = 200f;
 	private static final float PADDING = 20;
-	private static final int COOLDOWN = 0;
+	private static final int COOLDOWN = 4000;
 	private Unit container;
 	private long lastUse = System.currentTimeMillis();
 	private MovingPart containerMove;
+	private EmergencyTpReady ready;
 	
 	@Override
 	public void onEquip(Unit container) {
 		this.container = container;
 		containerMove = getMovingPart(container);
+		ready = new EmergencyTpReady(container.getLocation());
+		ready.setDestruct();
 	}
 	
 	@Override
@@ -38,8 +41,13 @@ public class EmergencyTp implements Equipable, Updatable {
 	public void update(GameState state) {
 		long now = System.currentTimeMillis();
 		if (now > lastUse + COOLDOWN) {
+			if (ready.shouldDestruct()){
+				ready = new EmergencyTpReady(container.getLocation());
+				state.addEntity(ready);
+			}
 			if (needsToTeleport(state)) {
 				lastUse = now;
+				ready.setDestruct();
 				state.addEntity(entranceEffect());
 				float destPadding = DEST_PADDING;
 				int iterations = 0;
