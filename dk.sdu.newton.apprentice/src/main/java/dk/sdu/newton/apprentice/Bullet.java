@@ -29,7 +29,7 @@ public class Bullet extends Projectile {
     @Override
     public void collidesWith(Collidable source) {
         if (source == origin) return;
-    	if (source.getHostility() != PASSIVE){
+    	if (source.getHostility() != NO_EFFECT){
         	setDestruct();
         }
     }

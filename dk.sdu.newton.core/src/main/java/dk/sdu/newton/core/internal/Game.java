@@ -63,7 +63,9 @@ public class Game implements ApplicationListener {
             }
         }
 		
-		for (Updatable updatable : playState.getEntitiesByInterface(Updatable.class)) {
+		ArrayList<Updatable> updatables = playState.getEntitiesByInterface(Updatable.class);
+		if (updatables.size() > 100) System.err.println("WARNING! there are above 100 updatables on screen. This seemes wrong!");
+        for (Updatable updatable : updatables) {
 			updatable.update(playState);
 		}
 		for (Entity entity : playState.getGameEntities()) {

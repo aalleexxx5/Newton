@@ -14,6 +14,8 @@ import dk.sdu.newton.weapons.impact.GrowingEffect;
 import java.util.ArrayList;
 
 public class EmergencyTp implements Equipable, Updatable {
+	private static final String ENTERANCE_FILENAME = "blueSpiral.png";
+	private static final String EXIT_FILENAME = "bluestar.png";
 	private static final float DEST_PADDING = 200f;
 	private static final float PADDING = 20;
 	private static final int COOLDOWN = 0;
@@ -38,7 +40,7 @@ public class EmergencyTp implements Equipable, Updatable {
 		if (now > lastUse + COOLDOWN) {
 			if (needsToTeleport(state)) {
 				lastUse = now;
-				state.addEntity(teleportEffect());
+				state.addEntity(entranceEffect());
 				float destPadding = DEST_PADDING;
 				int iterations = 0;
 				do {
@@ -47,13 +49,17 @@ public class EmergencyTp implements Equipable, Updatable {
 					destPadding = destPadding - 0.125f; // To ensure no infinite loop occurs.
 				} while (!isSuitableLocation(state, destPadding));
 				System.out.println(destPadding+": "+iterations);
-				state.addEntity(teleportEffect());
+				state.addEntity(exitEffect());
 			}
 		}
 	}
 	
-	private GrowingEffect teleportEffect() {
-		return new GrowingEffect(new float[]{getCenterX(container), getCenterY(container)}, EmergencyTpItem.FILENAME, EmergencyTpItem.WIDTH * 2, EmergencyTpItem.HEIGHT * 2, 0.3f);
+	private GrowingEffect entranceEffect(){
+		return new GrowingEffect(new float[]{getCenterX(container), getCenterY(container)}, ENTERANCE_FILENAME, EmergencyTpItem.WIDTH * 2, EmergencyTpItem.HEIGHT * 2, 0.3f);
+	}
+	
+	private GrowingEffect exitEffect() {
+		return new GrowingEffect(new float[]{getCenterX(container), getCenterY(container)}, EXIT_FILENAME, EmergencyTpItem.WIDTH * 2, EmergencyTpItem.HEIGHT * 2, 0.3f);
 	}
 	
 	private float getCenterY(Collidable container) {

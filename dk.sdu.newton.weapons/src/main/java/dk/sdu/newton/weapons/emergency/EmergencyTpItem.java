@@ -5,7 +5,7 @@ import common.data.Sprite;
 import common.services.Equipable;
 
 public class EmergencyTpItem extends Item {
-	public static final String FILENAME = "bluestar.png";
+	public static final String FILENAME = "blueSpiral.png";
 	public static float WIDTH = 32;
 	public static float HEIGHT = 32;
 	
