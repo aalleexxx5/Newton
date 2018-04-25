@@ -24,8 +24,8 @@ public interface Collidable {
 	
 	/**
 	 * Used to determine if two collidables is colliding.
-	 * @param a A collidable.
-	 * @param b A different collidable.
+	 * @param aBounds A collidable.
+	 * @param bBounds A different collidable.
 	 * @return true, if the two collidables are overlapping.
 	 */
 	static boolean doesCollide(float[] aBounds, float[] bBounds) {

@@ -14,9 +14,9 @@ import dk.sdu.newton.weapons.impact.GrowingEffect;
 import java.util.ArrayList;
 
 public class EmergencyTp implements Equipable, Updatable {
-	private static final float DEST_PADDING = 1000;
-	private static final float PADDING = 5;
-	private static final int cooldown = 0;
+	private static final float DEST_PADDING = 200f;
+	private static final float PADDING = 20;
+	private static final int COOLDOWN = 0;
 	private Unit container;
 	private long lastUse = System.currentTimeMillis();
 	private MovingPart containerMove;
@@ -35,15 +35,18 @@ public class EmergencyTp implements Equipable, Updatable {
 	@Override
 	public void update(GameState state) {
 		long now = System.currentTimeMillis();
-		if (now > lastUse + cooldown) {
+		if (now > lastUse + COOLDOWN) {
 			if (needsToTeleport(state)) {
 				lastUse = now;
 				state.addEntity(teleportEffect());
 				float destPadding = DEST_PADDING;
+				int iterations = 0;
 				do {
+					iterations++;
 					teleport(state);
-					destPadding--; // To ensure no infinite loop occurs.
+					destPadding = destPadding - 0.125f; // To ensure no infinite loop occurs.
 				} while (!isSuitableLocation(state, destPadding));
+				System.out.println(destPadding+": "+iterations);
 				state.addEntity(teleportEffect());
 			}
 		}
@@ -62,10 +65,10 @@ public class EmergencyTp implements Equipable, Updatable {
 	}
 	
 	private boolean needsToTeleport(GameState state) {
-		ArrayList<Projectile> projectles = state.getEntitiesByInterface(Projectile.class);
-		for (Projectile projectle : projectles) {
-			if (projectle.getHostility() == container.getBulletHostility()) continue;
-			if (isAboutToCollide(projectle)) return true;
+		ArrayList<Projectile> projectiles = state.getEntitiesByInterface(Projectile.class);
+		for (Projectile projectile : projectiles) {
+			if (projectile.getHostility() == container.getBulletHostility()) continue;
+			if (isAboutToCollide(projectile)) return true;
 		}
 		return false;
 	}
@@ -74,15 +77,12 @@ public class EmergencyTp implements Equipable, Updatable {
 		MovingPart projectileMove = getMovingPart(projectle);
 		
 		float nextProjectileX = projectle.getBounds()[0] + ((projectileMove != null) ? projectileMove.getDx() : 0);
-		float nextProjectileY = projectle.getBounds()[1] + (projectileMove != null ? projectileMove.getDx() : 0);
+		float nextProjectileY = projectle.getBounds()[1] + (projectileMove != null ? projectileMove.getDy() : 0);
 		
-		float nextLoctaionX = container.getBounds()[0] + containerMove.getDx();
-		float nextLocationY = container.getBounds()[1] + containerMove.getDy();
+		float nextLocationX = container.getBounds()[0];
+		float nextLocationY = container.getBounds()[1];
 		
-		return Collidable.doesCollide(getBoundsWithPadding(container, PADDING), getBoundsWithPadding(projectle, PADDING)) ||
-				Collidable.doesCollide(
-						new float[]{nextLoctaionX - PADDING, nextLocationY - PADDING, projectle.getBounds()[2] + PADDING, projectle.getBounds()[3] + PADDING},
-						new float[]{nextProjectileX - PADDING, nextProjectileY - PADDING, projectle.getBounds()[2] + PADDING, projectle.getBounds()[3] + PADDING});
+		return Collidable.doesCollide(getBoundsWithPadding(container, PADDING), getBoundsWithPadding(projectle, PADDING));
 	}
 	
 	private float[] getBoundsWithPadding(Collidable coll, float padding) {
@@ -105,6 +105,7 @@ public class EmergencyTp implements Equipable, Updatable {
 	
 	private boolean isSuitableLocation(GameState state, float arrivalPadding) {
 		for (Collidable collidable : state.getEntitiesByInterface(Collidable.class)) {
+			if (collidable == container) continue;
 			if (Collidable.doesCollide(getBoundsWithPadding(container, arrivalPadding), getBoundsWithPadding(collidable, arrivalPadding))){
 				return false;
 			}
