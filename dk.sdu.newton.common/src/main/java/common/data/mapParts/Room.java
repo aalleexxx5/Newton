@@ -5,49 +5,44 @@ import common.data.Entity;
 import java.util.ArrayList;
 
 public class Room {
-    private String name;
-    private Wall wall;
-    private Door door;
+
+
+    private int number;
     private ArrayList<Entity> entities = new ArrayList<>();
 
-    public Room(){
+    public Room() {
 
     }
 
-    public Room(Boolean North, Boolean West, Boolean South, Boolean East, int number){
+    public Room(Boolean North, Boolean West, Boolean South, Boolean East, int number) {
+        if (!North) {
+            entities.add(new Wall("NDoorWall", 368, 688, 64, 64));
 
+        } else {
+            entities.add(new Door("northDoor", 368, 688, 64, 64));
+        }
 
-     if(!North){
-         entities.add(new Wall("NDoorWall",368, 688, 64, 64));
+        if (!West) {
+            entities.add(new Wall("WDoorWall", -32, 328, 64, 64));
 
-     }
-     else{
-         entities.add(new Door("northDoor", 368, 688, 64, 64));
-     }
+        } else {
+            entities.add(new Door("westDoor", -32, 328, 64, 64));
 
-     if(!West){
-         entities.add(new Wall("WDoorWall",-32, 328, 64, 64));
+        }
+        if (!South) {
+            entities.add(new Wall("SDoorWall", 368, -32, 64, 64));
 
-     }
-     else{
-         entities.add(new Door("westDoor", -32, 328, 64, 64));
+        } else {
+            entities.add(new Door("southDoor", 368, -32, 64, 64));
+        }
+        if (!East) {
+            entities.add(new Wall("EDoorWall", 768, 328, 64, 64));
 
-     }
-     if(!South){
-         entities.add(new Wall("SDoorWall", 368, -32, 64, 64));
-
-     }
-     else{
-         entities.add(new Door("southDoor", 368, -32, 64, 64));
-     }
-     if(!East){
-         entities.add(new Wall("EDoorWall", 768, 328, 64, 64));
-
-     }
-     else{
-         entities.add(new Door("eastDoor", 768, 328, 64, 64 ));
-     }
-     createWalls();
+        } else {
+            entities.add(new Door("eastDoor", 768, 328, 64, 64));
+        }
+        createWalls();
+        this.number = number;
     }
 
     public ArrayList<Entity> getEntities() {
@@ -56,47 +51,46 @@ public class Room {
         return entities;
     }
 
-    public void addEntity(Entity entity){
+    public void addEntity(Entity entity) {
         entities.add(entity);
     }
 
 
-    public void removeEntity(Entity entity){
+    public void removeEntity(Entity entity) {
         entities.remove(entity);
     }
 
-    public Door getNorthDoor(){
-        if (entities.get(0) instanceof Door){
+    public Door getNorthDoor() {
+        if (entities.get(0) instanceof Door) {
             return (Door) entities.get(0);
-      }
-      else{
+        } else {
             return null;
         }
-  }
-  public Door getWestDoor(){
-        if (entities.get(1) instanceof Door){
+    }
+
+    public Door getWestDoor() {
+        if (entities.get(1) instanceof Door) {
             return (Door) entities.get(1);
-      }
-      else{
+        } else {
             return null;
         }
-  }
-  public Door getSouthDoor(){
-        if (entities.get(2) instanceof Door){
+    }
+
+    public Door getSouthDoor() {
+        if (entities.get(2) instanceof Door) {
             return (Door) entities.get(2);
-      }
-      else{
+        } else {
             return null;
         }
-  }
-  public Door getEastDoor(){
-        if (entities.get(3) instanceof Door){
+    }
+
+    public Door getEastDoor() {
+        if (entities.get(3) instanceof Door) {
             return (Door) entities.get(3);
-      }
-      else{
+        } else {
             return null;
         }
-  }
+    }
 
 
     private void createWalls() {
@@ -108,5 +102,17 @@ public class Room {
         entities.add(new Wall("smallNEBox", 768, 392, 32, 512));
         entities.add(new Wall("smallSWBox", 0, -144, 32, 512));
         entities.add(new Wall("smallSWBox", 768, -144, 32, 512));
+    }
+
+    public boolean checkForDoors() {
+        if (getNorthDoor() != null || getSouthDoor() != null || getEastDoor() != null || getWestDoor() != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int getInt() {
+        return number;
     }
 }
