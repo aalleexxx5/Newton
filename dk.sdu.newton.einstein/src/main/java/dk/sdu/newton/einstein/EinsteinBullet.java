@@ -35,9 +35,10 @@ public class EinsteinBullet extends Projectile {
 	@Override
 	public void collidesWith(Collidable source) {
 		if (source == origin) return;
-		if (source.getHostility() == PASSIVE) {
-			setDestruct();
-		} else if (source.getHostility() == KILLS_ENEMY) {
+		//if (source.getHostility() == PASSIVE) {
+		//	setDestruct();
+		//} else
+			if (source.getHostility() == KILLS_ENEMY) {
 			setDestruct();
 		}
 	}

@@ -49,7 +49,7 @@ public class Einstein extends Unit {
 
 	@Override
 	public void collidesWith(Collidable source) {
-		Enum i = source.getHostility();
+		Hostility i = source.getHostility();
 		if (common.data.Hostility.KILLS_ENEMY.equals(i)) {
 			lives.decrement();
 		}
