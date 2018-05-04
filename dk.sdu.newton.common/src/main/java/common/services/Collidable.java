@@ -2,6 +2,12 @@ package common.services;
 
 import common.data.Hostility;
 
+/**
+ * Specifies the functionality required for collision.
+ * This includes calculation, notification, and intent.
+ * Any entity making use of this interface will be able
+ * to collide with any other implementing entity.
+ */
 public interface Collidable {
 	/**
 	 * Used by other collidables to determine the hostility of this Collidable.

@@ -13,7 +13,7 @@ public class ProjectileDirection {
 	public static final ProjectileDirection SOUTH_EAST = new ProjectileDirection(1,-1);
 	public static final ProjectileDirection SOUTH_WEST = new ProjectileDirection(-1,-1);
 	/**
-	 * Convienience class for indicating a direction for a projectile.
+	 * Convenience class for indicating a direction for a projectile.
 	 * @param vectorXComponent the x component of a direction vector. Must be between 0 and 1.
 	 * @param vectorYComponent the y component of a direction vector. Must be between 0 and 1.
 	 */
@@ -29,30 +29,56 @@ public class ProjectileDirection {
 		}
 	}
 	
+	/**
+	 * Used to get a random direction.
+	 * @return a random direction.
+	 */
 	public static ProjectileDirection random(){
 		return new ProjectileDirection((float)Math.random()*2-1,(float)Math.random()*2-1);
 	}
 	
+	/**
+	 * Returns a 90 degree clockwise rotation on a direction.
+	 * @param direction the direction to rotate.
+	 * @return the result of the rotation.
+	 */
 	public static ProjectileDirection clockwiseRotation(ProjectileDirection direction){
 		float clockWiseX = direction.dy;
 		float clockWiseY = -direction.dx;
 		return new ProjectileDirection(clockWiseX, clockWiseY);
 	}
 	
+	/**
+	 * Returns a 90 degree counter-clockwise rotation of a direction.
+	 * @param direction the direction to rotate.
+	 * @return the resulting rotated direction.
+	 */
 	public static ProjectileDirection counterClockwiseRotation(ProjectileDirection direction){
 		float counterX = -direction.dy;
 		float counterY = direction.dx;
 		return new ProjectileDirection(counterX, counterY);
 	}
 	
+	/**
+	 * Gets the x-component of the vector.
+	 * @return a float in the interval from 0 to 1. Inclusive
+	 */
 	public float getVectorXComponent(){
 		return dx;
 	}
-	
+	/**
+	 * Gets the y-component of the vector.
+	 * @return a float in the interval from 0 to 1. Inclusive
+	 */
 	public float getVectorYComponent() {
 		return dy;
 	}
 	
+	/**
+	 * Used to normalize the direction, as it is not to be used for denoting speed.
+	 * @param xComp the x component of a non-normalized vector.
+	 * @param yComp the y component of a non-normalized vector.
+	 */
 	private void applyNormalizedDeltas(float xComp, float yComp){
 		dx = xComp;
 		dy = yComp;

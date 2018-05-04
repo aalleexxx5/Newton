@@ -5,6 +5,10 @@ import common.services.Destructable;
 import common.services.EntityPart;
 import common.services.Equipable;
 
+/**
+ * Convenience class for items lying on the ground.
+ * An item will provide an {@link Equipable} to any compatible {@link Unit} upon collision.
+ */
 public abstract class Item extends Entity implements Collidable, Destructable {
 	protected boolean destruct = false;
 	
@@ -25,6 +29,12 @@ public abstract class Item extends Entity implements Collidable, Destructable {
 		return destruct;
 	}
 	
+	/**
+	 * Adds the {@link Equipable} returned from the {@link #getEquipable()} function
+	 * to the unit, if compatible.
+	 * @param source the unit to equip.
+	 * @return true, if an equipable has been added to the unit inventory.
+	 */
 	private boolean addEquipableToUnit(Unit source){
 		Equipable equipable = getEquipable();
 		if (equipable == null) return false;
@@ -38,5 +48,10 @@ public abstract class Item extends Entity implements Collidable, Destructable {
 		return false;
 	}
 	
+	/**
+	 * Used to get an equipable to add to a colliding {@link Unit}
+	 * May return null.
+	 * @return an {@link Equipable} to insert into a colliding units inventory.
+	 */
 	public abstract Equipable getEquipable();
 }

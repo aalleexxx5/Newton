@@ -8,6 +8,10 @@ import common.services.Updatable;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Used for containing multiple {@link Equipable}.
+ * Will handle most events, like shooting {@link Weapon} and updating {@link Updatable}.
+ */
 public class InventoryPart implements EntityPart {
 	private ArrayList<Equipable> eqiuppedItems = new ArrayList<>(16);
 	private ArrayList<Equipable> removeItems = new ArrayList<>(8);
@@ -40,6 +44,10 @@ public class InventoryPart implements EntityPart {
 		removeItems.add(equipable);
 	}
 	
+	/**
+	 * Un-equips all {@link Equipable}.
+	 * @param container the container of the inventory.
+	 */
 	public void removeAll(Unit container){
 		for (Equipable eqiuppedItem : eqiuppedItems) {
 			removeItem(eqiuppedItem, container);

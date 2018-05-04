@@ -78,7 +78,7 @@ public class Game implements ApplicationListener {
 				playState.removeEntity((Entity) destructable);
 			}
 		}
-		for (Updatable it : playState.getPostUpdateables()) {
+		for (Updatable it : playState.getPostUpdatables()) {
 			it.update(playState);
 		}
 	}
