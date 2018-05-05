@@ -1,8 +1,5 @@
 package dk.sdu.newton.core.internal;
 
-import java.util.Dictionary;
-import java.util.Properties;
-
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import org.osgi.framework.BundleActivator;
@@ -37,12 +34,8 @@ public final class ExampleActivator
     /**
      * Called whenever the OSGi framework stops our bundle
      */
-    public void stop( BundleContext bc )
-        throws Exception
-    {
-        System.out.println( "STOPPING org.sonatype.mcookbook.core" );
-
-        // no need to unregister our service - the OSGi framework handles it for us
+    public void stop( BundleContext bc ) throws Exception {
+    
     }
 }
 

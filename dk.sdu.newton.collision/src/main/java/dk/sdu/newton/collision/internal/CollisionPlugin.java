@@ -5,6 +5,10 @@ import common.data.Registrator;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
+/**
+ * Bundle activator class for the collision checker class.
+ * Starts and stops the collision functionality.
+ */
 public class CollisionPlugin implements BundleActivator {
 	CollisionChecker checker;
 	@Override

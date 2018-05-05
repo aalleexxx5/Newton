@@ -23,14 +23,20 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
+/**
+ * Contains the game "engine".
+ * Interfaces with the libGDX framework, and houses the game loop.
+ */
 public class Game implements ApplicationListener {
 	
 	private static OrthographicCamera cam;
-	private ShapeRenderer sr;
 	private GameState playState;
 	private final HashMap<String, Sprite> sprites = new HashMap<>();
 	private SpriteBatch batch;
-
+	
+	/**
+	 * Initial setup function. Called once, when the game starts.
+	 */
 	public void create() {
 		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.translate(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
@@ -41,6 +47,10 @@ public class Game implements ApplicationListener {
 		batch = new SpriteBatch();
 	}
 	
+	/**
+	 * Looping function. Called once every frame.
+	 * Clears the screen, and breaks the loop into an update and render section.
+	 */
 	public void render() {
 		// clear screen to black
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -50,6 +60,11 @@ public class Game implements ApplicationListener {
 		draw();
 	}
 	
+	/**
+	 * Updates the game data.
+	 * Calls update functions in all registered game objects.
+	 * The "logic" step of the loop.
+	 */
 	private void update() {
 		// Update
 		playState.setDeltaTime(Gdx.graphics.getDeltaTime());
@@ -83,6 +98,10 @@ public class Game implements ApplicationListener {
 		}
 	}
 	
+	/**
+	 * Draws all drawable game objects to the screen.
+	 * the "Render" step of the loop.
+	 */
 	private void draw() {
 		
 		ArrayList<common.data.Sprite> commonSprites = new ArrayList<>(32);

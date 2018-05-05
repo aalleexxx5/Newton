@@ -9,8 +9,9 @@ import java.util.ArrayList;
 
 public class CollisionChecker implements Updatable{
 	/**
-	 * Called after each frame. Determines if all collidables are colliding.
-	 * @param state the gameState containing the collidables.
+	 * Ckecks collision between collidables each frame.
+	 * @param state where the object is contained.
+	 * @see Updatable
 	 */
 	@Override
 	public void update(GameState state) {
