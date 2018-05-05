@@ -4,10 +4,11 @@ import common.data.*;
 import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 import common.services.EntityPart;
+import common.services.Updatable;
 
 import java.util.HashSet;
 
-public class CrescentStrikeBullet extends Projectile {
+public class CrescentStrikeBullet extends Projectile implements Updatable {
     private static final float SPEED = 400f;
     private static final String FILENAME = "crescentmoon.png";
     private static final float WIDTH = 16;
@@ -15,7 +16,7 @@ public class CrescentStrikeBullet extends Projectile {
     private static final int DURATION = 950;
     private final Unit parent;
     private boolean destruct = false;
-    private MovingPart mover = null;
+    private MovingPart mover;
     private long startTime = System.currentTimeMillis();
     private float rotationRate = (float) Math.PI;
     private final HashSet<Collidable> damaged = new HashSet<>();
@@ -25,11 +26,7 @@ public class CrescentStrikeBullet extends Projectile {
         super(ProjectileDirection.clockwiseRotation(direction), SPEED, unit);
         location = unit.getLocation().clone();
         parent = unit;
-        for (EntityPart entityPart : getEntityParts()) {
-            if (entityPart instanceof MovingPart) {
-                mover = (MovingPart) entityPart;
-            }
-        }
+        mover = getEntityPart(MovingPart.class);
     }
 
     @Override
@@ -44,7 +41,6 @@ public class CrescentStrikeBullet extends Projectile {
 
     @Override
     public void collidesWith(Collidable source) {
-        if (source == parent) return;
         if (source == origin) return;
         if (source instanceof Projectile) return;
         if (source instanceof Item) return;

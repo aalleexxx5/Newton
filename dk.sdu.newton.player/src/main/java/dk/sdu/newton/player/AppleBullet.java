@@ -4,12 +4,13 @@ import common.data.*;
 import common.data.entityParts.MovingPart;
 import common.services.Collidable;
 import common.services.EntityPart;
+import common.services.Updatable;
 
 import java.lang.reflect.Modifier;
 
 import static common.data.Hostility.KILLS_ENEMY;
 
-public class AppleBullet extends Projectile {
+public class AppleBullet extends Projectile implements Updatable {
 	private static final float WIDTH = 16f;
 	private static final float HEIGHT = 16f;
 	private static final float SPEED = 500f;
@@ -18,17 +19,14 @@ public class AppleBullet extends Projectile {
 	private static final float DECELERATION_PR_SECOND = 1.75f;
 	long startTime = System.currentTimeMillis();
 	private boolean shouldDestruct = false;
-	private MovingPart mover = null;
+	private MovingPart mover;
 	
 	public AppleBullet(float x, float y, ProjectileDirection direction, Unit origin) {
 		super(direction, SPEED, origin);
 		location[0] = x;
 		location[1] = y;
-		for (EntityPart entityPart : getEntityParts()) {
-			if (entityPart instanceof MovingPart) {
-				mover = (MovingPart) entityPart;
-			}
-		}
+		
+		mover = getEntityPart(MovingPart.class);
 	}
 	
 	@Override
@@ -52,7 +50,7 @@ public class AppleBullet extends Projectile {
 	
 	@Override
 	public float[] getBounds() {
-		return new float[]{location[0], location[1], WIDTH, HEIGHT};
+		return defaultBounds();
 	}
 	
 	@Override

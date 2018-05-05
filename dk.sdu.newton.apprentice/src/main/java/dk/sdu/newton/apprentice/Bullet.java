@@ -28,20 +28,14 @@ public class Bullet extends Projectile {
 
     @Override
     public void collidesWith(Collidable source) {
-        if (source == origin) return;
-    	if (source.getHostility() != NO_EFFECT){
-        	setDestruct();
-        }
+        defaultProjectileCollision(source);
     }
 
     @Override
     public float[] getBounds() {
-        return new float[] {location[0], location[1], WIDTH, HEIGHT};
+        return defaultBounds();
     }
 
-    @Override
-    public void update(GameState state) {
-    }
 
     @Override
     public Boolean shouldDestruct() {

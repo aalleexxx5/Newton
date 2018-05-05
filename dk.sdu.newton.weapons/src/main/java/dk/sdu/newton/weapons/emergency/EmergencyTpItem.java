@@ -4,6 +4,12 @@ import common.data.Item;
 import common.data.Sprite;
 import common.services.Equipable;
 
+/**
+ * An item on the ground, granting the {@link EmergencyTp} equipable, on collision.
+ * A very text-book implementation.
+ *
+ * @see Item
+ */
 public class EmergencyTpItem extends Item {
 	public static final String FILENAME = "blueSpiral.png";
 	public static float WIDTH = 32;
@@ -20,7 +26,7 @@ public class EmergencyTpItem extends Item {
 	
 	@Override
 	public Sprite getSprite() {
-		return new Sprite(FILENAME, 0,0,WIDTH, HEIGHT);
+		return new Sprite(FILENAME, 0, 0, WIDTH, HEIGHT);
 	}
 	
 	@Override

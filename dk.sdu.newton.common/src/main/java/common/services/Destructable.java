@@ -10,7 +10,7 @@ public interface Destructable {
 	 * Returns whether the object is ready for termination.
 	 * It is up to all classes containing instances of destructables
 	 * to poll this method, and remove any references to this objects when true.
-	 * @return true, if the object should be removed.
+	 * @return {@code true}, if the object should be removed.
 	 */
     public Boolean shouldDestruct();
 	

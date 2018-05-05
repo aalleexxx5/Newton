@@ -15,11 +15,7 @@ public class AppleWeapon extends Weapon {
 		AppleBullet appleBullet = new AppleBullet(x, y, direction, container);
 		state.addEntity(appleBullet);
 		
-		for (EntityPart entityPart : container.getEntityParts()) {
-			if (entityPart instanceof InventoryPart){
-				((InventoryPart) entityPart).removeItem(this, container);
-			}
-		}
+		container.getEntityPart(InventoryPart.class).removeItem(this, container);
 	}
 	
 	@Override

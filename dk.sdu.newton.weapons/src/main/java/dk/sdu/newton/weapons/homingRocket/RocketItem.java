@@ -4,7 +4,12 @@ import common.data.Item;
 import common.data.Sprite;
 import common.services.Equipable;
 
-public class RocketItem extends Item{
+/**
+ * Textbook weaponItem.
+ *
+ * @see Item
+ */
+public class RocketItem extends Item {
 	private static final String FILENAME = "rocketlauncher.png";
 	private static final float WIDTH = 32;
 	private static final float HEIGHT = 32;
@@ -25,11 +30,11 @@ public class RocketItem extends Item{
 	
 	@Override
 	public float[] getBounds() {
-		return new float[]{location[0], location[1], WIDTH, HEIGHT};
+		return defaultBounds();
 	}
 	
 	@Override
 	public void setDestruct() {
-	
+		destruct = true;
 	}
 }

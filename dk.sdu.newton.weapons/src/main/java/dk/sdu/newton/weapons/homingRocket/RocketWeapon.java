@@ -2,7 +2,12 @@ package dk.sdu.newton.weapons.homingRocket;
 
 import common.data.*;
 
-public class RocketWeapon extends Weapon{
+/**
+ * Textbook weapon.
+ *
+ * @see Weapon
+ */
+public class RocketWeapon extends Weapon {
 	private Unit container;
 	
 	@Override

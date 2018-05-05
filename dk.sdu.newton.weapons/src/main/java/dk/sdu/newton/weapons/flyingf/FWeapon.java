@@ -2,6 +2,9 @@ package dk.sdu.newton.weapons.flyingf;
 
 import common.data.*;
 
+/**
+ * Textbook weapon shooting the flying f bullet.
+ */
 public class FWeapon extends Weapon {
 	private Unit container;
 	
