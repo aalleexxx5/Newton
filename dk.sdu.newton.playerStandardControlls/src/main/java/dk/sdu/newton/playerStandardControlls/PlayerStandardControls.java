@@ -6,31 +6,37 @@ import common.data.Registrator;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-import java.awt.event.KeyEvent;
-
 public class PlayerStandardControls implements BundleActivator {
 
     private InputActionMap inputs;
 
+    /**
+     * register keys to actionmap
+     *
+     * @param bundleContext loads and unloads controls, here loads
+     */
     @Override
-    public void start(BundleContext bundleContext) throws Exception {
+    public void start(BundleContext bundleContext) {
         inputs = Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getInputActionMap();
         inputs.registerKey("W", "up");
         inputs.registerKey("A", "left");
         inputs.registerKey("S", "down");
         inputs.registerKey("D", "right");
         inputs.registerKey("Space", "shoot"); // might have to be uppercase?
-
-        //inputs.registerAction("display message", (st)-> System.out.println("Action called: "+st));
         inputs.registerKey("A", "display message");
     }
 
+    /**
+     * unregister keys to actionmap
+     *
+     * @param bundleContext loads and unloads controls, here unloads
+     */
     @Override
-    public void stop(BundleContext bundleContext) throws Exception {
-        inputs.removeKey("W","up");
-        inputs.removeKey("A","left");
-        inputs.removeKey("S","down");
-        inputs.removeKey("D","right");
-        inputs.removeKey("Space","shoot");
+    public void stop(BundleContext bundleContext) {
+        inputs.removeKey("W", "up");
+        inputs.removeKey("A", "left");
+        inputs.removeKey("S", "down");
+        inputs.removeKey("D", "right");
+        inputs.removeKey("Space", "shoot");
     }
 }
