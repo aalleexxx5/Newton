@@ -7,6 +7,11 @@ import common.services.Collidable;
 
 import static common.data.Hostility.PASSIVE;
 
+/**
+ * The Entity: wall
+ * is the blueprint for all doors in the game. Functions to limit the movement on the
+ * map to specific rooms and can not be penetrated
+ */
 
 public class Wall extends Entity implements Collidable{
 

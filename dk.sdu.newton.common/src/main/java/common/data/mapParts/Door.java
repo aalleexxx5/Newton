@@ -11,6 +11,10 @@ import static common.data.Hostility.KILLS_PLAYER;
 import static common.data.Hostility.MOVER;
 import static common.data.Hostility.PASSIVE;
 
+/**
+ * The Entity: Door
+ * is the blueprint for the doors found in the game. and is used to change the location of the player upon colliosion
+ */
 
 public class Door extends Entity implements Collidable{
 
