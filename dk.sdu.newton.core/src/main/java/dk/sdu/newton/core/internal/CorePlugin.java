@@ -9,7 +9,7 @@ import org.osgi.framework.BundleContext;
 /**
  * Extension of the default OSGi bundle activator
  */
-public final class ExampleActivator
+public final class CorePlugin
     implements BundleActivator
 {
     /**
