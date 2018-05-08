@@ -45,8 +45,7 @@ public class Apprentice extends Unit {
 		Hostility i = source.getHostility();
 		if (common.data.Hostility.PASSIVE.equals(i)) {
 			movement.revertToLastFrame(this);
-			movement.setDx(0);
-			movement.setDy(0);
+			movement.halt();
 		} else if (common.data.Hostility.KILLS_ENEMY.equals(i)) {
 			health.decrement();
 		}
@@ -54,13 +53,13 @@ public class Apprentice extends Unit {
 	
 	@Override
 	public float[] getBounds() {
-		return new float[] {location[0], location[1], WIDTH, HEIGHT};
+		return defaultBounds();
 	}
 	
 	
 	@Override
 	public Boolean shouldDestruct() {
-		if (health.getLives()<=0) {
+		if (health.isDead()) {
 			inventory.removeAll(this);
 			return true;
 		} else return false;

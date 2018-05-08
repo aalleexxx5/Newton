@@ -9,17 +9,13 @@ import org.osgi.framework.BundleContext;
 public class HardcodedMapPlugin implements BundleActivator {
 
     Map map = Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getMap();
+
     @Override
     public void start(BundleContext bundleContext) throws Exception {
         System.out.println("adding map");
         HardcodeMapGen hMapGen = new HardcodeMapGen();
         map.setCurrentRoomOnStart(hMapGen.getMap().getCurrentRoom());
         Registrator.getInstance().getState(AvailableStates.PLAY_STATE).setMap(hMapGen.getMap());
-
-
-
-
-
     }
 
     @Override

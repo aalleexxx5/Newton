@@ -26,7 +26,7 @@ public class ApprenticeWeaponItem extends Item {
 	
 	@Override
 	public float[] getBounds() {
-		return new float[]{location[0], location[1], WIDTH, HEIGHT};
+		return defaultBounds();
 	}
 	
 	@Override

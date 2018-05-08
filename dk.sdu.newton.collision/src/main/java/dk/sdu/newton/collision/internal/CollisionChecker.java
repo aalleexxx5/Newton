@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class CollisionChecker implements Updatable{
 	/**
-	 * Ckecks collision between collidables each frame.
+	 * Ckecks collision between collidables each frame. O((n*(n+1)/2)) runtime
 	 * @param state where the object is contained.
 	 * @see Updatable
 	 */

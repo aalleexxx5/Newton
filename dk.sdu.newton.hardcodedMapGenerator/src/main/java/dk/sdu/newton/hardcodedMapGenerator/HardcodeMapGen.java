@@ -19,7 +19,6 @@ public class HardcodeMapGen {
         // randomMap();
     }
 
-
     private void createMap() {
 
         map = new Map();
@@ -71,8 +70,6 @@ public class HardcodeMapGen {
         for (int row = 0; row < mapMatrix.length; row++) {
             for (int col = 0; col < mapMatrix[row].length; col++) {
                 if (mapMatrix[row][col] == true) {
-
-
                     try {
                         //check north
                         if (mapMatrix[row - 1][col] == true) {
@@ -83,14 +80,10 @@ public class HardcodeMapGen {
                     } catch (ArrayIndexOutOfBoundsException e) {
                         north = false;
                     }
-
                     try {
-
-
                         //check west
                         if (mapMatrix[row][col - 1] == true) {
                             west = true;
-
                         } else {
                             west = false;
                         }
@@ -98,46 +91,34 @@ public class HardcodeMapGen {
                         west = false;
                     }
                     try {
-
                         //check south
                         if (mapMatrix[row + 1][col] == true) {
                             south = true;
-
                         } else {
                             south = false;
                         }
                     } catch (ArrayIndexOutOfBoundsException e) {
                         south = false;
                     }
-
                     try {
                         //check east
                         if (mapMatrix[row][col + 1] == true) {
                             east = true;
-
                         } else {
                             east = false;
                         }
                     } catch (ArrayIndexOutOfBoundsException e) {
                         east = false;
                     }
-
                     Room room = new Room(north, west, south, east, row * 5 + col);
-
                     roomMatrix[row][col] = room;
 
                 } else {
                     Room room = new Room(false, false, false, false, row * 5 + col);
                     roomMatrix[row][col] = room;
                 }
-
             }
         }
-
-        System.out.println(Arrays.deepToString(mapMatrix));
-
-
-        System.out.println(Arrays.deepToString(roomMatrix));
 
         for (int row = 0; row < roomMatrix.length; row++) {
             for (int col = 0; col < roomMatrix[row].length; col++) {
@@ -149,9 +130,7 @@ public class HardcodeMapGen {
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Connection could not be made");
-
                 }
-
                 try {
                     //set west connection
                     if (roomMatrix[row][col - 1].getEastDoor() instanceof Door && roomMatrix[row][col].getWestDoor() instanceof Door) {
@@ -161,8 +140,6 @@ public class HardcodeMapGen {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Connection could not be made");
                 }
-
-
                 try {
                     //set south connection
                     if (roomMatrix[row + 1][col].getNorthDoor() instanceof Door && roomMatrix[row][col].getSouthDoor() instanceof Door) {
@@ -171,11 +148,8 @@ public class HardcodeMapGen {
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Connection could not be made");
-
                 }
-
                 try {
-
                     //set east connection
                     if (roomMatrix[row][col + 1].getWestDoor() instanceof Door && roomMatrix[row][col].getEastDoor() instanceof Door) {
                         roomMatrix[row][col].getEastDoor().setConnection(roomMatrix[row][col + 1].getInt());
@@ -183,9 +157,7 @@ public class HardcodeMapGen {
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Connection could not be made");
-
                 }
-
             }
         }
 

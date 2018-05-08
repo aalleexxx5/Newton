@@ -50,6 +50,6 @@ private int roomNumber;
 
     @Override
     public float[] getBounds() {
-        return new float[] {location[0],location[1], sprite.getWidth(),sprite.getHeight()};
+        return defaultBounds();
     }
 }

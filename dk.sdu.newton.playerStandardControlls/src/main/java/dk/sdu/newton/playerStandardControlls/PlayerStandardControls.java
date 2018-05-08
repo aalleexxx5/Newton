@@ -23,7 +23,6 @@ public class PlayerStandardControls implements BundleActivator {
         inputs.registerKey("S", "down");
         inputs.registerKey("D", "right");
         inputs.registerKey("Space", "shoot"); // might have to be uppercase?
-        inputs.registerKey("A", "display message");
     }
 
     /**
