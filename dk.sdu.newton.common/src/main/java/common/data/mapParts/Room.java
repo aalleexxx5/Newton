@@ -4,6 +4,9 @@ import common.data.Entity;
 
 import java.util.ArrayList;
 
+/**
+ * The Room colllects an amount of the entities doors and walls to make standard room on the map.
+ */
 public class Room {
 
 
@@ -14,6 +17,14 @@ public class Room {
 
     }
 
+    /**
+     * The room it self and what Entities it contains. The parameters decides how many doors exists in the room.
+     * @param North Refers to the upper part of the screen.
+     * @param West Refers to the left part of the screen.
+     * @param South Refers to the bottom part of the screen.
+     * @param East Refers to the right part of the screen.
+     * @param number A way to diffritiate the different rooms from eachother.
+     */
     public Room(Boolean North, Boolean West, Boolean South, Boolean East, int number) {
         if (!North) {
             entities.add(new Wall("NDoorWall", 368, 688, 64, 64));
@@ -92,7 +103,9 @@ public class Room {
         }
     }
 
-
+    /**
+     * Creates the walls for the rooms
+     */
     private void createWalls() {
         entities.add(new Wall("bigNWBox", -144, 688, 512, 32));
         entities.add(new Wall("bigNEBox", 432, 688, 512, 32));
@@ -104,6 +117,9 @@ public class Room {
         entities.add(new Wall("smallSWBox", 768, -144, 32, 512));
     }
 
+    /**
+     *Checks wether or not the room contains doors.
+     */
     public boolean checkForDoors() {
         if (getNorthDoor() != null || getSouthDoor() != null || getEastDoor() != null || getWestDoor() != null) {
             return true;
@@ -112,6 +128,9 @@ public class Room {
         }
     }
 
+    /**
+     * gets the number of the room.
+     */
     public int getInt() {
         return number;
     }
