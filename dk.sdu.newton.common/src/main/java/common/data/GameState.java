@@ -13,6 +13,11 @@ import java.util.ArrayList;
  */
 public class GameState {
 	//Data:
+	
+	public GameState() {
+		Map.clearEntitiesToSpawn();
+	}
+	
 	private ArrayList<Updatable> postUpdatables = new ArrayList<>();
 	private ArrayList<Entity> spawnList = new ArrayList<>();
 	private ArrayList<Entity> tempRemoveList = new ArrayList<>();

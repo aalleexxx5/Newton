@@ -27,7 +27,7 @@ private ArrayList<Entity> tempList = new ArrayList<>();
 
     public ArrayList<Entity> getCurrentRoomEntityList(){
         if (currentRoom == null){
-            return emptyList;
+            return entityToAddList;
         }
         else {
             return currentRoom.getEntities();
@@ -81,6 +81,14 @@ private ArrayList<Entity> tempList = new ArrayList<>();
         tempList.clear();
         Registrator.getInstance().getState(AvailableStates.PLAY_STATE).getSpawnList().clear();
 
+    }
+    
+    /**
+     * Used whenever a new gameState instance is created.
+     * This currently only happen during testing.
+     */
+    public static void clearEntitiesToSpawn(){
+        entityToAddList.clear();
     }
 
 

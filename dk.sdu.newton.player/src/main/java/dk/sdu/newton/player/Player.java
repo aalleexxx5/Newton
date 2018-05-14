@@ -72,6 +72,7 @@ public class Player extends Unit {
 	
 	/**
 	 * Used to clone unites.
+	 *
 	 * @param x the x location of the cloned unit.
 	 * @param y the y location of the cloned unit.
 	 * @return
@@ -100,6 +101,7 @@ public class Player extends Unit {
 	
 	/**
 	 * Collision logic.
+	 *
 	 * @param source the offending object.
 	 */
 	@Override
@@ -118,6 +120,7 @@ public class Player extends Unit {
 	
 	/**
 	 * Takes damage after collosion.
+	 *
 	 * @param source the offending collidable.
 	 */
 	private void takeDamage(Collidable source) {
@@ -129,6 +132,7 @@ public class Player extends Unit {
 	
 	/**
 	 * Moves the player into a new room.
+	 *
 	 * @param source the (presumably) door.
 	 */
 	private void changeRoom(Collidable source) {
@@ -207,6 +211,7 @@ public class Player extends Unit {
 	/**
 	 * Used to determine whether the player should be removed from the game area.
 	 * Destructs upon death.
+	 *
 	 * @return {@code true}, if the player has no more lives.
 	 */
 	@Override
@@ -225,6 +230,7 @@ public class Player extends Unit {
 	/**
 	 * Called each frame.
 	 * Delegates event to smaller methods.
+	 *
 	 * @param state where the object is contained.
 	 */
 	@Override
@@ -285,6 +291,7 @@ public class Player extends Unit {
 	
 	/**
 	 * Called when an action has been recieved from a controller input.
+	 *
 	 * @param actionName the name of the action received.
 	 */
 	private void receiveAction(String actionName) {
@@ -303,6 +310,7 @@ public class Player extends Unit {
 	
 	/**
 	 * contains logic for moving the player on action.
+	 *
 	 * @param direction the direction of movement.
 	 */
 	private void receiveMovement(String direction) {
@@ -332,6 +340,7 @@ public class Player extends Unit {
 	/**
 	 * Convenience function.
 	 * Adds an {@link Equipable} to the inventory.
+	 *
 	 * @param equipable the {@link Equipable} to add.
 	 */
 	void addEquipable(Equipable equipable) {
